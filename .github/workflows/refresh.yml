@@ -1,0 +1,45 @@
+name: refresh election data
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch, score, assemble
+        run: bash pipeline/run_refresh.sh
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "election-refresh-bot"
+          git config user.email "election-refresh-bot@users.noreply.github.com"
+          git add app/data/dataset.json data/official_results.json data/scored.json data/official_fetch_log.json
+          git diff --cached --quiet && { echo "no data changes"; exit 0; }
+          git commit -m "refresh: $(date -u +%FT%TZ)"
+          # someone may have pushed during the run; replay our data commit on top of it
+          git pull --rebase origin "${GITHUB_REF_NAME}" || { git rebase --abort; exit 1; }
+          git push
