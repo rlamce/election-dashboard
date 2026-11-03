@@ -89,7 +89,21 @@ def main():
     baselines = load('data/baselines.json', {}) or {}
     official_sources = load('data/official_sources.json', {}) or {}
     media_sources = load('data/media_sources.json', {}) or {}
-    videos = load('data/videos.json', []) or []
+    videos_raw = load('data/videos.json', []) or []
+    # slim the video list for the 5-minute payload: contract fields only, capped per scope, video entries first
+    KEEP = ('id','platform','kind','youtube_channel_id','youtube_video_id','title','channel','tier','live','started_at','scope','location_confidence','embed_url','link_url','muted','rank')
+    CAP = {'national': 16, 'state': 10, 'county': 8, 'city': 8}
+    by_scope = {}
+    for v in videos_raw:
+        if not v.get('youtube_channel_id') and not v.get('youtube_video_id'): continue
+        sk = (v.get('scope') or {}).get('level'), (v.get('scope') or {}).get('jkey')
+        by_scope.setdefault(sk, []).append(v)
+    videos = []
+    for (lvl, jk), vs in by_scope.items():
+        vs.sort(key=lambda v: (0 if v.get('kind')=='video' else 1, {'official':0,'major_outlet':1,'regional_outlet':2}.get(v.get('tier'),3), v.get('rank') or 99))
+        for i, v in enumerate(vs[:CAP.get(lvl, 8)]):
+            slim = {k: v.get(k) for k in KEEP}; slim['rank'] = i+1; slim['muted'] = True
+            videos.append(slim)
     cities = (load('app/data/cities.json', {}) or {}).get('cities', [])
     scored = load('data/scored.json', {}) or {}
     scored_results = scored.get('results', {})
