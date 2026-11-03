@@ -1,0 +1,6 @@
+{
+  "enabled": true,
+  "window_start_utc": "2026-11-03T22:30:00Z",
+  "window_end_utc": "2026-11-04T16:00:00Z",
+  "note": "Automated feed pulls run only when enabled and inside the window. Toggle by editing this file (or ask Claude: 'pause refreshing' / 'resume refreshing')."
+}

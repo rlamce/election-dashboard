@@ -1017,7 +1017,17 @@ function applyDataset(ds, source) {
   stamp(`${srcNote} <b>${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}</b> · ${esc(m.refresh_id || '–')} generated ${fmtTime(m.generated_at)}${ds.__from && /sample/.test(ds.__from) ? ' · sample file' : ''}`);
   if (source === 'live' && S.briefingStarted) speakNewChanges(prev);
 }
-setInterval(() => loadDataset(false), 5 * 60 * 1000);
+// Polling is gated on the app being open and in use: it runs every 5 minutes only while the tab is visible
+// and the viewer has interacted within the last 30 minutes; coming back to the tab or touching it pulls at once.
+const IDLE_MS = 30 * 60 * 1000;
+let lastInteraction = Date.now(), lastPoll = Date.now();
+const noteInteraction = () => { const wasIdle = Date.now() - lastInteraction > IDLE_MS; lastInteraction = Date.now(); if (wasIdle && !document.hidden) { lastPoll = Date.now(); loadDataset(false); } };
+['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev => window.addEventListener(ev, noteInteraction, { passive: true }));
+document.addEventListener('visibilitychange', () => { if (!document.hidden && Date.now() - lastPoll > 60 * 1000) { lastPoll = Date.now(); lastInteraction = Date.now(); loadDataset(false); } });
+setInterval(() => {
+  if (document.hidden || Date.now() - lastInteraction > IDLE_MS) return;   // closed, hidden or idle: no pulls
+  lastPoll = Date.now(); loadDataset(false);
+}, 5 * 60 * 1000);
 $('#refresh').addEventListener('click', () => loadDataset(true));
 
 // ---------- voice ----------
