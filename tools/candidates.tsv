@@ -1,0 +1,584 @@
+key	handle	fips	st	outlet	city	county_fips	city_slug	tier	group
+# ---- national ----
+CSPAN	CSPAN	US	US	C-SPAN				major_outlet	cspan
+PBSNewsHour	PBSNewsHour	US	US	PBS NewsHour				major_outlet	pbs
+NBCNews	NBCNews	US	US	NBC News				major_outlet	nbc
+ABCNews	ABCNews	US	US	ABC News				major_outlet	abc
+CBSNews	CBSNews	US	US	CBS News				major_outlet	cbs
+FoxNews	FoxNews	US	US	Fox News				major_outlet	fox
+CNN	CNN	US	US	CNN				major_outlet	cnn
+AssociatedPress	AssociatedPress	US	US	Associated Press				major_outlet	ap
+Reuters	Reuters	US	US	Reuters				major_outlet	reuters
+NewsNation	NewsNation	US	US	NewsNation				major_outlet	nexstar
+BloombergTV	markets	US	US	Bloomberg Television				major_outlet	bloomberg
+ScrippsNews	ScrippsNews	US	US	Scripps News				major_outlet	scripps
+LiveNOWfromFOX	LiveNOWfromFOX	US	US	LiveNOW from FOX				major_outlet	fox
+WashingtonPost	washingtonpost	US	US	The Washington Post				major_outlet	wapo
+TheHill	thehill	US	US	The Hill				major_outlet	nexstar
+ForbesBreakingNews	ForbesBreakingNews	US	US	Forbes Breaking News				major_outlet	forbes
+Newsmax	NewsmaxTV	US	US	Newsmax				major_outlet	newsmax
+MSNOW	MSNOW	US	US	MS NOW (formerly MSNBC)				major_outlet	msnow
+CNBC	CNBCtelevision	US	US	CNBC Television				major_outlet	cnbc
+USATODAY	usatoday	US	US	USA TODAY				major_outlet	gannett
+NPR	NPR	US	US	NPR				major_outlet	npr
+POLITICO	POLITICO	US	US	POLITICO				major_outlet	politico
+PBS	PBS	US	US	PBS				major_outlet	pbs
+Telemundo	telemundo	US	US	Telemundo				major_outlet	nbcu
+FoxBusiness	FoxBusiness	US	US	Fox Business				major_outlet	fox
+UnivisionNoticias	uninoticias	US	US	Univision Noticias				major_outlet	univision
+DecisionDeskHQ	DecisionDeskHQ	US	US	Decision Desk HQ				major_outlet	ddhq
+NYTimes	nytimes	US	US	The New York Times				major_outlet	nyt
+EACgov	EACgov	US	US	U.S. Election Assistance Commission				official	gov
+CISAgov	CISAgov	US	US	CISA				official	gov
+# ---- AL 01 ----
+WVTM13	WVTM13	01	AL	WVTM 13	Birmingham	01073	birmingham	regional_outlet	hearst
+WBRC	WBRCnews	01	AL	WBRC FOX6 News	Birmingham	01073	birmingham	regional_outlet	gray
+WBRC_alt	wbrcfox6news	01	AL	WBRC FOX6 News	Birmingham	01073	birmingham	regional_outlet	gray
+ABC3340	abc3340	01	AL	ABC 33/40	Birmingham	01073	birmingham	regional_outlet	sinclair
+WSFA	WSFA12News	01	AL	WSFA 12 News	Montgomery	01101	montgomery	regional_outlet	gray
+WAFF	WAFF48	01	AL	WAFF 48	Huntsville	01089	huntsville	regional_outlet	gray
+# ---- AK 02 ----
+AlaskasNewsSource	AlaskasNewsSource	02	AK	Alaska's News Source (KTUU/KYES)	Anchorage	02020	anchorage	regional_outlet	gray
+AlaskaPublic	alaskapublic	02	AK	Alaska Public Media	Anchorage	02020	anchorage	regional_outlet	public
+KTVF	webcenter11	02	AK	KTVF Webcenter 11	Fairbanks	02090	fairbanks	regional_outlet	gray
+KTOO	KTOO360TV	02	AK	KTOO / 360 North	Juneau	02110	juneau	regional_outlet	public
+# ---- AZ 04 ----
+12News	12NewsAZ	04	AZ	12News (KPNX)	Phoenix	04013	phoenix	regional_outlet	tegna
+12News_alt	12News	04	AZ	12News (KPNX)	Phoenix	04013	phoenix	regional_outlet	tegna
+FOX10Phoenix	FOX10Phoenix	04	AZ	FOX 10 Phoenix	Phoenix	04013	phoenix	regional_outlet	fox_oo
+ABC15	abc15	04	AZ	ABC15 Arizona	Phoenix	04013	phoenix	regional_outlet	scripps
+AZFamily	azfamily	04	AZ	Arizona's Family (3TV/CBS 5)	Phoenix	04013	phoenix	regional_outlet	gray
+KOLD	KOLDNews13	04	AZ	KOLD News 13	Tucson	04019	tucson	regional_outlet	gray
+KGUN	KGUN9	04	AZ	KGUN 9	Tucson	04019	tucson	regional_outlet	scripps
+# ---- AR 05 ----
+THV11	THV11	05	AR	THV11	Little Rock	05119	little-rock	regional_outlet	tegna
+KATV	KATV	05	AR	KATV	Little Rock	05119	little-rock	regional_outlet	sinclair
+KARK	KARK4News	05	AR	KARK 4 News	Little Rock	05119	little-rock	regional_outlet	nexstar
+FOX16	FOX16News	05	AR	FOX 16 News	Little Rock	05119	little-rock	regional_outlet	nexstar
+4029	4029news	05	AR	40/29 News	Fort Smith	05131	fort-smith	regional_outlet	hearst
+# ---- CA 06 ----
+KTLA	KTLA	06	CA	KTLA 5	Los Angeles	06037	los-angeles	regional_outlet	nexstar
+FOXLA	FOXLA	06	CA	FOX 11 Los Angeles	Los Angeles	06037	los-angeles	regional_outlet	fox_oo
+ABC7LA	ABC7	06	CA	ABC7 Los Angeles	Los Angeles	06037	los-angeles	regional_outlet	abc_oo
+CBSLA	CBSLA	06	CA	CBS Los Angeles	Los Angeles	06037	los-angeles	regional_outlet	cbs_oo
+NBCLA	NBCLA	06	CA	NBC Los Angeles	Los Angeles	06037	los-angeles	regional_outlet	nbc_oo
+ABC7News	ABC7News	06	CA	ABC7 News Bay Area	San Francisco	06075	san-francisco	regional_outlet	abc_oo
+KTVU	KTVUFOX2	06	CA	KTVU FOX 2	San Francisco	06075	san-francisco	regional_outlet	fox_oo
+NBCBayArea	NBCBayArea	06	CA	NBC Bay Area	San Francisco	06075	san-francisco	regional_outlet	nbc_oo
+KRON4	KRON4	06	CA	KRON4	San Francisco	06075	san-francisco	regional_outlet	nexstar
+KPIX	CBSSFBayArea	06	CA	CBS News Bay Area (KPIX)	San Francisco	06075	san-francisco	regional_outlet	cbs_oo
+KPIX_alt	cbsbayarea	06	CA	CBS News Bay Area (KPIX)	San Francisco	06075	san-francisco	regional_outlet	cbs_oo
+KCRA	KCRA	06	CA	KCRA 3	Sacramento	06067	sacramento	regional_outlet	hearst
+ABC10	ABC10	06	CA	ABC10	Sacramento	06067	sacramento	regional_outlet	tegna
+CBSSacramento	CBSSacramento	06	CA	CBS Sacramento	Sacramento	06067	sacramento	regional_outlet	cbs_oo
+FOX40	FOX40News	06	CA	FOX40	Sacramento	06067	sacramento	regional_outlet	nexstar
+NBCSanDiego	NBCSanDiego	06	CA	NBC 7 San Diego	San Diego	06073	san-diego	regional_outlet	nbc_oo
+CBS8	CBS8SanDiego	06	CA	CBS 8 San Diego	San Diego	06073	san-diego	regional_outlet	tegna
+10News	10News	06	CA	ABC 10News San Diego	San Diego	06073	san-diego	regional_outlet	scripps
+FOX5SD	fox5sandiego	06	CA	FOX 5 San Diego	San Diego	06073	san-diego	regional_outlet	nexstar
+# ---- CO 08 ----
+9NEWS	9NEWS	08	CO	9NEWS (KUSA)	Denver	08031	denver	regional_outlet	tegna
+Denver7	Denver7	08	CO	Denver7	Denver	08031	denver	regional_outlet	scripps
+CBSColorado	CBSColorado	08	CO	CBS Colorado	Denver	08031	denver	regional_outlet	cbs_oo
+KDVR	KDVR	08	CO	FOX31 Denver	Denver	08031	denver	regional_outlet	nexstar
+# ---- CT 09 ----
+WFSB	WFSB	09	CT	WFSB Channel 3	Hartford	09003	hartford	regional_outlet	gray
+FOX61	FOX61	09	CT	FOX61	Hartford	09003	hartford	regional_outlet	tegna
+NBCConnecticut	NBCConnecticut	09	CT	NBC Connecticut	Hartford	09003	hartford	regional_outlet	nbc_oo
+WTNH	WTNH	09	CT	WTNH News 8	New Haven	09009	new-haven	regional_outlet	nexstar
+CTPublic	CTPublic	09	CT	Connecticut Public	Hartford	09003	hartford	regional_outlet	public
+# ---- DE 10 ----
+WBOC	WBOC	10	DE	WBOC	Salisbury MD			regional_outlet	indep
+WBOC_alt	wboctv	10	DE	WBOC	Salisbury MD			regional_outlet	indep
+WMDT	47abc	10	DE	47 ABC WMDT	Salisbury MD			regional_outlet	marquee
+DelawarePublic	DelawarePublicMedia	10	DE	Delaware Public Media	Wilmington	10003	wilmington	regional_outlet	public
+WDEL	WDEL	10	DE	WDEL	Wilmington	10003	wilmington	regional_outlet	indep
+# ---- FL 12 ----
+WPLG	WPLGLocal10	12	FL	WPLG Local 10	Miami	12086	miami	regional_outlet	graham
+CBSMiami	CBSMiami	12	FL	CBS Miami	Miami	12086	miami	regional_outlet	cbs_oo
+NBC6	NBC6	12	FL	NBC 6 South Florida	Miami	12086	miami	regional_outlet	nbc_oo
+WSVN	WSVN	12	FL	WSVN 7News	Miami	12086	miami	regional_outlet	sunbeam
+FOX13Tampa	FOX13TampaBay	12	FL	FOX 13 Tampa Bay	Tampa	12057	tampa	regional_outlet	fox_oo
+FOX13Tampa_alt	fox13news	12	FL	FOX 13 Tampa Bay	Tampa	12057	tampa	regional_outlet	fox_oo
+WFLA	WFLA	12	FL	WFLA News Channel 8	Tampa	12057	tampa	regional_outlet	nexstar
+10TampaBay	10TampaBay	12	FL	10 Tampa Bay (WTSP)	Tampa	12057	tampa	regional_outlet	tegna
+ABCActionNews	ABCActionNews	12	FL	ABC Action News (WFTS)	Tampa	12057	tampa	regional_outlet	scripps
+WESH	WESH	12	FL	WESH 2	Orlando	12095	orlando	regional_outlet	hearst
+FOX35	FOX35Orlando	12	FL	FOX 35 Orlando	Orlando	12095	orlando	regional_outlet	fox_oo
+WFTV	WFTV	12	FL	WFTV Channel 9	Orlando	12095	orlando	regional_outlet	cox
+WKMG	News6WKMG	12	FL	News 6 WKMG	Orlando	12095	orlando	regional_outlet	graham
+News4JAX	News4JAX	12	FL	News4JAX	Jacksonville	12031	jacksonville	regional_outlet	graham
+FirstCoastNews	FirstCoastNews	12	FL	First Coast News	Jacksonville	12031	jacksonville	regional_outlet	tegna
+ActionNewsJax	ActionNewsJax	12	FL	Action News Jax	Jacksonville	12031	jacksonville	regional_outlet	cox
+# ---- GA 13 ----
+11Alive	11Alive	13	GA	11Alive (WXIA)	Atlanta	13121	atlanta	regional_outlet	tegna
+FOX5Atlanta	FOX5Atlanta	13	GA	FOX 5 Atlanta	Atlanta	13121	atlanta	regional_outlet	fox_oo
+WSBTV	wsbtv	13	GA	WSB-TV	Atlanta	13121	atlanta	regional_outlet	cox
+AtlantaNewsFirst	AtlantaNewsFirst	13	GA	Atlanta News First	Atlanta	13121	atlanta	regional_outlet	gray
+CBSAtlanta	CBSAtlanta	13	GA	CBS News Atlanta	Atlanta	13121	atlanta	regional_outlet	cbs_oo
+CBSAtlanta_alt	cbsnewsatlanta	13	GA	CBS News Atlanta	Atlanta	13121	atlanta	regional_outlet	cbs_oo
+GPB	GPB	13	GA	Georgia Public Broadcasting	Atlanta	13121	atlanta	regional_outlet	public
+# ---- HI 15 ----
+HawaiiNewsNow	HawaiiNewsNow	15	HI	Hawaii News Now	Honolulu	15003	honolulu	regional_outlet	gray
+KHON2	KHON2News	15	HI	KHON2	Honolulu	15003	honolulu	regional_outlet	nexstar
+KHON2_alt	KHON2	15	HI	KHON2	Honolulu	15003	honolulu	regional_outlet	nexstar
+KITV	KITV4	15	HI	KITV4 Island News	Honolulu	15003	honolulu	regional_outlet	allen
+KITV_alt	KITV	15	HI	KITV4 Island News	Honolulu	15003	honolulu	regional_outlet	allen
+HPR	HawaiiPublicRadio	15	HI	Hawaii Public Radio	Honolulu	15003	honolulu	regional_outlet	public
+# ---- ID 16 ----
+KTVB	KTVB	16	ID	KTVB	Boise	16001	boise	regional_outlet	tegna
+IdahoNews6	IdahoNews6	16	ID	Idaho News 6 (KIVI)	Boise	16001	boise	regional_outlet	scripps
+CBS2Idaho	CBS2Idaho	16	ID	CBS2 Idaho News (KBOI)	Boise	16001	boise	regional_outlet	sinclair
+CBS2Idaho_alt	IdahoNews	16	ID	Idaho News (KBOI)	Boise	16001	boise	regional_outlet	sinclair
+IdahoPTV	IdahoPTV	16	ID	Idaho Public Television	Boise	16001	boise	regional_outlet	public
+# ---- IL 17 ----
+WGN	WGNNews	17	IL	WGN News	Chicago	17031	chicago	regional_outlet	nexstar
+WGN_alt	wgntv	17	IL	WGN News	Chicago	17031	chicago	regional_outlet	nexstar
+ABC7Chicago	ABC7Chicago	17	IL	ABC 7 Chicago	Chicago	17031	chicago	regional_outlet	abc_oo
+FOX32	fox32chicago	17	IL	FOX 32 Chicago	Chicago	17031	chicago	regional_outlet	fox_oo
+CBSChicago	CBSChicago	17	IL	CBS Chicago	Chicago	17031	chicago	regional_outlet	cbs_oo
+NBCChicago	NBCChicago	17	IL	NBC Chicago	Chicago	17031	chicago	regional_outlet	nbc_oo
+WTTW	WTTW	17	IL	WTTW News	Chicago	17031	chicago	regional_outlet	public
+# ---- IN 18 ----
+WTHR	WTHR	18	IN	WTHR 13News	Indianapolis	18097	indianapolis	regional_outlet	tegna
+WISHTV	WISHTV	18	IN	WISH-TV	Indianapolis	18097	indianapolis	regional_outlet	circle_city
+WRTV	WRTV	18	IN	WRTV	Indianapolis	18097	indianapolis	regional_outlet	scripps
+FOX59	FOX59	18	IN	FOX59	Indianapolis	18097	indianapolis	regional_outlet	nexstar
+# ---- IA 19 ----
+KCCI	KCCI	19	IA	KCCI	Des Moines	19153	des-moines	regional_outlet	hearst
+WHO13	WHO13	19	IA	WHO 13	Des Moines	19153	des-moines	regional_outlet	nexstar
+WHO13_alt	WHOTV13	19	IA	WHO 13	Des Moines	19153	des-moines	regional_outlet	nexstar
+WOI	weareiowa	19	IA	Local 5 (WOI)	Des Moines	19153	des-moines	regional_outlet	tegna
+KCRG	KCRG	19	IA	KCRG-TV9	Cedar Rapids	19113	cedar-rapids	regional_outlet	gray
+KWWL	KWWL	19	IA	KWWL	Waterloo	19013	waterloo	regional_outlet	allen
+IowaPBS	IowaPBS	19	IA	Iowa PBS	Johnston	19153	des-moines	regional_outlet	public
+# ---- KS 20 ----
+KWCH	KWCH12	20	KS	KWCH 12	Wichita	20173	wichita	regional_outlet	gray
+KAKE	KAKEnews	20	KS	KAKE	Wichita	20173	wichita	regional_outlet	lockwood
+KAKE_alt	KAKE	20	KS	KAKE	Wichita	20173	wichita	regional_outlet	lockwood
+KSN	KSNNews	20	KS	KSN News	Wichita	20173	wichita	regional_outlet	nexstar
+KSN_alt	KSNTV	20	KS	KSN News	Wichita	20173	wichita	regional_outlet	nexstar
+KSHB	KSHB41	20	KS	KSHB 41 Kansas City	Kansas City MO	29095	kansas-city	regional_outlet	scripps
+KMBC	KMBC	20	KS	KMBC 9	Kansas City MO	29095	kansas-city	regional_outlet	hearst
+KCTV	KCTV5	20	KS	KCTV5	Kansas City MO	29095	kansas-city	regional_outlet	gray
+WIBW	WIBW	20	KS	WIBW 13	Topeka	20177	topeka	regional_outlet	gray
+# ---- KY 21 ----
+WLKY	WLKY	21	KY	WLKY	Louisville	21111	louisville	regional_outlet	hearst
+WHAS11	WHAS11	21	KY	WHAS11	Louisville	21111	louisville	regional_outlet	tegna
+WAVE	WAVE3News	21	KY	WAVE	Louisville	21111	louisville	regional_outlet	gray
+WAVE_alt	WAVE3	21	KY	WAVE	Louisville	21111	louisville	regional_outlet	gray
+WDRB	WDRBNews	21	KY	WDRB	Louisville	21111	louisville	regional_outlet	block
+WDRB_alt	WDRB	21	KY	WDRB	Louisville	21111	louisville	regional_outlet	block
+LEX18	LEX18	21	KY	LEX 18	Lexington	21067	lexington	regional_outlet	scripps
+WKYT	WKYT	21	KY	WKYT	Lexington	21067	lexington	regional_outlet	gray
+KET	KET	21	KY	KET	Lexington	21067	lexington	regional_outlet	public
+# ---- LA 22 ----
+WWLTV	WWLTV	22	LA	WWL-TV	New Orleans	22071	new-orleans	regional_outlet	tegna
+WDSU	WDSU	22	LA	WDSU	New Orleans	22071	new-orleans	regional_outlet	hearst
+FOX8NOLA	FOX8NOLA	22	LA	FOX 8 New Orleans (WVUE)	New Orleans	22071	new-orleans	regional_outlet	gray
+FOX8NOLA_alt	fox8live	22	LA	FOX 8 New Orleans (WVUE)	New Orleans	22071	new-orleans	regional_outlet	gray
+WAFB	WAFB9	22	LA	WAFB 9	Baton Rouge	22033	baton-rouge	regional_outlet	gray
+WAFB_alt	WAFB	22	LA	WAFB 9	Baton Rouge	22033	baton-rouge	regional_outlet	gray
+WBRZ	WBRZ	22	LA	WBRZ	Baton Rouge	22033	baton-rouge	regional_outlet	manship
+KSLA	KSLA	22	LA	KSLA	Shreveport	22017	shreveport	regional_outlet	gray
+# ---- ME 23 ----
+NEWSCENTERMaine	NEWSCENTERMaine	23	ME	NEWS CENTER Maine	Portland	23005	portland	regional_outlet	tegna
+WMTW	WMTW	23	ME	WMTW	Portland	23005	portland	regional_outlet	hearst
+WGME	WGMEnews	23	ME	WGME	Portland	23005	portland	regional_outlet	sinclair
+WGME_alt	WGME	23	ME	WGME	Portland	23005	portland	regional_outlet	sinclair
+MainePublic	MainePublic	23	ME	Maine Public	Portland	23005	portland	regional_outlet	public
+# ---- MD 24 ----
+WBAL	WBALTV11	24	MD	WBAL-TV 11	Baltimore	24510	baltimore	regional_outlet	hearst
+WBAL_alt	WBAL	24	MD	WBAL-TV 11	Baltimore	24510	baltimore	regional_outlet	hearst
+CBSBaltimore	CBSBaltimore	24	MD	CBS Baltimore	Baltimore	24510	baltimore	regional_outlet	cbs_oo
+WMAR	WMAR2News	24	MD	WMAR 2 News	Baltimore	24510	baltimore	regional_outlet	scripps
+WMAR_alt	WMAR	24	MD	WMAR 2 News	Baltimore	24510	baltimore	regional_outlet	scripps
+FOX45	FOX45Baltimore	24	MD	FOX45 Baltimore (WBFF)	Baltimore	24510	baltimore	regional_outlet	sinclair
+FOX45_alt	WBFF	24	MD	FOX45 Baltimore (WBFF)	Baltimore	24510	baltimore	regional_outlet	sinclair
+MPT	MarylandPublicTV	24	MD	Maryland Public Television	Owings Mills	24005	owings-mills	regional_outlet	public
+WUSA9	WUSA9	24	MD	WUSA9	Washington DC	11001	washington	regional_outlet	tegna
+FOX5DC	fox5dc	24	MD	FOX 5 Washington DC	Washington DC	11001	washington	regional_outlet	fox_oo
+NBCWashington	NBCWashington	24	MD	NBC4 Washington	Washington DC	11001	washington	regional_outlet	nbc_oo
+WJLA	WJLA	24	MD	7News DC (WJLA)	Washington DC	11001	washington	regional_outlet	sinclair
+# ---- MA 25 ----
+WCVB	WCVB	25	MA	WCVB Channel 5	Boston	25025	boston	regional_outlet	hearst
+CBSBoston	CBSBoston	25	MA	CBS Boston	Boston	25025	boston	regional_outlet	cbs_oo
+NBCBoston	NBC10Boston	25	MA	NBC10 Boston	Boston	25025	boston	regional_outlet	nbc_oo
+NBCBoston_alt	NBCBoston	25	MA	NBC10 Boston	Boston	25025	boston	regional_outlet	nbc_oo
+Boston25	Boston25News	25	MA	Boston 25 News	Boston	25025	boston	regional_outlet	cox
+GBH	GBH	25	MA	GBH	Boston	25025	boston	regional_outlet	public
+WBUR	WBUR	25	MA	WBUR	Boston	25025	boston	regional_outlet	public
+# ---- MI 26 ----
+FOX2Detroit	FOX2Detroit	26	MI	FOX 2 Detroit	Detroit	26163	detroit	regional_outlet	fox_oo
+FOX2Detroit_alt	FOX2News	26	MI	FOX 2 Detroit	Detroit	26163	detroit	regional_outlet	fox_oo
+WXYZ	WXYZ	26	MI	WXYZ-TV Detroit	Detroit	26163	detroit	regional_outlet	scripps
+WDIV	ClickOnDetroit	26	MI	WDIV Local 4	Detroit	26163	detroit	regional_outlet	graham
+WDIV_alt	WDIV	26	MI	WDIV Local 4	Detroit	26163	detroit	regional_outlet	graham
+CBSDetroit	CBSDetroit	26	MI	CBS Detroit	Detroit	26163	detroit	regional_outlet	cbs_oo
+WOODTV	WOODTV8	26	MI	WOOD TV8	Grand Rapids	26081	grand-rapids	regional_outlet	nexstar
+WZZM	WZZM13	26	MI	13 ON YOUR SIDE (WZZM)	Grand Rapids	26081	grand-rapids	regional_outlet	tegna
+WILX	WILX	26	MI	WILX News 10	Lansing	26065	lansing	regional_outlet	gray
+# ---- MN 27 ----
+FOX9	FOX9	27	MN	FOX 9 Minneapolis-St. Paul	Minneapolis	27053	minneapolis	regional_outlet	fox_oo
+KARE11	KARE11	27	MN	KARE 11	Minneapolis	27053	minneapolis	regional_outlet	tegna
+CBSMinnesota	CBSMinnesota	27	MN	WCCO - CBS Minnesota	Minneapolis	27053	minneapolis	regional_outlet	cbs_oo
+CBSMinnesota_alt	WCCO	27	MN	WCCO - CBS Minnesota	Minneapolis	27053	minneapolis	regional_outlet	cbs_oo
+KSTP	KSTP	27	MN	KSTP 5 Eyewitness News	Minneapolis	27053	minneapolis	regional_outlet	hubbard
+# ---- MS 28 ----
+WLBT	WLBT	28	MS	WLBT 3	Jackson	28049	jackson	regional_outlet	gray
+WJTV	WJTV12	28	MS	WJTV 12	Jackson	28049	jackson	regional_outlet	nexstar
+WJTV_alt	WJTV	28	MS	WJTV 12	Jackson	28049	jackson	regional_outlet	nexstar
+WAPT	16WAPT	28	MS	16 WAPT	Jackson	28049	jackson	regional_outlet	hearst
+WAPT_alt	WAPT	28	MS	16 WAPT	Jackson	28049	jackson	regional_outlet	hearst
+WTVA	WTVA9	28	MS	WTVA 9	Tupelo	28081	tupelo	regional_outlet	allen
+MPB	MississippiPublicBroadcasting	28	MS	Mississippi Public Broadcasting	Jackson	28049	jackson	regional_outlet	public
+# ---- MO 29 ----
+KSHB_MO	KSHB41	29	MO	KSHB 41 Kansas City	Kansas City	29095	kansas-city	regional_outlet	scripps
+KMBC_MO	KMBC	29	MO	KMBC 9	Kansas City	29095	kansas-city	regional_outlet	hearst
+KCTV_MO	KCTV5	29	MO	KCTV5	Kansas City	29095	kansas-city	regional_outlet	gray
+FOX4KC	fox4kc	29	MO	FOX4 Kansas City	Kansas City	29095	kansas-city	regional_outlet	nexstar
+KSDK	KSDKNews	29	MO	KSDK 5 On Your Side	St. Louis	29510	st-louis	regional_outlet	tegna
+KSDK_alt	ksdk	29	MO	KSDK 5 On Your Side	St. Louis	29510	st-louis	regional_outlet	tegna
+FOX2Now	FOX2Now	29	MO	FOX 2 St. Louis (KTVI)	St. Louis	29510	st-louis	regional_outlet	nexstar
+KMOV	KMOV	29	MO	First Alert 4 (KMOV)	St. Louis	29510	st-louis	regional_outlet	gray
+KMOV_alt	FirstAlert4	29	MO	First Alert 4 (KMOV)	St. Louis	29510	st-louis	regional_outlet	gray
+# ---- MT 30 ----
+KTVQ	KTVQ	30	MT	KTVQ Q2 News	Billings	30111	billings	regional_outlet	scripps
+KTVQ_alt	Q2News	30	MT	KTVQ Q2 News	Billings	30111	billings	regional_outlet	scripps
+KULR8	KULR8	30	MT	KULR 8	Billings	30111	billings	regional_outlet	cowles
+NBCMontana	NBCMontana	30	MT	NBC Montana	Missoula	30063	missoula	regional_outlet	sinclair
+MontanaRightNow	MontanaRightNow	30	MT	Montana Right Now	Missoula	30063	missoula	regional_outlet	cowles
+MontanaPBS	MontanaPBS	30	MT	Montana PBS	Bozeman	30031	bozeman	regional_outlet	public
+MTN	MTNNews	30	MT	MTN News	Billings	30111	billings	regional_outlet	scripps
+# ---- NE 31 ----
+KETV	KETV	31	NE	KETV NewsWatch 7	Omaha	31055	omaha	regional_outlet	hearst
+WOWT	WOWT6News	31	NE	WOWT 6 News	Omaha	31055	omaha	regional_outlet	gray
+WOWT_alt	WOWT	31	NE	WOWT 6 News	Omaha	31055	omaha	regional_outlet	gray
+KMTV	3NewsNowOmaha	31	NE	KMTV 3 News Now	Omaha	31055	omaha	regional_outlet	scripps
+KMTV_alt	KMTV	31	NE	KMTV 3 News Now	Omaha	31055	omaha	regional_outlet	scripps
+1011Now	1011Now	31	NE	10/11 NOW (KOLN)	Lincoln	31109	lincoln	regional_outlet	gray
+NebraskaPublicMedia	NebraskaPublicMedia	31	NE	Nebraska Public Media	Lincoln	31109	lincoln	regional_outlet	public
+# ---- NV 32 ----
+8NewsNow	8NewsNow	32	NV	8 News Now (KLAS)	Las Vegas	32003	las-vegas	regional_outlet	nexstar
+KTNV	KTNV	32	NV	KTNV 13 Action News	Las Vegas	32003	las-vegas	regional_outlet	scripps
+FOX5Vegas	FOX5Vegas	32	NV	FOX5 Las Vegas	Las Vegas	32003	las-vegas	regional_outlet	gray
+News3LV	News3LV	32	NV	News 3 Las Vegas (KSNV)	Las Vegas	32003	las-vegas	regional_outlet	sinclair
+KOLO	KOLO8	32	NV	KOLO 8	Reno	32031	reno	regional_outlet	gray
+KTVN	KTVN	32	NV	2 News Nevada (KTVN)	Reno	32031	reno	regional_outlet	sarkes
+KTVN_alt	2NewsNevada	32	NV	2 News Nevada (KTVN)	Reno	32031	reno	regional_outlet	sarkes
+VegasPBS	VegasPBS	32	NV	Vegas PBS	Las Vegas	32003	las-vegas	regional_outlet	public
+# ---- NH 33 ----
+WMUR	WMUR9	33	NH	WMUR-TV	Manchester	33011	manchester	regional_outlet	hearst
+WMUR_alt	WMUR	33	NH	WMUR-TV	Manchester	33011	manchester	regional_outlet	hearst
+NHPR	NHPR	33	NH	NHPR	Concord	33013	concord	regional_outlet	public
+NHPBS	NHPBS	33	NH	NH PBS	Durham	33017	durham	regional_outlet	public
+# ---- NJ 34 ----
+NJSpotlight	NJSpotlightNews	34	NJ	NJ Spotlight News	Newark	34013	newark	regional_outlet	public
+News12NJ	News12NJ	34	NJ	News 12 New Jersey	Edison	34023	edison	regional_outlet	altice
+News12	news12	34	NJ	News 12	Edison	34023	edison	regional_outlet	altice
+PIX11	PIX11News	34	NJ	PIX11 News	New York NY	36061	new-york	regional_outlet	nexstar
+# ---- NM 35 ----
+KOAT	KOAT	35	NM	KOAT Action 7 News	Albuquerque	35001	albuquerque	regional_outlet	hearst
+KOB4	KOB4	35	NM	KOB 4	Albuquerque	35001	albuquerque	regional_outlet	hubbard
+KRQE	KRQE	35	NM	KRQE News 13	Albuquerque	35001	albuquerque	regional_outlet	nexstar
+NMPBS	NewMexicoPBS	35	NM	New Mexico PBS	Albuquerque	35001	albuquerque	regional_outlet	public
+NMPBS_alt	NMPBS	35	NM	New Mexico PBS	Albuquerque	35001	albuquerque	regional_outlet	public
+# ---- NY 36 ----
+ABC7NY	ABC7NY	36	NY	Eyewitness News ABC7NY	New York	36061	new-york	regional_outlet	abc_oo
+FOX5NY	fox5ny	36	NY	FOX 5 New York	New York	36061	new-york	regional_outlet	fox_oo
+PIX11_NY	PIX11News	36	NY	PIX11 News	New York	36061	new-york	regional_outlet	nexstar
+CBSNewYork	CBSNewYork	36	NY	CBS New York	New York	36061	new-york	regional_outlet	cbs_oo
+NBCNewYork	NBCNewYork	36	NY	NBC New York	New York	36061	new-york	regional_outlet	nbc_oo
+NY1	NY1	36	NY	Spectrum News NY1	New York	36061	new-york	regional_outlet	spectrum
+NY1_alt	SpectrumNewsNY1	36	NY	Spectrum News NY1	New York	36061	new-york	regional_outlet	spectrum
+WGRZ	WGRZ	36	NY	WGRZ 2 On Your Side	Buffalo	36029	buffalo	regional_outlet	tegna
+WHAM	13WHAM	36	NY	13WHAM	Rochester	36055	rochester	regional_outlet	sinclair
+WRGB	WRGB	36	NY	CBS6 Albany (WRGB)	Albany	36001	albany	regional_outlet	sinclair
+# ---- NC 37 ----
+WCNC	WCNC	37	NC	WCNC Charlotte	Charlotte	37119	charlotte	regional_outlet	tegna
+WSOC	wsoctv	37	NC	WSOC-TV	Charlotte	37119	charlotte	regional_outlet	cox
+WBTV	WBTV	37	NC	WBTV	Charlotte	37119	charlotte	regional_outlet	gray
+QueenCityNews	QueenCityNews	37	NC	Queen City News (WJZY)	Charlotte	37119	charlotte	regional_outlet	fox_oo
+WRAL	WRAL	37	NC	WRAL	Raleigh	37183	raleigh	regional_outlet	cbc
+ABC11	ABC11	37	NC	ABC11 (WTVD)	Raleigh	37183	raleigh	regional_outlet	abc_oo
+CBS17	CBS17	37	NC	CBS 17	Raleigh	37183	raleigh	regional_outlet	nexstar
+WFMY	WFMYNews2	37	NC	WFMY News 2	Greensboro	37081	greensboro	regional_outlet	tegna
+WXII	WXII12	37	NC	WXII 12	Winston-Salem	37067	winston-salem	regional_outlet	hearst
+PBSNC	PBSNC	37	NC	PBS North Carolina	Research Triangle Park	37063	durham	regional_outlet	public
+# ---- ND 38 ----
+ValleyNewsLive	ValleyNewsLive	38	ND	Valley News Live	Fargo	38017	fargo	regional_outlet	gray
+KVRR	KVRR	38	ND	KVRR	Fargo	38017	fargo	regional_outlet	red_river
+WDAY	WDAYNews	38	ND	WDAY	Fargo	38017	fargo	regional_outlet	forum
+WDAY_alt	InForum	38	ND	InForum / WDAY	Fargo	38017	fargo	regional_outlet	forum
+KFYR	KFYRTV	38	ND	KFYR-TV	Bismarck	38015	bismarck	regional_outlet	gray
+KXNews	KXNews	38	ND	KX News	Bismarck	38015	bismarck	regional_outlet	nexstar
+KXNews_alt	KXNet	38	ND	KX News	Bismarck	38015	bismarck	regional_outlet	nexstar
+PrairiePublic	PrairiePublic	38	ND	Prairie Public	Fargo	38017	fargo	regional_outlet	public
+# ---- OH 39 ----
+10TV	10TV	39	OH	10TV (WBNS)	Columbus	39049	columbus	regional_outlet	tegna
+NBC4	NBC4i	39	OH	NBC4 Columbus	Columbus	39049	columbus	regional_outlet	nexstar
+NBC4_alt	NBC4Columbus	39	OH	NBC4 Columbus	Columbus	39049	columbus	regional_outlet	nexstar
+ABC6	ABC6OnYourSide	39	OH	ABC 6 Columbus	Columbus	39049	columbus	regional_outlet	sinclair
+WOSU	WOSU	39	OH	WOSU Public Media	Columbus	39049	columbus	regional_outlet	public
+WKYC	WKYC	39	OH	3News (WKYC)	Cleveland	39035	cleveland	regional_outlet	tegna
+FOX8Cleveland	fox8news	39	OH	FOX 8 Cleveland	Cleveland	39035	cleveland	regional_outlet	nexstar
+News5Cleveland	News5Cleveland	39	OH	News 5 Cleveland (WEWS)	Cleveland	39035	cleveland	regional_outlet	scripps
+Cleveland19	cleveland19news	39	OH	19 News (WOIO)	Cleveland	39035	cleveland	regional_outlet	gray
+WLWT	WLWT	39	OH	WLWT News 5	Cincinnati	39061	cincinnati	regional_outlet	hearst
+WCPO	WCPO9	39	OH	WCPO 9	Cincinnati	39061	cincinnati	regional_outlet	scripps
+WCPO_alt	WCPO	39	OH	WCPO 9	Cincinnati	39061	cincinnati	regional_outlet	scripps
+Local12	Local12	39	OH	Local 12 (WKRC)	Cincinnati	39061	cincinnati	regional_outlet	sinclair
+OhioChannel	OhioChannel	39	OH	The Ohio Channel	Columbus	39049	columbus	official	public
+# ---- OK 40 ----
+KOCO	KOCO	40	OK	KOCO 5	Oklahoma City	40109	oklahoma-city	regional_outlet	hearst
+KFOR	KFOR	40	OK	KFOR Oklahoma's News 4	Oklahoma City	40109	oklahoma-city	regional_outlet	nexstar
+News9	NEWS9	40	OK	News 9 (KWTV)	Oklahoma City	40109	oklahoma-city	regional_outlet	griffin
+News9_alt	News9KWTV	40	OK	News 9 (KWTV)	Oklahoma City	40109	oklahoma-city	regional_outlet	griffin
+OKCFOX	OKCFOX	40	OK	FOX 25 (KOKH)	Oklahoma City	40109	oklahoma-city	regional_outlet	sinclair
+NewsOn6	NewsOn6	40	OK	News On 6 (KOTV)	Tulsa	40143	tulsa	regional_outlet	griffin
+KJRH	KJRH	40	OK	2 News Oklahoma (KJRH)	Tulsa	40143	tulsa	regional_outlet	scripps
+KTUL	KTUL	40	OK	KTUL	Tulsa	40143	tulsa	regional_outlet	sinclair
+OETA	OETA	40	OK	OETA	Oklahoma City	40109	oklahoma-city	regional_outlet	public
+# ---- OR 41 ----
+KGW	KGWNews	41	OR	KGW News	Portland	41051	portland	regional_outlet	tegna
+KGW_alt	KGW	41	OR	KGW News	Portland	41051	portland	regional_outlet	tegna
+KOIN	KOIN6	41	OR	KOIN 6	Portland	41051	portland	regional_outlet	nexstar
+KATU	KATU	41	OR	KATU	Portland	41051	portland	regional_outlet	sinclair
+KATU_alt	KATUNews	41	OR	KATU	Portland	41051	portland	regional_outlet	sinclair
+FOX12	FOX12Oregon	41	OR	KPTV FOX 12 Oregon	Portland	41051	portland	regional_outlet	gray
+FOX12_alt	KPTV	41	OR	KPTV FOX 12 Oregon	Portland	41051	portland	regional_outlet	gray
+OPB	OPB	41	OR	OPB	Portland	41051	portland	regional_outlet	public
+# ---- PA 42 ----
+6abc	6abc	42	PA	6abc Philadelphia	Philadelphia	42101	philadelphia	regional_outlet	abc_oo
+FOX29	FOX29Philly	42	PA	FOX 29 Philadelphia	Philadelphia	42101	philadelphia	regional_outlet	fox_oo
+CBSPhiladelphia	CBSPhiladelphia	42	PA	CBS Philadelphia	Philadelphia	42101	philadelphia	regional_outlet	cbs_oo
+NBC10	NBC10Philadelphia	42	PA	NBC10 Philadelphia	Philadelphia	42101	philadelphia	regional_outlet	nbc_oo
+PHL17	PHL17	42	PA	PHL17	Philadelphia	42101	philadelphia	regional_outlet	nexstar
+WTAE	WTAE	42	PA	WTAE-TV Pittsburgh	Pittsburgh	42003	pittsburgh	regional_outlet	hearst
+CBSPittsburgh	CBSPittsburgh	42	PA	CBS Pittsburgh (KDKA)	Pittsburgh	42003	pittsburgh	regional_outlet	cbs_oo
+WPXI	WPXI	42	PA	WPXI	Pittsburgh	42003	pittsburgh	regional_outlet	cox
+WGAL	WGAL	42	PA	WGAL	Lancaster	42071	lancaster	regional_outlet	hearst
+abc27	abc27	42	PA	abc27	Harrisburg	42043	harrisburg	regional_outlet	nexstar
+FOX43	FOX43	42	PA	FOX43	York	42133	york	regional_outlet	tegna
+PCN	PCNTV	42	PA	Pennsylvania Cable Network	Harrisburg	42043	harrisburg	regional_outlet	public
+WITF	WITF	42	PA	WITF	Harrisburg	42043	harrisburg	regional_outlet	public
+# ---- RI 44 ----
+WPRI	WPRI12	44	RI	WPRI 12	Providence	44007	providence	regional_outlet	nexstar
+WJAR	NBC10WJAR	44	RI	NBC 10 WJAR	Providence	44007	providence	regional_outlet	sinclair
+WJAR_alt	WJAR	44	RI	NBC 10 WJAR	Providence	44007	providence	regional_outlet	sinclair
+ABC6RI	ABC6	44	RI	ABC6 (WLNE)	Providence	44007	providence	regional_outlet	standard
+RIPBS	RIPBS	44	RI	Rhode Island PBS	Providence	44007	providence	regional_outlet	public
+# ---- SC 45 ----
+WIS	WIS10	45	SC	WIS News 10	Columbia	45079	columbia	regional_outlet	gray
+WIS_alt	WISTV	45	SC	WIS News 10	Columbia	45079	columbia	regional_outlet	gray
+WLTX	WLTX	45	SC	WLTX News 19	Columbia	45079	columbia	regional_outlet	tegna
+ABCColumbia	ABCColumbia	45	SC	ABC Columbia (WOLO)	Columbia	45079	columbia	regional_outlet	bahakel
+Live5	Live5News	45	SC	Live 5 News (WCSC)	Charleston	45019	charleston	regional_outlet	gray
+WCBD	WCBDNews	45	SC	WCBD News 2	Charleston	45019	charleston	regional_outlet	nexstar
+WCBD_alt	WCBD	45	SC	WCBD News 2	Charleston	45019	charleston	regional_outlet	nexstar
+ABCNews4	ABCNews4	45	SC	ABC News 4 (WCIV)	Charleston	45019	charleston	regional_outlet	sinclair
+WYFF	WYFF4	45	SC	WYFF News 4	Greenville	45045	greenville	regional_outlet	hearst
+FOXCarolina	FOXCarolina	45	SC	FOX Carolina	Greenville	45045	greenville	regional_outlet	gray
+WSPA	WSPA7News	45	SC	7News (WSPA)	Spartanburg	45083	spartanburg	regional_outlet	nexstar
+WSPA_alt	WSPA	45	SC	7News (WSPA)	Spartanburg	45083	spartanburg	regional_outlet	nexstar
+SCETV	SCETV	45	SC	SCETV	Columbia	45079	columbia	regional_outlet	public
+# ---- SD 46 ----
+KELO	KELOLAND	46	SD	KELOLAND News	Sioux Falls	46099	sioux-falls	regional_outlet	nexstar
+KELO_alt	KELOLANDNews	46	SD	KELOLAND News	Sioux Falls	46099	sioux-falls	regional_outlet	nexstar
+DakotaNewsNow	DakotaNewsNow	46	SD	Dakota News Now (KSFY/KDLT)	Sioux Falls	46099	sioux-falls	regional_outlet	gray
+SDPB	SDPB	46	SD	SDPB	Vermillion	46027	vermillion	regional_outlet	public
+KOTA	KOTA	46	SD	KOTA Territory News	Rapid City	46103	rapid-city	regional_outlet	gray
+NewsCenter1	NewsCenter1	46	SD	NewsCenter1 (KNBN)	Rapid City	46103	rapid-city	regional_outlet	indep
+# ---- TN 47 ----
+NewsChannel5	NewsChannel5	47	TN	NewsChannel 5 (WTVF)	Nashville	47037	nashville	regional_outlet	scripps
+WSMV	WSMV4	47	TN	WSMV 4	Nashville	47037	nashville	regional_outlet	gray
+WSMV_alt	WSMV	47	TN	WSMV 4	Nashville	47037	nashville	regional_outlet	gray
+WKRN	WKRN	47	TN	WKRN News 2	Nashville	47037	nashville	regional_outlet	nexstar
+FOX17	FOX17Nashville	47	TN	FOX 17 Nashville	Nashville	47037	nashville	regional_outlet	sinclair
+FOX17_alt	FOX17	47	TN	FOX 17 Nashville	Nashville	47037	nashville	regional_outlet	sinclair
+ActionNews5	ActionNews5	47	TN	Action News 5 (WMC)	Memphis	47157	memphis	regional_outlet	gray
+FOX13Memphis	FOX13Memphis	47	TN	FOX13 Memphis	Memphis	47157	memphis	regional_outlet	cox
+WREG	WREG3	47	TN	WREG News Channel 3	Memphis	47157	memphis	regional_outlet	nexstar
+WREG_alt	WREG	47	TN	WREG News Channel 3	Memphis	47157	memphis	regional_outlet	nexstar
+WBIR	WBIR	47	TN	WBIR Channel 10	Knoxville	47093	knoxville	regional_outlet	tegna
+WATE	WATE6	47	TN	WATE 6	Knoxville	47093	knoxville	regional_outlet	nexstar
+WATE_alt	WATE	47	TN	WATE 6	Knoxville	47093	knoxville	regional_outlet	nexstar
+WVLT	WVLT	47	TN	WVLT	Knoxville	47093	knoxville	regional_outlet	gray
+# ---- TX 48 ----
+ABC13	ABC13Houston	48	TX	ABC13 Houston	Houston	48201	houston	regional_outlet	abc_oo
+KHOU	KHOU	48	TX	KHOU 11	Houston	48201	houston	regional_outlet	tegna
+FOX26	FOX26Houston	48	TX	FOX 26 Houston	Houston	48201	houston	regional_outlet	fox_oo
+KPRC	KPRC2Click2Houston	48	TX	KPRC 2 Click2Houston	Houston	48201	houston	regional_outlet	graham
+KPRC_alt	KPRC2	48	TX	KPRC 2 Click2Houston	Houston	48201	houston	regional_outlet	graham
+WFAA	WFAA	48	TX	WFAA	Dallas	48113	dallas	regional_outlet	tegna
+WFAA_alt	wfaa8	48	TX	WFAA	Dallas	48113	dallas	regional_outlet	tegna
+FOX4	FOX4News	48	TX	FOX 4 Dallas-Fort Worth	Dallas	48113	dallas	regional_outlet	fox_oo
+NBCDFW	NBCDFW	48	TX	NBC 5 Dallas-Fort Worth	Dallas	48113	dallas	regional_outlet	nbc_oo
+CBSTexas	CBSTexas	48	TX	CBS News Texas	Dallas	48113	dallas	regional_outlet	cbs_oo
+KVUE	KVUE	48	TX	KVUE	Austin	48453	austin	regional_outlet	tegna
+FOX7Austin	FOX7Austin	48	TX	FOX 7 Austin	Austin	48453	austin	regional_outlet	fox_oo
+KXAN	KXAN	48	TX	KXAN	Austin	48453	austin	regional_outlet	nexstar
+KXAN_alt	KXANNews	48	TX	KXAN	Austin	48453	austin	regional_outlet	nexstar
+KSAT	KSAT12	48	TX	KSAT 12	San Antonio	48029	san-antonio	regional_outlet	graham
+KENS5	KENS5	48	TX	KENS 5	San Antonio	48029	san-antonio	regional_outlet	tegna
+News4SA	News4SA	48	TX	News 4 San Antonio	San Antonio	48029	san-antonio	regional_outlet	sinclair
+TexasTribune	TexasTribune	48	TX	The Texas Tribune	Austin	48453	austin	regional_outlet	nonprofit
+# ---- UT 49 ----
+KSL	KSL5TV	49	UT	KSL 5 TV	Salt Lake City	49035	salt-lake-city	regional_outlet	bonneville
+KSL_alt	KSLNews	49	UT	KSL 5 TV	Salt Lake City	49035	salt-lake-city	regional_outlet	bonneville
+FOX13Utah	fox13utah	49	UT	FOX 13 News Utah	Salt Lake City	49035	salt-lake-city	regional_outlet	scripps
+FOX13Utah_alt	fox13newsutah	49	UT	FOX 13 News Utah	Salt Lake City	49035	salt-lake-city	regional_outlet	scripps
+KUTV	KUTV2News	49	UT	KUTV 2News	Salt Lake City	49035	salt-lake-city	regional_outlet	sinclair
+KUTV_alt	KUTV	49	UT	KUTV 2News	Salt Lake City	49035	salt-lake-city	regional_outlet	sinclair
+ABC4Utah	ABC4Utah	49	UT	ABC4 Utah	Salt Lake City	49035	salt-lake-city	regional_outlet	nexstar
+PBSUtah	PBSUtah	49	UT	PBS Utah	Salt Lake City	49035	salt-lake-city	regional_outlet	public
+# ---- VT 50 ----
+WCAX	WCAX	50	VT	WCAX	Burlington	50007	burlington	regional_outlet	gray
+NBC5	MyNBC5	50	VT	NBC5 (WPTZ)	Burlington	50007	burlington	regional_outlet	hearst
+NBC5_alt	WPTZ	50	VT	NBC5 (WPTZ)	Burlington	50007	burlington	regional_outlet	hearst
+Local22	Local22Local44	50	VT	Local 22 & Local 44	Burlington	50007	burlington	regional_outlet	nexstar
+VTDigger	VTDigger	50	VT	VTDigger	Montpelier	50023	montpelier	regional_outlet	nonprofit
+VermontPublic	VermontPublic	50	VT	Vermont Public	Colchester	50007	burlington	regional_outlet	public
+# ---- VA 51 ----
+WRIC	WRIC	51	VA	8News (WRIC)	Richmond	51760	richmond	regional_outlet	nexstar
+WRIC_alt	8NewsWRIC	51	VA	8News (WRIC)	Richmond	51760	richmond	regional_outlet	nexstar
+NBC12	NBC12	51	VA	NBC12 (WWBT)	Richmond	51760	richmond	regional_outlet	gray
+NBC12_alt	NBC12Richmond	51	VA	NBC12 (WWBT)	Richmond	51760	richmond	regional_outlet	gray
+WTVR	WTVR	51	VA	CBS 6 (WTVR)	Richmond	51760	richmond	regional_outlet	scripps
+WTVR_alt	CBS6Richmond	51	VA	CBS 6 (WTVR)	Richmond	51760	richmond	regional_outlet	scripps
+WAVY	WAVY	51	VA	WAVY TV 10	Portsmouth	51740	portsmouth	regional_outlet	nexstar
+WTKR	WTKR3	51	VA	WTKR News 3	Norfolk	51710	norfolk	regional_outlet	scripps
+WTKR_alt	WTKR	51	VA	WTKR News 3	Norfolk	51710	norfolk	regional_outlet	scripps
+13NewsNow	13NewsNow	51	VA	13News Now (WVEC)	Norfolk	51710	norfolk	regional_outlet	tegna
+VPM	VPM	51	VA	VPM	Richmond	51760	richmond	regional_outlet	public
+WUSA9_VA	WUSA9	51	VA	WUSA9	Washington DC	11001	washington	regional_outlet	tegna
+FOX5DC_VA	fox5dc	51	VA	FOX 5 Washington DC	Washington DC	11001	washington	regional_outlet	fox_oo
+NBCWashington_VA	NBCWashington	51	VA	NBC4 Washington	Washington DC	11001	washington	regional_outlet	nbc_oo
+WJLA_VA	WJLA	51	VA	7News DC (WJLA)	Washington DC	11001	washington	regional_outlet	sinclair
+# ---- WA 53 ----
+KING5	KING5Seattle	53	WA	KING 5 Seattle	Seattle	53033	seattle	regional_outlet	tegna
+KING5_alt	KING5	53	WA	KING 5 Seattle	Seattle	53033	seattle	regional_outlet	tegna
+KOMO	KOMONews	53	WA	KOMO News	Seattle	53033	seattle	regional_outlet	sinclair
+FOX13Seattle	FOX13Seattle	53	WA	FOX 13 Seattle	Seattle	53033	seattle	regional_outlet	fox_oo
+KIRO7	KIRO7	53	WA	KIRO 7	Seattle	53033	seattle	regional_outlet	cox
+KREM	KREM2	53	WA	KREM 2	Spokane	53063	spokane	regional_outlet	tegna
+KREM_alt	KREM	53	WA	KREM 2	Spokane	53063	spokane	regional_outlet	tegna
+KXLY	KXLY4	53	WA	KXLY 4	Spokane	53063	spokane	regional_outlet	morgan_murphy
+TVW	TVW	53	WA	TVW (Washington State Public Affairs Network)	Olympia	53067	olympia	official	public
+# ---- WV 54 ----
+WSAZ	WSAZ	54	WV	WSAZ NewsChannel 3	Huntington	54011	huntington	regional_outlet	gray
+WCHS	WCHSTV	54	WV	WCHS Eyewitness News	Charleston	54039	charleston	regional_outlet	sinclair
+WCHS_alt	WCHS8	54	WV	WCHS Eyewitness News	Charleston	54039	charleston	regional_outlet	sinclair
+WOWK	WOWKTV	54	WV	WOWK 13 News	Charleston	54039	charleston	regional_outlet	nexstar
+WOWK_alt	WOWK13News	54	WV	WOWK 13 News	Charleston	54039	charleston	regional_outlet	nexstar
+WVMetroNews	WVMetroNews	54	WV	WV MetroNews	Morgantown	54061	morgantown	regional_outlet	indep
+WVVA	WVVA	54	WV	WVVA	Bluefield	54055	bluefield	regional_outlet	quincy
+WVPB	WVPublicBroadcasting	54	WV	West Virginia Public Broadcasting	Charleston	54039	charleston	regional_outlet	public
+WVPB_alt	WVPB	54	WV	West Virginia Public Broadcasting	Charleston	54039	charleston	regional_outlet	public
+# ---- WI 55 ----
+FOX6	fox6milwaukee	55	WI	FOX6 News Milwaukee	Milwaukee	55079	milwaukee	regional_outlet	fox_oo
+FOX6_alt	FOX6News	55	WI	FOX6 News Milwaukee	Milwaukee	55079	milwaukee	regional_outlet	fox_oo
+WISN	WISN12News	55	WI	WISN 12 News	Milwaukee	55079	milwaukee	regional_outlet	hearst
+WISN_alt	WISN12	55	WI	WISN 12 News	Milwaukee	55079	milwaukee	regional_outlet	hearst
+TMJ4	TMJ4News	55	WI	TMJ4 News	Milwaukee	55079	milwaukee	regional_outlet	scripps
+TMJ4_alt	TMJ4	55	WI	TMJ4 News	Milwaukee	55079	milwaukee	regional_outlet	scripps
+CBS58	CBS58	55	WI	CBS 58	Milwaukee	55079	milwaukee	regional_outlet	weigel
+NBC15	NBC15	55	WI	NBC15 (WMTV)	Madison	55025	madison	regional_outlet	gray
+WISC	WISCTV	55	WI	WISC-TV / Channel3000	Madison	55025	madison	regional_outlet	morgan_murphy
+WISC_alt	Channel3000	55	WI	WISC-TV / Channel3000	Madison	55025	madison	regional_outlet	morgan_murphy
+WKOW	WKOW	55	WI	WKOW 27	Madison	55025	madison	regional_outlet	allen
+WisconsinEye	WisconsinEye	55	WI	WisconsinEye	Madison	55025	madison	official	public
+PBSWisconsin	PBSWisconsin	55	WI	PBS Wisconsin	Madison	55025	madison	regional_outlet	public
+# ---- WY 56 ----
+WyomingNewsNow	WyomingNewsNow	56	WY	Wyoming News Now (KGWN/KCWY)	Cheyenne	56021	cheyenne	regional_outlet	gray
+KCWY	KCWY13	56	WY	KCWY 13	Casper	56025	casper	regional_outlet	gray
+CowboyStateDaily	CowboyStateDaily	56	WY	Cowboy State Daily	Cheyenne	56021	cheyenne	regional_outlet	nonprofit
+WyomingPBS	WyomingPBS	56	WY	Wyoming PBS	Riverton	56013	riverton	regional_outlet	public
+OilCityNews	OilCityNews	56	WY	Oil City News	Casper	56025	casper	regional_outlet	indep
+K2Radio	K2Radio	56	WY	K2 Radio	Casper	56025	casper	regional_outlet	townsquare
+# ---- official election offices ----
+AZSOS	AZSecretaryofState	04	AZ	Arizona Secretary of State	Phoenix	04013	phoenix	official	gov
+AZSOS_alt	AZSOS	04	AZ	Arizona Secretary of State	Phoenix	04013	phoenix	official	gov
+MaricopaVote	MaricopaVote	04	AZ	Maricopa County Elections	Phoenix	04013	phoenix	official	gov
+MaricopaVote_alt	MaricopaCountyElections	04	AZ	Maricopa County Elections	Phoenix	04013	phoenix	official	gov
+GASOS	GeorgiaSecretaryofState	13	GA	Georgia Secretary of State	Atlanta	13121	atlanta	official	gov
+GASOS_alt	GASecofState	13	GA	Georgia Secretary of State	Atlanta	13121	atlanta	official	gov
+FultonCounty	FultonCountyGovernment	13	GA	Fulton County Government	Atlanta	13121	atlanta	official	gov
+FultonCounty_alt	FultonInfo	13	GA	Fulton County Government	Atlanta	13121	atlanta	official	gov
+PADOS	PADeptofState	42	PA	Pennsylvania Department of State	Harrisburg	42043	harrisburg	official	gov
+PADOS_alt	PennsylvaniaDepartmentofState	42	PA	Pennsylvania Department of State	Harrisburg	42043	harrisburg	official	gov
+PhillyVotes	PhillyVotes	42	PA	Philadelphia City Commissioners	Philadelphia	42101	philadelphia	official	gov
+PhillyVotes_alt	PhiladelphiaCityCommissioners	42	PA	Philadelphia City Commissioners	Philadelphia	42101	philadelphia	official	gov
+MISOS	MichiganSOS	26	MI	Michigan Department of State	Lansing	26065	lansing	official	gov
+MISOS_alt	MichiganDeptofState	26	MI	Michigan Department of State	Lansing	26065	lansing	official	gov
+NVSOS	NVSOS	32	NV	Nevada Secretary of State	Carson City	32510	carson-city	official	gov
+NVSOS_alt	NevadaSecretaryofState	32	NV	Nevada Secretary of State	Carson City	32510	carson-city	official	gov
+ClarkCountyNV	ClarkCountyNV	32	NV	Clark County, Nevada	Las Vegas	32003	las-vegas	official	gov
+WEC	WisconsinElections	55	WI	Wisconsin Elections Commission	Madison	55025	madison	official	gov
+WEC_alt	WisconsinElectionsCommission	55	WI	Wisconsin Elections Commission	Madison	55025	madison	official	gov
+NCSBE	NCSBE	37	NC	NC State Board of Elections	Raleigh	37183	raleigh	official	gov
+NCSBE_alt	NCBoardofElections	37	NC	NC State Board of Elections	Raleigh	37183	raleigh	official	gov
+MNSOS	MNSecretaryofState	27	MN	Minnesota Secretary of State	St. Paul	27123	st-paul	official	gov
+MNSOS_alt	MinnesotaSecretaryofState	27	MN	Minnesota Secretary of State	St. Paul	27123	st-paul	official	gov
+OHSOS	OhioSOS	39	OH	Ohio Secretary of State	Columbus	39049	columbus	official	gov
+OHSOS_alt	OhioSecretaryofState	39	OH	Ohio Secretary of State	Columbus	39049	columbus	official	gov
+TXSOS	TexasSOS	48	TX	Texas Secretary of State	Austin	48453	austin	official	gov
+TXSOS_alt	TXSecretaryofState	48	TX	Texas Secretary of State	Austin	48453	austin	official	gov
+FLDOS	FloridaDOS	12	FL	Florida Department of State	Tallahassee	12073	tallahassee	official	gov
+FLDOS_alt	FLDeptofState	12	FL	Florida Department of State	Tallahassee	12073	tallahassee	official	gov
+COSOS	ColoradoSOS	08	CO	Colorado Secretary of State	Denver	08031	denver	official	gov
+COSOS_alt	ColoradoSecretaryofState	08	CO	Colorado Secretary of State	Denver	08031	denver	official	gov
+NYSBOE	NYSBOE	36	NY	New York State Board of Elections	Albany	36001	albany	official	gov
+CASOS	CASOSvote	06	CA	California Secretary of State	Sacramento	06067	sacramento	official	gov
+CASOS_alt	CaliforniaSOS	06	CA	California Secretary of State	Sacramento	06067	sacramento	official	gov
+WASOS	WASecretaryofState	53	WA	Washington Secretary of State	Olympia	53067	olympia	official	gov
+WASOS_alt	WaSecState	53	WA	Washington Secretary of State	Olympia	53067	olympia	official	gov
+MESOS	MaineSOS	23	ME	Maine Secretary of State	Augusta	23011	augusta	official	gov
+NHSOS	NHSOS	33	NH	New Hampshire Secretary of State	Concord	33013	concord	official	gov
+IASOS	IowaSOS	19	IA	Iowa Secretary of State	Des Moines	19153	des-moines	official	gov
+IASOS_alt	IowaSecretaryofState	19	IA	Iowa Secretary of State	Des Moines	19153	des-moines	official	gov
+ILSBE	IllinoisSBE	17	IL	Illinois State Board of Elections	Springfield	17167	springfield	official	gov
+ILSBE_alt	ILElections	17	IL	Illinois State Board of Elections	Springfield	17167	springfield	official	gov
+VAELECT	VirginiaELECT	51	VA	Virginia Department of Elections	Richmond	51760	richmond	official	gov
+VAELECT_alt	VAElections	51	VA	Virginia Department of Elections	Richmond	51760	richmond	official	gov
+KSSOS	KansasSOS	20	KS	Kansas Secretary of State	Topeka	20177	topeka	official	gov
+KYSOS	KYSOS	21	KY	Kentucky Secretary of State	Frankfort	21073	frankfort	official	gov
+KYSOS_alt	KentuckySOS	21	KY	Kentucky Secretary of State	Frankfort	21073	frankfort	official	gov
+LASOS	LouisianaSOS	22	LA	Louisiana Secretary of State	Baton Rouge	22033	baton-rouge	official	gov
+LASOS_alt	LASecretaryofState	22	LA	Louisiana Secretary of State	Baton Rouge	22033	baton-rouge	official	gov
+ALSOS	AlabamaSOS	01	AL	Alabama Secretary of State	Montgomery	01101	montgomery	official	gov
+AKELECT	AlaskaDivisionofElections	02	AK	Alaska Division of Elections	Juneau	02110	juneau	official	gov
+CTSOTS	CTSOTS	09	CT	Connecticut Secretary of the State	Hartford	09003	hartford	official	gov
+ORSOS	OregonSOS	41	OR	Oregon Secretary of State	Salem	41047	salem	official	gov
+ORSOS_alt	OregonSecretaryofState	41	OR	Oregon Secretary of State	Salem	41047	salem	official	gov
+MTSOS	MontanaSOS	30	MT	Montana Secretary of State	Helena	30049	helena	official	gov
+NESOS	NebraskaSOS	31	NE	Nebraska Secretary of State	Lincoln	31109	lincoln	official	gov
+NMSOS	NMSOS	35	NM	New Mexico Secretary of State	Santa Fe	35049	santa-fe	official	gov
+NMSOS_alt	NewMexicoSOS	35	NM	New Mexico Secretary of State	Santa Fe	35049	santa-fe	official	gov
+OKSEB	OKElectionBoard	40	OK	Oklahoma State Election Board	Oklahoma City	40109	oklahoma-city	official	gov
+SCVotes	SCVotes	45	SC	South Carolina Election Commission	Columbia	45079	columbia	official	gov
+TNSOS	TNSOS	47	TN	Tennessee Secretary of State	Nashville	47037	nashville	official	gov
+TNSOS_alt	TennesseeSOS	47	TN	Tennessee Secretary of State	Nashville	47037	nashville	official	gov
+UTELECT	UtahElections	49	UT	Utah Lt. Governor Elections	Salt Lake City	49035	salt-lake-city	official	gov
+UTELECT_alt	VoteUtah	49	UT	Utah Lt. Governor Elections	Salt Lake City	49035	salt-lake-city	official	gov
+MDSBE	MarylandElections	24	MD	Maryland State Board of Elections	Annapolis	24003	annapolis	official	gov
+MDSBE_alt	MDSBE	24	MD	Maryland State Board of Elections	Annapolis	24003	annapolis	official	gov
+MASOS	MassSOS	25	MA	Massachusetts Secretary of the Commonwealth	Boston	25025	boston	official	gov
+IDSOS	IdahoSOS	16	ID	Idaho Secretary of State	Boise	16001	boise	official	gov
+WVSOS	WVSOS	54	WV	West Virginia Secretary of State	Charleston	54039	charleston	official	gov
+WVSOS_alt	WVSecretaryofState	54	WV	West Virginia Secretary of State	Charleston	54039	charleston	official	gov
+ARSOS	ArkansasSOS	05	AR	Arkansas Secretary of State	Little Rock	05119	little-rock	official	gov
+MSSOS	MSSOS	28	MS	Mississippi Secretary of State	Jackson	28049	jackson	official	gov
+MSSOS_alt	MississippiSOS	28	MS	Mississippi Secretary of State	Jackson	28049	jackson	official	gov
+DEELECT	DEElections	10	DE	Delaware Department of Elections	Dover	10001	dover	official	gov
+RISOS	RISOS	44	RI	Rhode Island Secretary of State	Providence	44007	providence	official	gov
+RISOS_alt	RhodeIslandSOS	44	RI	Rhode Island Secretary of State	Providence	44007	providence	official	gov
+SDSOS	SDSOS	46	SD	South Dakota Secretary of State	Pierre	46065	pierre	official	gov
+WYSOS	WYSOS	56	WY	Wyoming Secretary of State	Cheyenne	56021	cheyenne	official	gov
+NDSOS	NDSOS	38	ND	North Dakota Secretary of State	Bismarck	38015	bismarck	official	gov
+VTSOS	VTSOS	50	VT	Vermont Secretary of State	Montpelier	50023	montpelier	official	gov
+VTSOS_alt	VermontSOS	50	VT	Vermont Secretary of State	Montpelier	50023	montpelier	official	gov
+HIELECT	HawaiiElections	15	HI	Hawaii Office of Elections	Honolulu	15003	honolulu	official	gov
+NJDOS	NJDivisionofElections	34	NJ	New Jersey Division of Elections	Trenton	34021	trenton	official	gov
+INSOS	IndianaSOS	18	IN	Indiana Secretary of State	Indianapolis	18097	indianapolis	official	gov
+MOSOS	MissouriSOS	29	MO	Missouri Secretary of State	Jefferson City	29051	jefferson-city	official	gov

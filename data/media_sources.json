@@ -1,0 +1,2171 @@
+{
+  "_meta": {
+    "generated_at": "2026-11-03T21:10:00Z",
+    "election_date": "2026-11-03",
+    "tiers": {
+      "1": "national outlets (AP, Reuters, NBC, ABC, CBS, CNN, Fox, PBS, NYT, WaPo)",
+      "2": "state/regional newspapers, TV, public radio, and States Newsroom nonprofit outlets",
+      "3": "official or very-high-reach social accounts on two or more platforms (not covered here)"
+    },
+    "verification": "Each URL was HEAD/GET-probed with curl on 2026-11-03 ~21:05 UTC. status 'ok' = HTTP 200; 'unverified_bot_blocked' = 401/403/connection reset (site exists but blocks automated clients: treat as usable but unverified); 'section_url_404_use_site_root' = the section path 404'd, fall back to the outlet's home page / search. NBC per-state pattern (https://www.nbcnews.com/politics/2026-elections/<state-slug>-results) and WaPo per-state pattern (https://www.washingtonpost.com/elections/results/2026/11/03/<state-slug>-live-updates/) give Tier-1 state pages for every state.",
+    "probe_summary": {
+      "ok": 127,
+      "blocked": 86,
+      "404": 0,
+      "other": 0
+    },
+    "state_page_patterns": {
+      "nbc": "https://www.nbcnews.com/politics/2026-elections/{state-slug}-results",
+      "wapo": "https://www.washingtonpost.com/elections/results/2026/11/03/{state-slug}-live-updates/",
+      "fox": "https://www.foxnews.com/elections?state={ST}",
+      "cbs_local": "https://www.cbsnews.com/{market}/live-updates/... (chicago, detroit, minnesota, boston, miami, texas, etc.)"
+    }
+  },
+  "tier1": [
+    {
+      "id": "ap",
+      "name": "Associated Press",
+      "url": "https://apnews.com/hub/election-2026",
+      "results_url": "https://apnews.com/projects/election-results-2026/",
+      "note": "AP is the race-call authority for most outlets. apnews.com blocked automated fetch (403) and the proxy blocks apnews.com fetches; hub URL from AP's standard election hub pattern (2024: apnews.com/hub/election-2024, results at apnews.com/projects/election-results-2024/). projects/election-results-2026/ returned 404 at 20:55 UTC \u2014 AP typically publishes the results project at/after first poll close. Treat as UNVERIFIED until a human confirms."
+    },
+    {
+      "id": "reuters",
+      "name": "Reuters",
+      "url": "https://www.reuters.com/world/us/",
+      "results_url": "https://www.reuters.com/graphics/USA-ELECTION/RESULTS/",
+      "note": "reuters.com returns 401/403 to automated fetch and the proxy blocks it; results graphics path follows the 2024 pattern (reuters.com/graphics/USA-ELECTION/RESULTS/...). UNVERIFIED."
+    },
+    {
+      "id": "nbc",
+      "name": "NBC News",
+      "url": "https://www.nbcnews.com/politics/2026-elections/senate-results",
+      "results_url": "https://www.nbcnews.com/politics/2026-elections/senate-results",
+      "note": "Verified 200: senate-results, house-results, governor-results, and per-state pages https://www.nbcnews.com/politics/2026-elections/<state-slug>-results (e.g. pennsylvania-results, new-york-house-results). Hub /politics/2026-elections returns 404 (use the results pages)."
+    },
+    {
+      "id": "abc",
+      "name": "ABC News",
+      "url": "https://abcnews.com/Elections",
+      "results_url": "https://abcnews.com/Elections",
+      "note": "Verified 200 (abcnews.go.com/Elections 302s to abcnews.com/Elections). ABC uses FiveThirtyEight-style results pages under /Elections; specific 2026 results path not confirmed (several guesses 404)."
+    },
+    {
+      "id": "cbs",
+      "name": "CBS News",
+      "url": "https://www.cbsnews.com/midterms/",
+      "results_url": "https://www.cbsnews.com/live-updates/election-day-2026-midterms/",
+      "note": "Verified 200: midterms hub and Election Day live-updates page (named on CBS's where-to-watch page). Local CBS stations run state live blogs, e.g. cbsnews.com/chicago/live-updates/illinois-midterm-election-results-2026-live/, cbsnews.com/detroit/live-updates/michigan-2026-midterm-election-live-updates/, cbsnews.com/minnesota/live-updates/minnesotas-midterm-election-2026-follow-the-latest-updates/."
+    },
+    {
+      "id": "cnn",
+      "name": "CNN",
+      "url": "https://www.cnn.com/election/2026",
+      "results_url": "https://www.cnn.com/election/2026",
+      "note": "Verified 200 hub ('Key Senate and House races'). Results sub-paths (/election/2026/results, /results/senate) returned 404 pre-close; CNN normally publishes /election/<year>/results/* on election night."
+    },
+    {
+      "id": "fox",
+      "name": "Fox News",
+      "url": "https://www.foxnews.com/elections",
+      "results_url": "https://www.foxnews.com/elections",
+      "note": "Verified 200; per-state views via ?state=XX (e.g. https://www.foxnews.com/elections?state=ME seen in search results). 2026 results sub-paths 404 pre-close."
+    },
+    {
+      "id": "pbs",
+      "name": "PBS News",
+      "url": "https://www.pbs.org/newshour/elections-2026",
+      "results_url": "https://www.pbs.org/newshour/elections-2026/results",
+      "note": "Verified 200 (hub redirects to /newshour/tag/vote-2026; results page live). PBS uses AP results."
+    },
+    {
+      "id": "nyt",
+      "name": "The New York Times",
+      "url": "https://www.nytimes.com/news-event/2026-midterm-elections",
+      "results_url": "https://www.nytimes.com/interactive/2026/11/03/us/elections/results-senate.html",
+      "note": "nytimes.com returns 403 to automated fetch and the proxy blocks it. Hub path seen mirrored in search results; results interactive paths follow the 2022 pattern (/interactive/2022/11/08/us/elections/results-senate.html). UNVERIFIED; paywalled."
+    },
+    {
+      "id": "wapo",
+      "name": "The Washington Post",
+      "url": "https://www.washingtonpost.com/elections/results/2026/",
+      "results_url": "https://www.washingtonpost.com/elections/results/2026/11/03/",
+      "note": "Per-state live pages verified via search results on washingtonpost.com: https://www.washingtonpost.com/elections/results/2026/11/03/<state>-live-updates/ (ohio, wisconsin, new-hampshire, south-carolina, mississippi, north-dakota, new-mexico) and race pages like /2026/11/03/texas-senate-paxton-talarico-live-updates, /pennsylvania-governor-garrity-shapiro-live-updates, /michigan-senate-el-sayed-rogers-live-updates. Direct fetch failed (connection reset through proxy)."
+    }
+  ],
+  "tier2_by_state": {
+    "AL": [
+      {
+        "name": "AL.com",
+        "kind": "newspaper",
+        "url": "https://www.al.com/politics/",
+        "http_status": 403,
+        "final_url": "https://www.al.com/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Alabama Reflector",
+        "kind": "nonprofit",
+        "url": "https://alabamareflector.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://alabamareflector.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "WSFA 12 (Montgomery)",
+        "kind": "tv",
+        "url": "https://www.wsfa.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.wsfa.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "WBRC Fox6 (Birmingham)",
+        "kind": "tv",
+        "url": "https://www.wbrc.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.wbrc.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "AK": [
+      {
+        "name": "Anchorage Daily News",
+        "kind": "newspaper",
+        "url": "https://www.adn.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.adn.com/section/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Alaska Beacon",
+        "kind": "nonprofit",
+        "url": "https://alaskabeacon.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://alaskabeacon.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Alaska Public Media",
+        "kind": "public radio",
+        "url": "https://alaskapublic.org/elections/",
+        "http_status": 200,
+        "final_url": "https://alaskapublic.org/elections/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Alaska's News Source (KTUU)",
+        "kind": "tv",
+        "url": "https://www.alaskasnewssource.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.alaskasnewssource.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "AZ": [
+      {
+        "name": "The Arizona Republic / azcentral",
+        "kind": "newspaper",
+        "url": "https://www.azcentral.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.azcentral.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "Arizona Mirror",
+        "kind": "nonprofit",
+        "url": "https://azmirror.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://azmirror.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "12News (KPNX)",
+        "kind": "tv",
+        "url": "https://www.12news.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.12news.com/politics",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.12news.com/politics/elections"
+      },
+      {
+        "name": "KJZZ",
+        "kind": "public radio",
+        "url": "https://www.kjzz.org/politics",
+        "http_status": 200,
+        "final_url": "https://www.kjzz.org/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "AR": [
+      {
+        "name": "Arkansas Democrat-Gazette",
+        "kind": "newspaper",
+        "url": "https://www.arkansasonline.com/news/",
+        "http_status": 200,
+        "final_url": "https://www.arkansasonline.com/news/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.arkansasonline.com/news/politics/"
+      },
+      {
+        "name": "Arkansas Advocate",
+        "kind": "nonprofit",
+        "url": "https://arkansasadvocate.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://arkansasadvocate.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "KATV (Little Rock)",
+        "kind": "tv",
+        "url": "https://katv.com/",
+        "http_status": 200,
+        "final_url": "https://katv.com/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://katv.com/news/election"
+      },
+      {
+        "name": "THV11",
+        "kind": "tv",
+        "url": "https://www.thv11.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.thv11.com/politics",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.thv11.com/politics/elections"
+      }
+    ],
+    "CA": [
+      {
+        "name": "Los Angeles Times",
+        "kind": "newspaper",
+        "url": "https://www.latimes.com/politics/elections",
+        "http_status": 200,
+        "final_url": "https://www.latimes.com/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "CalMatters",
+        "kind": "nonprofit",
+        "url": "https://calmatters.org/elections/",
+        "http_status": 429,
+        "final_url": "https://calmatters.org/category/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "San Francisco Chronicle",
+        "kind": "newspaper",
+        "url": "https://www.sfchronicle.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.sfchronicle.com/politics/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.sfchronicle.com/elections/"
+      },
+      {
+        "name": "KCRA 3 (Sacramento)",
+        "kind": "tv",
+        "url": "https://www.kcra.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.kcra.com/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "CO": [
+      {
+        "name": "The Denver Post",
+        "kind": "newspaper",
+        "url": "https://www.denverpost.com/election/",
+        "http_status": 200,
+        "final_url": "https://www.denverpost.com/2006/09/18/election-06-may-be-at-risk-of-error/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "The Colorado Sun",
+        "kind": "nonprofit",
+        "url": "https://coloradosun.com/politics/",
+        "http_status": 429,
+        "final_url": "https://coloradosun.com/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Colorado Public Radio",
+        "kind": "public radio",
+        "url": "https://www.cpr.org/politics/",
+        "http_status": 403,
+        "final_url": "https://www.cpr.org/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "9News (KUSA)",
+        "kind": "tv",
+        "url": "https://www.9news.com/elections",
+        "http_status": 200,
+        "final_url": "https://www.9news.com/elections",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "CT": [
+      {
+        "name": "CT Mirror",
+        "kind": "nonprofit",
+        "url": "https://ctmirror.org/category/government/politics/elections/",
+        "http_status": 429,
+        "final_url": "https://ctmirror.org/category/government/politics/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Hartford Courant",
+        "kind": "newspaper",
+        "url": "https://www.courant.com/politics/elections/",
+        "http_status": 200,
+        "final_url": "https://www.courant.com/news/politics/election/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "WFSB",
+        "kind": "tv",
+        "url": "https://www.wfsb.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.wfsb.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Connecticut Public",
+        "kind": "public radio",
+        "url": "https://www.ctpublic.org/news/politics",
+        "http_status": 200,
+        "final_url": "https://www.ctpublic.org/news/politics",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.ctpublic.org/politics"
+      }
+    ],
+    "DE": [
+      {
+        "name": "Delaware News Journal / delawareonline",
+        "kind": "newspaper",
+        "url": "https://www.delawareonline.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.delawareonline.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "Delaware Public Media",
+        "kind": "public radio",
+        "url": "https://www.delawarepublic.org/politics-government",
+        "http_status": 200,
+        "final_url": "https://www.delawarepublic.org/politics-government",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Spotlight Delaware",
+        "kind": "nonprofit",
+        "url": "https://spotlightdelaware.org/category/politics/",
+        "http_status": 429,
+        "final_url": "https://spotlightdelaware.org/category/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "WBOC",
+        "kind": "tv",
+        "url": "https://www.wboc.com/news/politics/",
+        "http_status": 200,
+        "final_url": "https://www.wboc.com/news/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "DC": [
+      {
+        "name": "WTOP",
+        "kind": "radio",
+        "url": "https://wtop.com/elections/",
+        "http_status": 200,
+        "final_url": "https://wtop.com/elections/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "WUSA9",
+        "kind": "tv",
+        "url": "https://www.wusa9.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.wusa9.com/politics",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.wusa9.com/politics/elections"
+      },
+      {
+        "name": "WAMU / DCist",
+        "kind": "public radio",
+        "url": "https://wamu.org/section/politics/",
+        "http_status": 200,
+        "final_url": "https://wamu.org/story/22/03/12/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "The Washington Informer",
+        "kind": "newspaper",
+        "url": "https://www.washingtoninformer.com/category/politics/",
+        "http_status": 429,
+        "final_url": "https://www.washingtoninformer.com/category/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      }
+    ],
+    "FL": [
+      {
+        "name": "Tampa Bay Times",
+        "kind": "newspaper",
+        "url": "https://www.tampabay.com/news/florida-politics/elections/",
+        "http_status": 200,
+        "final_url": "https://www.tampabay.com/news/florida-politics/elections/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Miami Herald",
+        "kind": "newspaper",
+        "url": "https://www.miamiherald.com/news/politics-government/election/",
+        "http_status": 0,
+        "final_url": "https://www.miamiherald.com/news/politics-government/election/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Orlando Sentinel",
+        "kind": "newspaper",
+        "url": "https://www.orlandosentinel.com/politics/elections/",
+        "http_status": 200,
+        "final_url": "https://www.orlandosentinel.com/2005/02/27/elections-101-for-seminole/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Florida Politics",
+        "kind": "digital",
+        "url": "https://floridapolitics.com/",
+        "http_status": 403,
+        "final_url": "https://floridapolitics.com/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      }
+    ],
+    "GA": [
+      {
+        "name": "The Atlanta Journal-Constitution",
+        "kind": "newspaper",
+        "url": "https://www.ajc.com/politics/election/",
+        "http_status": 200,
+        "final_url": "https://www.ajc.com/politics/election/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Georgia Recorder",
+        "kind": "nonprofit",
+        "url": "https://georgiarecorder.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://georgiarecorder.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "WSB-TV",
+        "kind": "tv",
+        "url": "https://www.wsbtv.com/news/politics/",
+        "http_status": 200,
+        "final_url": "https://www.wsbtv.com/news/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "GPB News",
+        "kind": "public radio",
+        "url": "https://www.gpb.org/news",
+        "http_status": 200,
+        "final_url": "https://www.gpb.org/news",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.gpb.org/news/politics"
+      }
+    ],
+    "HI": [
+      {
+        "name": "Honolulu Civil Beat",
+        "kind": "nonprofit",
+        "url": "https://www.civilbeat.org/elections-2026/",
+        "http_status": 200,
+        "final_url": "https://www.civilbeat.org/elections-2026/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Honolulu Star-Advertiser",
+        "kind": "newspaper",
+        "url": "https://www.staradvertiser.com/category/election/",
+        "http_status": 200,
+        "final_url": "https://www.staradvertiser.com/category/election/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Hawaii News Now",
+        "kind": "tv",
+        "url": "https://www.hawaiinewsnow.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.hawaiinewsnow.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Hawaii Public Radio",
+        "kind": "public radio",
+        "url": "https://www.hawaiipublicradio.org/politics",
+        "http_status": 200,
+        "final_url": "https://www.hawaiipublicradio.org/government-politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "ID": [
+      {
+        "name": "Idaho Statesman",
+        "kind": "newspaper",
+        "url": "https://www.idahostatesman.com/news/politics-government/election/",
+        "http_status": 0,
+        "final_url": "https://www.idahostatesman.com/news/politics-government/election/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Idaho Capital Sun",
+        "kind": "nonprofit",
+        "url": "https://idahocapitalsun.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://idahocapitalsun.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "KTVB",
+        "kind": "tv",
+        "url": "https://www.ktvb.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.ktvb.com/politics",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.ktvb.com/politics/elections"
+      },
+      {
+        "name": "Boise State Public Radio",
+        "kind": "public radio",
+        "url": "https://www.boisestatepublicradio.org/politics-government",
+        "http_status": 200,
+        "final_url": "https://www.boisestatepublicradio.org/politics-government",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "IL": [
+      {
+        "name": "Chicago Tribune",
+        "kind": "newspaper",
+        "url": "https://www.chicagotribune.com/politics/elections/",
+        "http_status": 200,
+        "final_url": "https://www.chicagotribune.com/news/politics/elections/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Chicago Sun-Times",
+        "kind": "newspaper",
+        "url": "https://chicago.suntimes.com/elections",
+        "http_status": 200,
+        "final_url": "https://chicago.suntimes.com/elections",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "WBEZ",
+        "kind": "public radio",
+        "url": "https://www.wbez.org/politics",
+        "http_status": 200,
+        "final_url": "https://www.wbez.org/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Capitol News Illinois",
+        "kind": "nonprofit",
+        "url": "https://capitolnewsillinois.com/",
+        "http_status": 429,
+        "final_url": "https://capitolnewsillinois.com/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      }
+    ],
+    "IN": [
+      {
+        "name": "IndyStar",
+        "kind": "newspaper",
+        "url": "https://www.indystar.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.indystar.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "Indiana Capital Chronicle",
+        "kind": "nonprofit",
+        "url": "https://indianacapitalchronicle.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://indianacapitalchronicle.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "WTHR",
+        "kind": "tv",
+        "url": "https://www.wthr.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.wthr.com/politics",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.wthr.com/politics/elections"
+      },
+      {
+        "name": "WFYI",
+        "kind": "public radio",
+        "url": "https://www.wfyi.org/news",
+        "http_status": 200,
+        "final_url": "https://www.wfyi.org/news",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.wfyi.org/news/politics"
+      }
+    ],
+    "IA": [
+      {
+        "name": "Des Moines Register",
+        "kind": "newspaper",
+        "url": "https://www.desmoinesregister.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.desmoinesregister.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "Iowa Capital Dispatch",
+        "kind": "nonprofit",
+        "url": "https://iowacapitaldispatch.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://iowacapitaldispatch.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "KCCI",
+        "kind": "tv",
+        "url": "https://www.kcci.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.kcci.com/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Iowa Public Radio",
+        "kind": "public radio",
+        "url": "https://www.iowapublicradio.org/politics",
+        "http_status": 200,
+        "final_url": "https://www.iowapublicradio.org/iowa-politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "KS": [
+      {
+        "name": "The Kansas City Star",
+        "kind": "newspaper",
+        "url": "https://www.kansascity.com/news/politics-government/election/",
+        "http_status": 0,
+        "final_url": "https://www.kansascity.com/news/politics-government/election/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Kansas Reflector",
+        "kind": "nonprofit",
+        "url": "https://kansasreflector.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://kansasreflector.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "The Wichita Eagle",
+        "kind": "newspaper",
+        "url": "https://www.kansas.com/news/politics-government/election/",
+        "http_status": 0,
+        "final_url": "https://www.kansas.com/news/politics-government/election/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "KCUR",
+        "kind": "public radio",
+        "url": "https://www.kcur.org/politics-elections-and-government",
+        "http_status": 200,
+        "final_url": "https://www.kcur.org/politics-elections-and-government",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.kcur.org/politics-elections"
+      }
+    ],
+    "KY": [
+      {
+        "name": "The Courier-Journal",
+        "kind": "newspaper",
+        "url": "https://www.courier-journal.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.courier-journal.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "Lexington Herald-Leader",
+        "kind": "newspaper",
+        "url": "https://www.kentucky.com/news/politics-government/election/",
+        "http_status": 0,
+        "final_url": "https://www.kentucky.com/news/politics-government/election/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Kentucky Lantern",
+        "kind": "nonprofit",
+        "url": "https://kentuckylantern.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://kentuckylantern.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "WHAS11",
+        "kind": "tv",
+        "url": "https://www.whas11.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.whas11.com/politics",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.whas11.com/politics/elections"
+      }
+    ],
+    "LA": [
+      {
+        "name": "NOLA.com | The Times-Picayune",
+        "kind": "newspaper",
+        "url": "https://www.nola.com/news/politics/elections/",
+        "http_status": 200,
+        "final_url": "https://www.nola.com/news/politics/elections/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "The Advocate (Baton Rouge)",
+        "kind": "newspaper",
+        "url": "https://www.theadvocate.com/baton_rouge/news/politics/elections/",
+        "http_status": 200,
+        "final_url": "https://www.theadvocate.com/baton_rouge/news/politics/elections/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Louisiana Illuminator",
+        "kind": "nonprofit",
+        "url": "https://lailluminator.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://lailluminator.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "WWL-TV",
+        "kind": "tv",
+        "url": "https://www.wwltv.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.wwltv.com/politics",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.wwltv.com/politics/elections"
+      }
+    ],
+    "ME": [
+      {
+        "name": "Portland Press Herald",
+        "kind": "newspaper",
+        "url": "https://www.pressherald.com/politics/elections/",
+        "http_status": 200,
+        "final_url": "https://www.pressherald.com/politics/elections/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Bangor Daily News",
+        "kind": "newspaper",
+        "url": "https://www.bangordailynews.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.bangordailynews.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Maine Public",
+        "kind": "public radio",
+        "url": "https://www.mainepublic.org/politics",
+        "http_status": 200,
+        "final_url": "https://www.mainepublic.org/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "WMTW",
+        "kind": "tv",
+        "url": "https://www.wmtw.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.wmtw.com/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "MD": [
+      {
+        "name": "The Baltimore Sun",
+        "kind": "newspaper",
+        "url": "https://www.baltimoresun.com/politics/elections/",
+        "http_status": 200,
+        "final_url": "https://www.baltimoresun.com/news/politics/election/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Maryland Matters",
+        "kind": "nonprofit",
+        "url": "https://marylandmatters.org/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://marylandmatters.org/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "The Baltimore Banner",
+        "kind": "nonprofit",
+        "url": "https://www.thebaltimorebanner.com/",
+        "http_status": 200,
+        "final_url": "https://www.thebanner.com/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.thebaltimorebanner.com/politics-power/"
+      },
+      {
+        "name": "WBAL-TV",
+        "kind": "tv",
+        "url": "https://www.wbaltv.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.wbaltv.com/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "MA": [
+      {
+        "name": "The Boston Globe",
+        "kind": "newspaper",
+        "url": "https://www.bostonglobe.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.bostonglobe.com/nation/politics/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.bostonglobe.com/politics/elections/"
+      },
+      {
+        "name": "WBUR",
+        "kind": "public radio",
+        "url": "https://www.wbur.org/news",
+        "http_status": 200,
+        "final_url": "https://www.wbur.org/news",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.wbur.org/politics"
+      },
+      {
+        "name": "MassLive",
+        "kind": "newspaper",
+        "url": "https://www.masslive.com/politics/",
+        "http_status": 403,
+        "final_url": "https://www.masslive.com/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "WCVB",
+        "kind": "tv",
+        "url": "https://www.wcvb.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.wcvb.com/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "MI": [
+      {
+        "name": "Detroit Free Press",
+        "kind": "newspaper",
+        "url": "https://www.freep.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.freep.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "The Detroit News",
+        "kind": "newspaper",
+        "url": "https://www.detroitnews.com/news/politics/elections/",
+        "http_status": 402,
+        "final_url": "https://www.detroitnews.com/news/politics/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "Bridge Michigan",
+        "kind": "nonprofit",
+        "url": "https://www.bridgemi.com/michigan-government/",
+        "http_status": 200,
+        "final_url": "https://bridgemi.com/michigan-government/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Michigan Advance",
+        "kind": "nonprofit",
+        "url": "https://michiganadvance.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://michiganadvance.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      }
+    ],
+    "MN": [
+      {
+        "name": "Star Tribune",
+        "kind": "newspaper",
+        "url": "https://www.startribune.com/politics/elections/",
+        "http_status": 429,
+        "final_url": "https://www.startribune.com/politics/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "MPR News",
+        "kind": "public radio",
+        "url": "https://www.mprnews.org/politics",
+        "http_status": 200,
+        "final_url": "https://www.mprnews.org/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Minnesota Reformer",
+        "kind": "nonprofit",
+        "url": "https://minnesotareformer.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://minnesotareformer.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "KARE 11",
+        "kind": "tv",
+        "url": "https://www.kare11.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.kare11.com/politics",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.kare11.com/politics/elections"
+      }
+    ],
+    "MS": [
+      {
+        "name": "Mississippi Today",
+        "kind": "nonprofit",
+        "url": "https://mississippitoday.org/elections/",
+        "http_status": 403,
+        "final_url": "https://mississippitoday.org/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Clarion Ledger",
+        "kind": "newspaper",
+        "url": "https://www.clarionledger.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.clarionledger.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "WLBT",
+        "kind": "tv",
+        "url": "https://www.wlbt.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.wlbt.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Magnolia Tribune",
+        "kind": "digital",
+        "url": "https://magnoliatribune.com/politics/",
+        "http_status": 200,
+        "final_url": "https://magnoliatribune.com/2018/07/19/politics-cometh-the-anatomy-of-the-reeves-mdot-hood-political-feud/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "MO": [
+      {
+        "name": "St. Louis Post-Dispatch",
+        "kind": "newspaper",
+        "url": "https://www.stltoday.com/news/local/govt-and-politics/",
+        "http_status": 200,
+        "final_url": "https://www.stltoday.com/news/local/government-politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Missouri Independent",
+        "kind": "nonprofit",
+        "url": "https://missouriindependent.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://missouriindependent.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "KSDK",
+        "kind": "tv",
+        "url": "https://www.ksdk.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.ksdk.com/politics",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.ksdk.com/politics/elections"
+      },
+      {
+        "name": "St. Louis Public Radio",
+        "kind": "public radio",
+        "url": "https://www.stlpr.org/government-politics-issues",
+        "http_status": 200,
+        "final_url": "https://www.stlpr.org/government-politics-issues",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.stlpr.org/politics-issues"
+      }
+    ],
+    "MT": [
+      {
+        "name": "Montana Free Press",
+        "kind": "nonprofit",
+        "url": "https://montanafreepress.org/politics/",
+        "http_status": 200,
+        "final_url": "https://montanafreepress.org/government-and-politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Daily Montanan",
+        "kind": "nonprofit",
+        "url": "https://dailymontanan.com/category/election-2026/",
+        "http_status": 200,
+        "final_url": "https://dailymontanan.com/category/election-2026/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Billings Gazette",
+        "kind": "newspaper",
+        "url": "https://billingsgazette.com/news/state-regional/government-politics/",
+        "http_status": 200,
+        "final_url": "https://billingsgazette.com/news/state-regional/government-politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "KTVQ",
+        "kind": "tv",
+        "url": "https://www.ktvq.com/news/politics",
+        "http_status": 200,
+        "final_url": "https://www.ktvq.com/news/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "NE": [
+      {
+        "name": "Omaha World-Herald",
+        "kind": "newspaper",
+        "url": "https://omaha.com/news/state-regional/government-politics/",
+        "http_status": 200,
+        "final_url": "https://omaha.com/news/state-regional/government-politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Nebraska Examiner",
+        "kind": "nonprofit",
+        "url": "https://nebraskaexaminer.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://nebraskaexaminer.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "KETV",
+        "kind": "tv",
+        "url": "https://www.ketv.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.ketv.com/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Nebraska Public Media",
+        "kind": "public media",
+        "url": "https://nebraskapublicmedia.org/en/news/politics/",
+        "http_status": 0,
+        "final_url": "https://nebraskapublicmedia.org/en/news/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      }
+    ],
+    "NV": [
+      {
+        "name": "Las Vegas Review-Journal",
+        "kind": "newspaper",
+        "url": "https://www.reviewjournal.com/news/politics-and-government/elections/",
+        "http_status": 403,
+        "final_url": "https://www.reviewjournal.com/news/politics-and-government/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "The Nevada Independent",
+        "kind": "nonprofit",
+        "url": "https://thenevadaindependent.com/",
+        "http_status": 200,
+        "final_url": "https://thenevadaindependent.com/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://thenevadaindependent.com/elections"
+      },
+      {
+        "name": "Nevada Current",
+        "kind": "nonprofit",
+        "url": "https://nevadacurrent.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://nevadacurrent.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Reno Gazette Journal",
+        "kind": "newspaper",
+        "url": "https://www.rgj.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.rgj.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      }
+    ],
+    "NH": [
+      {
+        "name": "WMUR",
+        "kind": "tv",
+        "url": "https://www.wmur.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.wmur.com/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "New Hampshire Bulletin",
+        "kind": "nonprofit",
+        "url": "https://newhampshirebulletin.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://newhampshirebulletin.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "NHPR",
+        "kind": "public radio",
+        "url": "https://www.nhpr.org/politics",
+        "http_status": 200,
+        "final_url": "https://www.nhpr.org/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "New Hampshire Union Leader",
+        "kind": "newspaper",
+        "url": "https://www.unionleader.com/news/politics/",
+        "http_status": 200,
+        "final_url": "https://www.unionleader.com/news/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "NJ": [
+      {
+        "name": "NJ.com / The Star-Ledger",
+        "kind": "newspaper",
+        "url": "https://www.nj.com/politics/",
+        "http_status": 403,
+        "final_url": "https://www.nj.com/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "NJ Spotlight News",
+        "kind": "public media",
+        "url": "https://www.njspotlightnews.org/politics/",
+        "http_status": 200,
+        "final_url": "https://www.njspotlightnews.org/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "New Jersey Monitor",
+        "kind": "nonprofit",
+        "url": "https://newjerseymonitor.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://newjerseymonitor.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "News 12 New Jersey",
+        "kind": "tv",
+        "url": "https://newjersey.news12.com/",
+        "http_status": 200,
+        "final_url": "https://newjersey.news12.com/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://newjersey.news12.com/politics"
+      }
+    ],
+    "NM": [
+      {
+        "name": "Albuquerque Journal",
+        "kind": "newspaper",
+        "url": "https://www.abqjournal.com/news/",
+        "http_status": 200,
+        "final_url": "https://www.abqjournal.com/news/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.abqjournal.com/news/politics/"
+      },
+      {
+        "name": "Source New Mexico",
+        "kind": "nonprofit",
+        "url": "https://sourcenm.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://sourcenm.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "KOB 4",
+        "kind": "tv",
+        "url": "https://www.kob.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.kob.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Santa Fe New Mexican",
+        "kind": "newspaper",
+        "url": "https://www.santafenewmexican.com/news/",
+        "http_status": 200,
+        "final_url": "https://www.santafenewmexican.com/news/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.santafenewmexican.com/news/local_news/elections/"
+      }
+    ],
+    "NY": [
+      {
+        "name": "Spectrum News NY1",
+        "kind": "tv",
+        "url": "https://ny1.com/nyc/all-boroughs/politics",
+        "http_status": 200,
+        "final_url": "https://ny1.com/nyc/all-boroughs/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Gothamist / WNYC",
+        "kind": "public radio",
+        "url": "https://gothamist.com/",
+        "http_status": 200,
+        "final_url": "https://gothamist.com/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://gothamist.com/news/politics"
+      },
+      {
+        "name": "Times Union (Albany)",
+        "kind": "newspaper",
+        "url": "https://www.timesunion.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.timesunion.com/capitol/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Newsday",
+        "kind": "newspaper",
+        "url": "https://www.newsday.com/long-island/politics/elections",
+        "http_status": 200,
+        "final_url": "https://www.newsday.com/long-island/politics/elections",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "City & State NY",
+        "kind": "digital",
+        "url": "https://www.cityandstateny.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.cityandstateny.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "NC": [
+      {
+        "name": "The News & Observer",
+        "kind": "newspaper",
+        "url": "https://www.newsobserver.com/news/politics-government/election/",
+        "http_status": 0,
+        "final_url": "https://www.newsobserver.com/news/politics-government/election/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "WRAL",
+        "kind": "tv",
+        "url": "https://www.wral.com/news/political/",
+        "http_status": 200,
+        "final_url": "https://www.wral.com/news/political/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.wral.com/politics/elections/"
+      },
+      {
+        "name": "The Charlotte Observer",
+        "kind": "newspaper",
+        "url": "https://www.charlotteobserver.com/news/politics-government/election/",
+        "http_status": 0,
+        "final_url": "https://www.charlotteobserver.com/news/politics-government/election/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "NC Newsline",
+        "kind": "nonprofit",
+        "url": "https://ncnewsline.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://ncnewsline.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "WUNC",
+        "kind": "public radio",
+        "url": "https://www.wunc.org/politics",
+        "http_status": 200,
+        "final_url": "https://www.wunc.org/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "ND": [
+      {
+        "name": "InForum (The Forum of Fargo-Moorhead)",
+        "kind": "newspaper",
+        "url": "https://www.inforum.com/news/north-dakota",
+        "http_status": 200,
+        "final_url": "https://www.inforum.com/news/north-dakota",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.inforum.com/news/north-dakota/politics"
+      },
+      {
+        "name": "North Dakota Monitor",
+        "kind": "nonprofit",
+        "url": "https://northdakotamonitor.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://northdakotamonitor.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "KFYR-TV",
+        "kind": "tv",
+        "url": "https://www.kfyrtv.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.kfyrtv.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Bismarck Tribune",
+        "kind": "newspaper",
+        "url": "https://bismarcktribune.com/news/state-regional/government-politics/",
+        "http_status": 200,
+        "final_url": "https://bismarcktribune.com/news/state-regional/government-politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "OH": [
+      {
+        "name": "cleveland.com / The Plain Dealer",
+        "kind": "newspaper",
+        "url": "https://www.cleveland.com/politics/",
+        "http_status": 403,
+        "final_url": "https://www.cleveland.com/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "The Columbus Dispatch",
+        "kind": "newspaper",
+        "url": "https://www.dispatch.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.dispatch.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "Ohio Capital Journal",
+        "kind": "nonprofit",
+        "url": "https://ohiocapitaljournal.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://ohiocapitaljournal.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Ohio Statehouse News Bureau",
+        "kind": "public radio",
+        "url": "https://www.statenews.org/government-politics",
+        "http_status": 200,
+        "final_url": "https://www.statenews.org/government-politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "The Cincinnati Enquirer",
+        "kind": "newspaper",
+        "url": "https://www.cincinnati.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.cincinnati.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      }
+    ],
+    "OK": [
+      {
+        "name": "The Oklahoman",
+        "kind": "newspaper",
+        "url": "https://www.oklahoman.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.oklahoman.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "Tulsa World",
+        "kind": "newspaper",
+        "url": "https://tulsaworld.com/news/state-regional/government-politics/",
+        "http_status": 200,
+        "final_url": "https://tulsaworld.com/news/state-regional/government-politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Oklahoma Voice",
+        "kind": "nonprofit",
+        "url": "https://oklahomavoice.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://oklahomavoice.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "KOCO 5",
+        "kind": "tv",
+        "url": "https://www.koco.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.koco.com/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "OR": [
+      {
+        "name": "The Oregonian / OregonLive",
+        "kind": "newspaper",
+        "url": "https://www.oregonlive.com/politics/",
+        "http_status": 403,
+        "final_url": "https://www.oregonlive.com/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "OPB",
+        "kind": "public media",
+        "url": "https://www.opb.org/politics/",
+        "http_status": 200,
+        "final_url": "https://www.opb.org/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Oregon Capital Chronicle",
+        "kind": "nonprofit",
+        "url": "https://oregoncapitalchronicle.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://oregoncapitalchronicle.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "KGW",
+        "kind": "tv",
+        "url": "https://www.kgw.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.kgw.com/politics",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.kgw.com/politics/elections"
+      }
+    ],
+    "PA": [
+      {
+        "name": "The Philadelphia Inquirer",
+        "kind": "newspaper",
+        "url": "https://www.inquirer.com/politics/election/",
+        "http_status": 200,
+        "final_url": "https://www.inquirer.com/politics/election/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Spotlight PA",
+        "kind": "nonprofit",
+        "url": "https://www.spotlightpa.org/topics/elections/",
+        "http_status": 200,
+        "final_url": "https://www.spotlightpa.org/topics/elections/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Pittsburgh Post-Gazette",
+        "kind": "newspaper",
+        "url": "https://www.post-gazette.com/news/politics-state",
+        "http_status": 200,
+        "final_url": "https://www.post-gazette.com/news/politics-state",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "WHYY",
+        "kind": "public media",
+        "url": "https://whyy.org/politics/",
+        "http_status": 200,
+        "final_url": "https://d1fw4rghwibahr.cloudfront.net/wp-content/uploads/2011/06/politics.jpg",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Pennsylvania Capital-Star",
+        "kind": "nonprofit",
+        "url": "https://penncapital-star.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://penncapital-star.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "PennLive / The Patriot-News",
+        "kind": "newspaper",
+        "url": "https://www.pennlive.com/politics/",
+        "http_status": 403,
+        "final_url": "https://www.pennlive.com/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      }
+    ],
+    "RI": [
+      {
+        "name": "The Providence Journal",
+        "kind": "newspaper",
+        "url": "https://www.providencejournal.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.providencejournal.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "Rhode Island Current",
+        "kind": "nonprofit",
+        "url": "https://rhodeislandcurrent.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://rhodeislandcurrent.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "WPRI 12",
+        "kind": "tv",
+        "url": "https://www.wpri.com/politics/",
+        "http_status": 403,
+        "final_url": "https://www.wpri.com/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "The Public's Radio",
+        "kind": "public radio",
+        "url": "https://thepublicsradio.org/politics/",
+        "http_status": 429,
+        "final_url": "https://thepublicsradio.org/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      }
+    ],
+    "SC": [
+      {
+        "name": "The State",
+        "kind": "newspaper",
+        "url": "https://www.thestate.com/news/politics-government/election/",
+        "http_status": 0,
+        "final_url": "https://www.thestate.com/news/politics-government/election/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "The Post and Courier",
+        "kind": "newspaper",
+        "url": "https://www.postandcourier.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.postandcourier.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "SC Daily Gazette",
+        "kind": "nonprofit",
+        "url": "https://scdailygazette.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://scdailygazette.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "WIS 10",
+        "kind": "tv",
+        "url": "https://www.wistv.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.wistv.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "SD": [
+      {
+        "name": "Argus Leader",
+        "kind": "newspaper",
+        "url": "https://www.argusleader.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.argusleader.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "South Dakota Searchlight",
+        "kind": "nonprofit",
+        "url": "https://southdakotasearchlight.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://southdakotasearchlight.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "KELOLAND",
+        "kind": "tv",
+        "url": "https://www.keloland.com/news/politics/",
+        "http_status": 403,
+        "final_url": "https://www.keloland.com/news/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "SDPB",
+        "kind": "public media",
+        "url": "https://www.sdpb.org/politics",
+        "http_status": 200,
+        "final_url": "https://www.sdpb.org/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "TN": [
+      {
+        "name": "The Tennessean",
+        "kind": "newspaper",
+        "url": "https://www.tennessean.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.tennessean.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "Tennessee Lookout",
+        "kind": "nonprofit",
+        "url": "https://tennesseelookout.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://tennesseelookout.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "WSMV 4",
+        "kind": "tv",
+        "url": "https://www.wsmv.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.wsmv.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "WPLN News",
+        "kind": "public radio",
+        "url": "https://wpln.org/",
+        "http_status": 200,
+        "final_url": "https://wpln.org/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://wpln.org/topics/politics/"
+      }
+    ],
+    "TX": [
+      {
+        "name": "The Texas Tribune",
+        "kind": "nonprofit",
+        "url": "https://www.texastribune.org/elections/",
+        "http_status": 429,
+        "final_url": "https://www.texastribune.org/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Houston Chronicle",
+        "kind": "newspaper",
+        "url": "https://www.houstonchronicle.com/politics/election/",
+        "http_status": 200,
+        "final_url": "https://www.houstonchronicle.com/politics/election/2022/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "The Dallas Morning News",
+        "kind": "newspaper",
+        "url": "https://www.dallasnews.com/news/elections/",
+        "http_status": 200,
+        "final_url": "https://www.dallasnews.com/elections/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Austin American-Statesman",
+        "kind": "newspaper",
+        "url": "https://www.statesman.com/news/politics/",
+        "http_status": 200,
+        "final_url": "https://www.statesman.com/news/politics/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.statesman.com/elections/"
+      },
+      {
+        "name": "KXAN",
+        "kind": "tv",
+        "url": "https://www.kxan.com/news/politics/",
+        "http_status": 403,
+        "final_url": "https://www.kxan.com/news/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      }
+    ],
+    "UT": [
+      {
+        "name": "The Salt Lake Tribune",
+        "kind": "newspaper",
+        "url": "https://www.sltrib.com/news/politics/",
+        "http_status": 200,
+        "final_url": "https://www.sltrib.com/news/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Deseret News",
+        "kind": "newspaper",
+        "url": "https://www.deseret.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.deseret.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "KSL",
+        "kind": "tv/digital",
+        "url": "https://www.ksl.com/news/politics",
+        "http_status": 200,
+        "final_url": "https://www.ksl.com/news/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Utah News Dispatch",
+        "kind": "nonprofit",
+        "url": "https://utahnewsdispatch.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://utahnewsdispatch.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      }
+    ],
+    "VT": [
+      {
+        "name": "VTDigger",
+        "kind": "nonprofit",
+        "url": "https://vtdigger.org/elections/",
+        "http_status": 429,
+        "final_url": "https://vtdigger.org/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Vermont Public",
+        "kind": "public media",
+        "url": "https://www.vermontpublic.org/",
+        "http_status": 200,
+        "final_url": "https://www.vermontpublic.org/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.vermontpublic.org/politics"
+      },
+      {
+        "name": "Burlington Free Press",
+        "kind": "newspaper",
+        "url": "https://www.burlingtonfreepress.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.burlingtonfreepress.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "WCAX",
+        "kind": "tv",
+        "url": "https://www.wcax.com/politics/",
+        "http_status": 200,
+        "final_url": "https://www.wcax.com/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "VA": [
+      {
+        "name": "Richmond Times-Dispatch",
+        "kind": "newspaper",
+        "url": "https://richmond.com/news/state-regional/government-politics/",
+        "http_status": 200,
+        "final_url": "https://richmond.com/news/state-regional/government-politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Virginia Mercury",
+        "kind": "nonprofit",
+        "url": "https://virginiamercury.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://virginiamercury.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "VPM News",
+        "kind": "public media",
+        "url": "https://www.vpm.org/news",
+        "http_status": 200,
+        "final_url": "https://www.vpm.org/news/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.vpm.org/news/politics"
+      },
+      {
+        "name": "The Virginian-Pilot",
+        "kind": "newspaper",
+        "url": "https://www.pilotonline.com/politics/elections/",
+        "http_status": 200,
+        "final_url": "https://www.pilotonline.com/1999/11/01/elections-99-a-look-at-who-might-win-and-whats-at-stake/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "WTOP",
+        "kind": "radio",
+        "url": "https://wtop.com/elections/",
+        "http_status": 200,
+        "final_url": "https://wtop.com/elections/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "WA": [
+      {
+        "name": "The Seattle Times",
+        "kind": "newspaper",
+        "url": "https://www.seattletimes.com/seattle-news/politics/",
+        "http_status": 200,
+        "final_url": "https://www.seattletimes.com/seattle-news/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Washington State Standard",
+        "kind": "nonprofit",
+        "url": "https://washingtonstatestandard.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://washingtonstatestandard.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "KUOW",
+        "kind": "public radio",
+        "url": "https://www.kuow.org/politics",
+        "http_status": 200,
+        "final_url": "https://donate.kuow.org/Donate/soundpolitics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "KING 5",
+        "kind": "tv",
+        "url": "https://www.king5.com/politics",
+        "http_status": 200,
+        "final_url": "https://www.king5.com/politics",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.king5.com/politics/elections"
+      },
+      {
+        "name": "The Spokesman-Review",
+        "kind": "newspaper",
+        "url": "https://www.spokesman.com/",
+        "http_status": 200,
+        "final_url": "https://www.spokesman.com/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://www.spokesman.com/news/politics/"
+      }
+    ],
+    "WV": [
+      {
+        "name": "WV MetroNews",
+        "kind": "radio/digital",
+        "url": "https://wvmetronews.com/",
+        "http_status": 200,
+        "final_url": "https://wvmetronews.com/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://wvmetronews.com/category/politics/"
+      },
+      {
+        "name": "West Virginia Watch",
+        "kind": "nonprofit",
+        "url": "https://westvirginiawatch.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://westvirginiawatch.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "West Virginia Public Broadcasting",
+        "kind": "public media",
+        "url": "https://wvpublic.org/government/",
+        "http_status": 200,
+        "final_url": "https://wvpublic.org/wvpb-podcast/podcast-the-legislature-today/government-fraud-prevention-act-downed-by-house/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Charleston Gazette-Mail",
+        "kind": "newspaper",
+        "url": "https://www.wvgazettemail.com/news/politics/",
+        "http_status": 200,
+        "final_url": "https://www.wvgazettemail.com/news/politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "WI": [
+      {
+        "name": "Milwaukee Journal Sentinel",
+        "kind": "newspaper",
+        "url": "https://www.jsonline.com/elections/",
+        "http_status": 402,
+        "final_url": "https://www.jsonline.com/elections/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked",
+        "note": "HTTP 402 to automated client (Gannett/USA Today network anti-bot); site is live for browsers."
+      },
+      {
+        "name": "Wisconsin Public Radio",
+        "kind": "public radio",
+        "url": "https://www.wpr.org/politics",
+        "http_status": 200,
+        "final_url": "https://www.wpr.org/topic/politics",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      },
+      {
+        "name": "Wisconsin Examiner",
+        "kind": "nonprofit",
+        "url": "https://wisconsinexaminer.com/category/election-2026/",
+        "http_status": 403,
+        "final_url": "https://wisconsinexaminer.com/category/election-2026/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "WisPolitics",
+        "kind": "digital",
+        "url": "https://www.wispolitics.com/",
+        "http_status": 403,
+        "final_url": "https://www.wispolitics.com/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Wisconsin State Journal",
+        "kind": "newspaper",
+        "url": "https://madison.com/news/local/government-politics/",
+        "http_status": 200,
+        "final_url": "https://madison.com/news/local/government-politics/",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ],
+    "WY": [
+      {
+        "name": "WyoFile",
+        "kind": "nonprofit",
+        "url": "https://wyofile.com/category/politics/",
+        "http_status": 429,
+        "final_url": "https://wyofile.com/category/politics/",
+        "verified_at": null,
+        "status": "unverified_bot_blocked"
+      },
+      {
+        "name": "Casper Star-Tribune",
+        "kind": "newspaper",
+        "url": "https://trib.com/",
+        "http_status": 200,
+        "final_url": "https://trib.com/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://trib.com/news/state-regional/govt-and-politics/"
+      },
+      {
+        "name": "Cowboy State Daily",
+        "kind": "digital",
+        "url": "https://cowboystatedaily.com/",
+        "http_status": 200,
+        "final_url": "https://cowboystatedaily.com/",
+        "verified_at": "2026-11-03T21:15:00Z",
+        "status": "ok",
+        "original_url_404": "https://cowboystatedaily.com/category/politics/"
+      },
+      {
+        "name": "Wyoming Public Media",
+        "kind": "public radio",
+        "url": "https://www.wyomingpublicmedia.org/politics-government",
+        "http_status": 200,
+        "final_url": "https://www.wyomingpublicmedia.org/politics-government",
+        "verified_at": "2026-11-03T21:10:00Z",
+        "status": "ok"
+      }
+    ]
+  }
+}

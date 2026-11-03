@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Midterm Night 2026</title>
+<!--
+  Election-night results dashboard. Consumes dataset.json per CONTRACT.md v1.0 only.
+  Runtime modes (feature-detected):
+    artifact   : window.claude.use exists -> dataset read from the artifact db document `dataset/current`
+                 (declare capabilities {"db":{},"user":{}} with declare_capabilities after publishing).
+                 Document shape the Orchestrator writes (db_write, op "set"):
+                   dataset/current  = { refresh_id, generated_at, json: "<full dataset.json as one string>" }
+                 or, when the JSON exceeds the 256 KiB document cap, chunked:
+                   dataset/current     = { refresh_id, generated_at, parts: N }
+                   dataset/current-p0 … dataset/current-p{N-1} = { i, json: "<substring i>" }   (concatenated in order, then parsed)
+                 A `data` field holding the dataset object itself is also accepted on dataset/current.
+                 Polled every 5 minutes and on the Refresh button.
+    standalone : fetch ./data/dataset.json (fallback ./data/dataset.sample.json); ?data=<url> overrides
+  Geo: us-atlas@3.0.1 *-albers-10m builds (pre-projected d3.geoAlbersUsa().scale(1300).translate([487.5,305]), 975x610),
+       shipped as data/states-10m.json and data/counties-10m.json. Cities: data/cities.json (see _meta).
+-->
+<meta name="claude-capabilities" content='{"db":{},"user":{}}'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Narrow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: a 975x610 Albers map in the centre, video rails on both edges, a thin command bar above, the voice strip below. */
+  color-scheme: dark;
+  --plane: #0a0e17;        /* page */
+  --surface: #111827;      /* map and panels */
+  --raised: #182238;       /* cards */
+  --line: #273352;         /* hairline */
+  --ink: #e9edf5;
+  --ink-2: #a7b1c6;
+  --ink-3: #6f7b94;
+  --accent: #c7d3ea;       /* interactive chrome: pale steel, never a party colour */
+  --dem: #3987e5;          /* validated diverging pair on the dark surface */
+  --rep: #e66767;
+  --ind: #b58900;          /* passes with CVD warn: always paired with dot texture + label */
+  --oth: #2a9d8f;
+  --neutral: #2c3447;      /* pending / no data */
+  --good: #0ca30c; --warn: #fab219; --serious: #ec835a; --critical: #d03b3b;
+  --font-display: "Archivo Narrow", "Arial Narrow", "Roboto Condensed", system-ui, sans-serif;
+  --font-body: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --rail: 272px;
+  --radius: 6px;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--plane); color: var(--ink);
+  font-family: var(--font-body); font-size: 13px; line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  display: grid; grid-template-rows: auto minmax(0,1fr) auto; overflow: hidden;
+}
+a { color: var(--accent); }
+button, input, select { font: inherit; color: inherit; }
+button { background: var(--raised); border: 1px solid var(--line); border-radius: var(--radius); padding: 5px 10px; cursor: pointer; }
+button:hover { border-color: var(--accent); }
+button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button.on { background: var(--accent); color: #0a0e17; border-color: var(--accent); font-weight: 600; }
+button.icon { padding: 5px 8px; }
+.num { font-family: var(--font-display); font-variant-numeric: tabular-nums; }
+h1, h2, h3 { font-family: var(--font-display); margin: 0; font-weight: 600; letter-spacing: .01em; text-wrap: balance; }
+.hidden { display: none !important; }
+.sr { position: absolute; left: -9999px; }
+
+/* ---------- header ---------- */
+#hdr { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 14px 22px; align-items: center; padding: 8px 16px; border-bottom: 1px solid var(--line); background: var(--surface); }
+#brand { display: flex; flex-direction: column; min-width: 150px; }
+#brand h1 { font-size: 22px; line-height: 1; }
+#brand .sub { color: var(--ink-3); font-size: 11px; margin-top: 3px; }
+#headline { font-family: var(--font-display); font-size: 17px; line-height: 1.25; color: var(--ink); max-width: 70ch; }
+#headline.empty { color: var(--ink-3); }
+#tallies { display: flex; gap: 18px; align-items: stretch; }
+.tally { display: grid; grid-template-rows: auto auto auto; gap: 3px; min-width: 190px; }
+.tally .lbl { display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-2); }
+.tally .lbl b { color: var(--ink); font-family: var(--font-display); font-size: 13px; }
+.seatbar { height: 10px; display: flex; border-radius: 3px; overflow: hidden; background: var(--neutral); position: relative; }
+.seatbar span { height: 100%; }
+.seatbar .maj { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--ink); }
+.tally .nums { display: flex; gap: 10px; font-size: 12px; color: var(--ink-2); }
+.tally .nums b { color: var(--ink); font-family: var(--font-display); font-size: 14px; }
+.dotD { color: var(--dem); } .dotR { color: var(--rep); }
+#meta { display: grid; grid-template-columns: auto auto; gap: 4px 14px; align-items: center; font-size: 11px; color: var(--ink-2); justify-items: end; }
+#meta .conf { display: flex; align-items: center; gap: 6px; }
+.meter { width: 90px; height: 6px; border-radius: 3px; background: var(--neutral); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--accent); width: 0; transition: width .5s; }
+#agents { display: flex; gap: 6px; }
+.agent { display: inline-flex; align-items: center; gap: 4px; }
+.agent i { width: 8px; height: 8px; border-radius: 50%; background: var(--ink-3); display: inline-block; }
+.agent.ok i { background: var(--good); } .agent.fail i { background: var(--critical); }
+.pill { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 10.5px; font-weight: 600; letter-spacing: .02em; border: 1px solid transparent; }
+.pill.stale { background: rgba(250,178,25,.15); color: var(--warn); border-color: var(--warn); }
+#stamp b { color: var(--ink); }
+
+/* ---------- main ---------- */
+#main { display: grid; grid-template-columns: var(--rail) minmax(0,1fr) var(--rail); gap: 10px; padding: 10px; min-height: 0; }
+.rail { display: flex; flex-direction: column; gap: 8px; min-height: 0; overflow: hidden; }
+.rail .foot { font-size: 10.5px; color: var(--ink-3); padding: 0 2px; }
+#stage { display: grid; grid-template-rows: auto minmax(0,1fr); gap: 8px; min-width: 0; min-height: 0; }
+#toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+#crumbs { display: flex; align-items: center; gap: 4px; font-family: var(--font-display); font-size: 15px; min-width: 0; flex: 1 1 260px; }
+#crumbs button { background: none; border: 0; padding: 2px 4px; color: var(--ink-2); font-family: inherit; font-size: inherit; }
+#crumbs button:hover { color: var(--ink); text-decoration: underline; }
+#crumbs .cur { color: var(--ink); font-weight: 700; }
+#crumbs .sep { color: var(--ink-3); }
+#search { position: relative; flex: 0 1 240px; }
+#search input { width: 100%; background: var(--raised); border: 1px solid var(--line); border-radius: var(--radius); padding: 6px 10px; }
+#search-list { position: absolute; top: 100%; left: 0; right: 0; z-index: 30; background: var(--raised); border: 1px solid var(--line); border-radius: var(--radius); margin-top: 3px; max-height: 280px; overflow: auto; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
+#search-list div { padding: 6px 10px; cursor: pointer; display: flex; justify-content: space-between; gap: 10px; }
+#search-list div:hover, #search-list div.act { background: var(--line); }
+#search-list small { color: var(--ink-3); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.seg button { border: 0; border-radius: 0; background: var(--raised); }
+.seg button + button { border-left: 1px solid var(--line); }
+#swing-opts { display: inline-flex; gap: 6px; }
+#swing-opts select { background: var(--raised); border: 1px solid var(--line); border-radius: var(--radius); padding: 4px 6px; }
+
+#stage-body { display: grid; grid-template-columns: minmax(0,1fr) 0; gap: 0; min-height: 0; transition: gap .3s; }
+#stage-body.open { grid-template-columns: minmax(0,1fr) 360px; gap: 10px; }
+#map-stage { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; perspective: 1800px; min-height: 0; }
+#map-stage svg { width: 100%; height: 100%; display: block; transform-origin: 50% 62%; transition: transform .6s ease; cursor: grab; }
+#map-stage.tilt svg { transform: rotateX(7deg); }
+#map-stage .vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 45%, transparent 52%, rgba(4,7,14,.72) 100%); }
+#map-stage .grid { position: absolute; inset: 0; pointer-events: none; opacity: .35; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 48px 48px; mask-image: radial-gradient(ellipse at center, #000 30%, transparent 80%); }
+#legend { position: absolute; left: 12px; bottom: 10px; background: rgba(17,24,39,.85); border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 10px; font-size: 11px; color: var(--ink-2); backdrop-filter: blur(4px); }
+#legend .row { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+#legend .sw { width: 14px; height: 12px; border-radius: 2px; display: inline-block; }
+#legend .ramp { display: inline-flex; }
+#legend .ramp i { width: 12px; height: 12px; display: inline-block; }
+#legend .cap { display: flex; justify-content: space-between; width: 100%; }
+#legend .lt { color: var(--ink); font-weight: 600; }
+#hint { position: absolute; right: 12px; top: 10px; font-size: 11px; color: var(--ink-3); background: rgba(17,24,39,.8); padding: 4px 8px; border-radius: var(--radius); border: 1px solid var(--line); pointer-events: none; }
+#tooltip { position: fixed; z-index: 40; pointer-events: none; background: rgba(10,14,23,.95); border: 1px solid var(--line); border-radius: var(--radius); padding: 6px 9px; font-size: 12px; display: none; max-width: 260px; }
+#tooltip b { font-family: var(--font-display); font-size: 14px; }
+#tooltip .l { color: var(--ink-2); }
+
+/* map marks */
+.region { stroke: var(--line); stroke-width: .5px; vector-effect: non-scaling-stroke; transition: fill .45s, opacity .3s, transform .25s ease, filter .25s ease; transform-box: fill-box; transform-origin: center; cursor: pointer; }
+.region.county { stroke: rgba(10,14,23,.55); }
+.region.dim { opacity: .28; pointer-events: none; }
+.region.selected { stroke: var(--accent); stroke-width: 2px; }
+.region.hover { stroke: var(--ink-2); }
+use.elev { pointer-events: none; transform-box: fill-box; transform-origin: center; transform: scale(1.015); filter: drop-shadow(0 0 var(--sh,5px) rgba(0,0,0,.9)) drop-shadow(0 var(--sh,5px) var(--sh2,10px) rgba(0,0,0,.7)); animation: lift .25s ease; }
+@keyframes lift { from { transform: scale(1); filter: none; } }
+.region.called { stroke: #f4f6fb; stroke-width: 1.5px; }
+.region.called.selected { stroke: var(--accent); stroke-width: 2.2px; }
+.mesh { fill: none; stroke: #0a0e17; stroke-width: .8px; vector-effect: non-scaling-stroke; pointer-events: none; }
+.tex { pointer-events: none; }
+.city { fill: var(--accent); stroke: #0a0e17; fill-opacity: .92; cursor: pointer; transition: fill .2s; }
+.city:hover, .city.selected { fill: #fff; }
+.lbl { fill: var(--ink-2); font-family: var(--font-display); pointer-events: none; text-anchor: middle; paint-order: stroke; stroke: rgba(10,14,23,.85); stroke-linejoin: round; }
+.lbl.city { fill: var(--ink); text-anchor: start; }
+@media (prefers-reduced-motion: reduce) { .region, #map-stage svg, .meter i { transition: none !important; } use.elev { animation: none; } }
+
+/* ---------- start overlay ---------- */
+#start { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(10,14,23,.72); backdrop-filter: blur(3px); z-index: 20; }
+#start .card { background: var(--raised); border: 1px solid var(--line); border-radius: 10px; padding: 22px 26px; max-width: 420px; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,.6); }
+#start h2 { font-size: 24px; margin-bottom: 6px; }
+#start p { color: var(--ink-2); margin: 0 0 14px; }
+#start .btns { display: flex; gap: 10px; justify-content: center; }
+#start .primary { background: var(--accent); color: #0a0e17; font-weight: 700; padding: 9px 18px; font-size: 14px; }
+
+/* ---------- detail panel ---------- */
+#detail { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: auto; min-height: 0; padding: 14px; display: none; }
+#stage-body.open #detail { display: block; }
+#detail .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+#detail h2 { font-size: 24px; line-height: 1.05; }
+#detail .kind { color: var(--ink-3); font-size: 11.5px; margin-top: 2px; }
+#detail .race { font-family: var(--font-display); font-size: 15px; color: var(--ink-2); margin-top: 10px; }
+#detail .race select { background: var(--raised); border: 1px solid var(--line); border-radius: var(--radius); padding: 3px 6px; font-size: 12px; }
+.badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.badge { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; border: 1px solid var(--line); background: var(--raised); color: var(--ink-2); }
+.badge.certified { color: var(--good); border-color: var(--good); }
+.badge.preliminary { color: #4fc14f; border-color: #2d8a2d; }
+.badge.estimated { color: var(--warn); border-color: var(--warn); }
+.badge.contested { color: var(--serious); border-color: var(--serious); }
+.badge.pending { color: var(--ink-2); }
+.badge.called { color: var(--ink); border-color: var(--ink); }
+.badge.county-level { color: var(--warn); border-color: var(--warn); border-style: dashed; }
+.badge.live { color: var(--ink); background: #0a0e17; border-color: var(--ink); }
+.badge.live i { width: 7px; height: 7px; border-radius: 50%; background: var(--ink); animation: blink 1.4s infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+.badge.tier-official { color: var(--accent); border-color: var(--accent); }
+.badge.tier-unverified { color: var(--serious); border-color: var(--serious); }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin-top: 12px; font-size: 12px; }
+.kv dt { color: var(--ink-3); } .kv dd { margin: 0; }
+.cands { margin-top: 14px; display: grid; gap: 8px; }
+.cand { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; font-size: 12.5px; }
+.cand .nm { font-weight: 600; } .cand .nm span { color: var(--ink-3); font-weight: 400; }
+.cand .pct { font-family: var(--font-display); font-size: 16px; font-weight: 700; text-align: right; }
+.cand .bar { grid-column: 1 / -1; height: 9px; background: var(--neutral); border-radius: 3px; overflow: hidden; position: relative; }
+.cand .bar i { display: block; height: 100%; width: 0; transition: width .5s; border-radius: 0 3px 3px 0; }
+.cand .bar .rng { position: absolute; top: 0; bottom: 0; background: repeating-linear-gradient(45deg, rgba(255,255,255,.35) 0 2px, transparent 2px 5px); }
+.cand .votes { color: var(--ink-3); font-size: 11px; text-align: right; }
+.p-D { background: var(--dem); } .p-R { background: var(--rep); } .p-I { background: var(--ind); } .p-O, .p-L, .p-G { background: var(--oth); }
+.t-D { color: var(--dem); } .t-R { color: var(--rep); } .t-I { color: var(--ind); } .t-O, .t-L, .t-G { color: var(--oth); }
+.sect { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--line); }
+.sect h3 { font-size: 13px; color: var(--ink-2); margin-bottom: 6px; font-weight: 600; }
+.base { display: grid; grid-template-columns: repeat(3, auto); gap: 2px 12px; font-size: 12px; }
+.base .h { color: var(--ink-3); }
+.src { font-size: 12px; margin: 3px 0; display: flex; gap: 6px; align-items: baseline; }
+.src .tier { color: var(--ink-3); font-size: 10.5px; }
+.src.rej { color: var(--ink-2); } .src.rej .why { color: var(--ink-3); }
+.src a { word-break: break-all; }
+.conf-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 12px; }
+.conf-row .meter { flex: 1; width: auto; height: 8px; }
+.conf-row b { font-family: var(--font-display); font-size: 15px; min-width: 34px; text-align: right; }
+.empty { color: var(--ink-3); font-size: 12.5px; margin-top: 10px; }
+.chlist { margin-top: 10px; font-size: 12px; display: grid; gap: 6px; }
+
+/* ---------- video panels ---------- */
+.vpanel { background: var(--raised); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: grid; grid-template-rows: auto auto; flex: 0 0 auto; }
+.vpanel .frame { position: relative; aspect-ratio: 16 / 9; background: #06090f; }
+.vpanel iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.vpanel .frame .card { position: absolute; inset: 0; display: grid; place-items: center; padding: 10px; text-align: center; background: linear-gradient(160deg, #0e1526, #06090f); }
+.vpanel .frame .card a { font-family: var(--font-display); font-size: 14px; font-weight: 600; }
+.vpanel .meta { padding: 7px 9px 8px; display: grid; gap: 4px; }
+.vpanel .ttl { font-weight: 600; font-size: 12.5px; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.vpanel .ch { color: var(--ink-3); font-size: 11px; display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.vpanel .badges { margin-top: 0; gap: 4px; }
+.vpanel .badge { font-size: 10px; padding: 1px 6px; }
+.vpanel .mute { padding: 2px 8px; font-size: 11px; }
+.vpanel .mute.on { background: var(--accent); color: #0a0e17; }
+.vpanel.unmuted { border-color: var(--accent); }
+.vpanel.exact { border-left: 3px solid var(--accent); }
+
+/* ---------- jarvis strip ---------- */
+#jarvis { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(280px,.9fr) minmax(0,1fr); gap: 12px; align-items: center; padding: 8px 16px; border-top: 1px solid var(--line); background: var(--surface); }
+#transcript { display: flex; align-items: center; gap: 10px; min-width: 0; }
+#transcript .orb { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); flex: 0 0 auto; box-shadow: 0 0 0 0 rgba(199,211,234,.5); }
+#transcript.speaking .orb { animation: pulse 1.2s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(199,211,234,.55);} 100% { box-shadow: 0 0 0 10px rgba(199,211,234,0);} }
+#transcript .txt { font-size: 12.5px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#transcript .txt b { color: var(--ink); font-weight: 600; }
+#transcript .txt.q::before { content: "You: "; color: var(--ink-3); }
+#ask { display: flex; gap: 6px; align-items: center; }
+#ask input { flex: 1; min-width: 0; background: var(--raised); border: 1px solid var(--line); border-radius: var(--radius); padding: 6px 10px; }
+#changes { display: flex; flex-direction: column; gap: 3px; font-size: 11.5px; min-width: 0; max-height: 54px; overflow: hidden; }
+#changes .ch { display: flex; gap: 8px; align-items: baseline; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--ink-2); }
+#changes .ch .t { color: var(--ink-3); font-family: var(--font-display); }
+#changes .ch .ty { font-size: 10px; padding: 0 5px; border-radius: 8px; border: 1px solid var(--line); color: var(--ink-3); }
+#changes .ch.imp { color: var(--ink); } #changes .ch.imp .ty { color: var(--ink); border-color: var(--ink-2); }
+#changes .ch .x { overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1480px) { :root { --rail: 232px; } #headline { font-size: 15px; } .tally { min-width: 160px; } }
+@media (max-width: 1100px) {
+  body { overflow: auto; display: block; }
+  #hdr { grid-template-columns: 1fr; gap: 8px; }
+  #tallies { flex-wrap: wrap; gap: 10px; }
+  #meta { justify-items: start; grid-template-columns: 1fr; }
+  #main { display: flex; flex-direction: column; }
+  #stage { order: 1; } #rail-l { order: 2; }
+  #stage-body, #stage-body.open { grid-template-columns: 1fr; gap: 10px; }
+  #map-stage { aspect-ratio: 975 / 640; }
+  #map-stage.tilt svg { transform: none; }
+  #detail { max-height: 70vh; }
+  #rail-l { flex-direction: row; overflow-x: auto; overflow-y: hidden; padding-bottom: 4px; }
+  #rail-l .vpanel { width: 260px; }
+  #rail-l .foot { flex: 0 0 100%; }
+  #rail-r { display: none; }
+  #jarvis { grid-template-columns: 1fr; gap: 8px; position: sticky; bottom: 0; }
+  #changes { max-height: none; }
+  #legend { position: static; margin-top: 0; border-radius: 0; border-width: 1px 0 0; }
+}
+@media (max-width: 480px) { #brand h1 { font-size: 19px; } .tally { min-width: 100%; } #hint { display: none; } }
+</style>
+</head>
+<body>
+<header id="hdr">
+  <div id="brand">
+    <h1>Midterm Night 2026</h1>
+    <div class="sub">Senate, House and governors. Nov 3, 2026.</div>
+  </div>
+  <div>
+    <div id="headline" class="empty">Waiting for the first dataset.</div>
+    <div id="tallies"></div>
+  </div>
+  <div id="meta">
+    <div class="conf" title="Overall confidence, weighted by jurisdictions with data"><span>Confidence</span><span class="meter"><i id="conf-bar"></i></span><b class="num" id="conf-num">–</b></div>
+    <div id="stamp">Not loaded</div>
+    <div id="agents"></div>
+    <div id="flags"></div>
+  </div>
+</header>
+
+<main id="main">
+  <aside id="rail-l" class="rail" aria-label="Video panels, left"></aside>
+
+  <section id="stage">
+    <div id="toolbar">
+      <nav id="crumbs" aria-label="Map scope"></nav>
+      <div id="search">
+        <input id="search-in" type="search" placeholder="Find a state, county or city" autocomplete="off" aria-label="Find a state, county or city">
+        <div id="search-list" class="hidden" role="listbox"></div>
+      </div>
+      <div class="seg" id="layers" role="group" aria-label="Race layer">
+        <button data-layer="SEN" class="on">Senate</button>
+        <button data-layer="GOV">Governor</button>
+        <button data-layer="HOU">House</button>
+        <button data-layer="SWING">Swing</button>
+      </div>
+      <div id="swing-opts" class="hidden">
+        <select id="swing-office" aria-label="Swing of which race"><option value="SEN">Senate</option><option value="GOV">Governor</option><option value="HOU">House</option></select>
+        <select id="swing-base" aria-label="Swing baseline"><option value="2024">vs 2024</option><option value="2022">vs 2022</option></select>
+      </div>
+      <button id="back" class="icon" title="Zoom out one level (Esc)">Back</button>
+      <button id="tilt" class="icon on" title="Toggle the perspective tilt">Tilt</button>
+      <button id="refresh" class="icon" title="Fetch the latest dataset now">Refresh</button>
+    </div>
+    <div id="stage-body">
+      <div id="map-stage" class="tilt">
+        <div class="grid"></div>
+        <svg id="map" role="img" aria-label="United States results map"></svg>
+        <div class="vignette"></div>
+        <div id="hint">Click a state to drill in. Scroll to zoom.</div>
+        <div id="legend"></div>
+        <div id="start">
+          <div class="card">
+            <h2>Start the briefing</h2>
+            <p>The dashboard speaks the current state of the night, then only official, important calls as they land.</p>
+            <div class="btns"><button id="start-go" class="primary">Start briefing</button><button id="start-skip">Open without voice</button></div>
+          </div>
+        </div>
+      </div>
+      <aside id="detail" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <aside id="rail-r" class="rail" aria-label="Video panels, right"></aside>
+</main>
+
+<footer id="jarvis">
+  <div id="transcript"><span class="orb"></span><span class="txt" id="transcript-txt">Voice briefing idle.</span></div>
+  <form id="ask">
+    <input id="ask-in" type="text" placeholder="Ask: what's Pennsylvania, what's new, senate, refresh" aria-label="Ask the dashboard">
+    <button id="mic" class="icon hidden" type="button" title="Ask by voice">Mic</button>
+    <button id="voice-mute" class="icon" type="button" title="Mute or unmute the spoken briefing">Mute voice</button>
+  </form>
+  <div id="changes" aria-label="Change log"></div>
+</footer>
+<div id="tooltip"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+(() => {
+'use strict';
+const T0 = performance.now();
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const inArtifact = !!(window.claude && typeof window.claude.use === 'function');
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const LS = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* quota or disabled */ } }
+};
+const POSTAL = {"01":"AL","02":"AK","04":"AZ","05":"AR","06":"CA","08":"CO","09":"CT","10":"DE","11":"DC","12":"FL","13":"GA","15":"HI","16":"ID","17":"IL","18":"IN","19":"IA","20":"KS","21":"KY","22":"LA","23":"ME","24":"MD","25":"MA","26":"MI","27":"MN","28":"MS","29":"MO","30":"MT","31":"NE","32":"NV","33":"NH","34":"NJ","35":"NM","36":"NY","37":"NC","38":"ND","39":"OH","40":"OK","41":"OR","42":"PA","44":"RI","45":"SC","46":"SD","47":"TN","48":"TX","49":"UT","50":"VT","51":"VA","53":"WA","54":"WV","55":"WI","56":"WY","72":"PR"};
+const COL = { D: '#3987e5', R: '#e66767', I: '#b58900', O: '#2a9d8f', L: '#2a9d8f', G: '#2a9d8f', neutral: '#2c3447', wash: '#8b93a6' };
+const TIER_LABEL = { official: 'Official', major_outlet: 'Major outlet', regional_outlet: 'Regional', unverified: 'Unverified' };
+const TIER_ORDER = { official: 0, major_outlet: 1, regional_outlet: 2, unverified: 3 };
+const STATUS_LABEL = { official_certified: 'Official, certified', official_preliminary: 'Official, preliminary', estimated: 'Estimated', contested: 'Contested', pending: 'Pending' };
+const STATUS_GLYPH = { official_certified: '✓', official_preliminary: '●', estimated: '◐', contested: '▨', pending: '○' };
+const OFFICE_LABEL = { SEN: 'U.S. Senate', GOV: 'Governor', HOU: 'U.S. House' };
+
+const S = {
+  ds: null, source: null, layer: 'SEN', swingOffice: 'SEN', swingBase: '2024',
+  scope: { level: 'national', jkey: 'US', chain: ['US'] }, selected: null,
+  k: 1, tilt: LS.get('ed.tilt') !== '0', voiceMuted: LS.get('ed.voiceMuted') === '1',
+  briefingStarted: false, lastSpokenTs: LS.get('ed.lastSpokenTs') || null,
+  states: null, stateById: new Map(), countyById: new Map(), countiesByState: new Map(), cities: null, citiesByCounty: null,
+  slots: [], prevPanels: [], unmutedId: null, countyLabelW: new Map()
+};
+
+// ---------- map scaffolding ----------
+const W = 975, H = 610;
+const svg = d3.select('#map').attr('viewBox', `0 0 ${W} ${H}`).attr('preserveAspectRatio', 'xMidYMid meet');
+const defs = svg.append('defs');
+const patHatch = defs.append('pattern').attr('id', 'hatch').attr('patternUnits', 'userSpaceOnUse').attr('width', 6).attr('height', 6).attr('patternTransform', 'rotate(45)');
+patHatch.append('line').attr('x1', 0).attr('y1', 0).attr('x2', 0).attr('y2', 6).attr('stroke', 'rgba(8,11,18,.78)').attr('stroke-width', 2.2);
+const patDots = defs.append('pattern').attr('id', 'dots').attr('patternUnits', 'userSpaceOnUse').attr('width', 5).attr('height', 5);
+patDots.append('circle').attr('cx', 2.5).attr('cy', 2.5).attr('r', 1).attr('fill', 'rgba(8,11,18,.8)');
+const view = svg.append('g').attr('id', 'view');
+const gStates = view.append('g').attr('class', 'g-states');
+const gLiftLow = view.append('g').attr('class', 'g-lift-low');
+const gCounties = view.append('g').attr('class', 'g-counties');
+const gMesh = view.append('g').attr('class', 'g-mesh');
+const gTex = view.append('g').attr('class', 'g-tex');
+const gHover = view.append('g').attr('class', 'g-hover');
+const gCities = view.append('g').attr('class', 'g-cities');
+const gLabels = view.append('g').attr('class', 'g-labels');
+const path = d3.geoPath();
+const projection = d3.geoAlbersUsa().scale(1300).translate([487.5, 305]);
+const rScale = d3.scaleSqrt().domain([50000, 8500000]).range([2.2, 13]);
+const pathCache = new Map();
+const tooltip = $('#tooltip');
+
+const zoom = d3.zoom().scaleExtent([1, 90]).on('zoom', e => {
+  S.k = e.transform.k; view.attr('transform', e.transform); onScale();
+});
+svg.call(zoom).on('dblclick.zoom', null);
+function onScale() {
+  const k = S.k;
+  view.attr('style', `--sh:${(5 / k).toFixed(3)}px;--sh2:${(10 / k).toFixed(3)}px`);
+  patHatch.attr('patternTransform', `rotate(45) scale(${1 / k})`);
+  patDots.attr('patternTransform', `scale(${1 / k})`);
+  gCities.selectAll('circle').attr('r', d => rScale(d.pop) / k).attr('stroke-width', 1 / k);
+  gLabels.selectAll('text.lbl').attr('stroke-width', 2.5 / k);
+  gLabels.selectAll('text.lbl.city').attr('font-size', 11 / k).attr('dx', d => rScale(d.pop) / k + 3 / k);
+  gLabels.selectAll('text.lbl.county').attr('font-size', 10.5 / k).attr('display', d => (S.countyLabelW.get(d.id) || 0) * k > 46 ? null : 'none');
+  gLabels.selectAll('text.lbl.state').attr('display', k > 5 ? 'none' : null);
+}
+function zoomTo(feature, pad = 0.88, dur = 750) {
+  const [[x0, y0], [x1, y1]] = path.bounds(feature);
+  const k = Math.max(1, Math.min(90, pad / Math.max((x1 - x0) / W, (y1 - y0) / H)));
+  const t = d3.zoomIdentity.translate(W / 2, H / 2).scale(k).translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
+  return svg.transition().duration(reduceMotion ? 0 : dur).ease(d3.easeCubicInOut).call(zoom.transform, t).end().catch(() => {});
+}
+function zoomToPoint(x, y, k = 40, dur = 700) {
+  const t = d3.zoomIdentity.translate(W / 2, H / 2).scale(k).translate(-x, -y);
+  return svg.transition().duration(reduceMotion ? 0 : dur).ease(d3.easeCubicInOut).call(zoom.transform, t).end().catch(() => {});
+}
+function zoomReset(dur = 650) {
+  return svg.transition().duration(reduceMotion ? 0 : dur).ease(d3.easeCubicInOut).call(zoom.transform, d3.zoomIdentity).end().catch(() => {});
+}
+
+// ---------- colour (only from results[race].pct-derived fields present in the dataset) ----------
+const colorMemo = new Map();
+function marginColor(party, margin, rep, span) {
+  const key = party + '|' + margin + '|' + rep + '|' + span;
+  let c = colorMemo.get(key);
+  if (c) return c;
+  const pole = COL[party] || COL.O;
+  const t = 0.32 + 0.68 * Math.min(1, Math.abs(margin) / span);
+  c = d3.interpolateLab(COL.neutral, pole)(t);
+  const rp = rep == null ? 0 : Math.max(0, Math.min(100, rep)) / 100;
+  c = d3.interpolateLab(c, COL.wash)((1 - rp) * 0.55);
+  colorMemo.set(key, c);
+  return c;
+}
+function racesOf(j, office) {
+  const ds = S.ds; if (!ds || !j || !j.results) return [];
+  const ids = Object.keys(j.results).filter(id => { const r = ds.races && ds.races[id]; return r ? r.office === office : (id.split('-')[1] === office); });
+  ids.sort((a, b) => ((ds.races[a] || {}).special ? 1 : 0) - ((ds.races[b] || {}).special ? 1 : 0) || a.localeCompare(b));
+  return ids;
+}
+function resultFor(jkey, office) {
+  const ds = S.ds; if (!ds) return null;
+  const j = ds.jurisdictions && ds.jurisdictions[jkey]; if (!j) return null;
+  const ids = racesOf(j, office);
+  if (!ids.length) return null;
+  if (office === 'HOU' && ids.length > 1) return { j, multi: ids, race: null, result: null };
+  return { j, race: ds.races[ids[0]] || { race_id: ids[0], label: ids[0], office, candidates: [] }, result: j.results[ids[0]], all: ids };
+}
+function activeOffice() { return S.layer === 'SWING' ? S.swingOffice : S.layer; }
+function fillFor(jkey) {
+  const rf = resultFor(jkey, activeOffice());
+  if (!rf || !rf.result) return COL.neutral;
+  const r = rf.result;
+  if (S.layer === 'SWING') {
+    const sw = S.swingBase === '2024' ? r.swing_vs_2024 : r.swing_vs_2022;
+    if (sw == null || r.status === 'pending') return COL.neutral;
+    return marginColor(sw > 0 ? 'R' : 'D', sw, r.pct_reporting, 15);
+  }
+  if (r.status === 'pending' || r.leader == null || r.margin == null) return COL.neutral;
+  const party = r.leader === 'D' || r.leader === 'R' ? r.leader : (r.leader === 'I' ? 'I' : 'O');
+  return marginColor(party, r.margin, r.pct_reporting, 30);
+}
+function textureFor(jkey) {
+  const rf = resultFor(jkey, activeOffice());
+  if (!rf || !rf.result) return null;
+  const r = rf.result;
+  if (r.status === 'contested') return 'url(#hatch)';
+  if (S.layer !== 'SWING' && r.leader && r.leader !== 'D' && r.leader !== 'R' && r.status !== 'pending') return 'url(#dots)';
+  return null;
+}
+function isCalled(jkey) { const rf = resultFor(jkey, activeOffice()); return !!(rf && rf.result && rf.result.called); }
+
+function recolor() {
+  const regions = view.selectAll('path.region');
+  regions.attr('fill', d => fillFor(d.id)).classed('called', d => isCalled(d.id));
+  // texture overlays for visible regions only
+  const visible = [];
+  gStates.selectAll('path.region').each(function (d) { if (!this.classList.contains('dim')) visible.push(d); });
+  gCounties.selectAll('path.region').each(d => visible.push(d));
+  const texd = visible.map(d => ({ d, tex: textureFor(d.id) })).filter(x => x.tex);
+  gTex.selectAll('path').data(texd, x => x.d.id).join('path').attr('class', 'tex')
+    .attr('d', x => pathCache.get(x.d.id) || path(x.d)).attr('fill', x => x.tex);
+  regions.filter('.called').raise();
+  renderLegend();
+}
+
+// ---------- first paint: states ----------
+function renderStates(topo) {
+  const feats = topojson.feature(topo, topo.objects.states).features;
+  S.states = feats;
+  feats.forEach(f => { S.stateById.set(f.id, f); pathCache.set(f.id, path(f)); });
+  gStates.selectAll('path').data(feats, d => d.id).join('path')
+    .attr('class', 'region state').attr('data-id', d => d.id).attr('id', d => 'r-' + d.id).attr('d', d => pathCache.get(d.id)).attr('fill', COL.neutral)
+    .on('click', (e, d) => { e.stopPropagation(); enterState(d.id); })
+    .on('mouseenter', hoverIn).on('mousemove', hoverMove).on('mouseleave', hoverOut);
+  gMesh.append('path').attr('class', 'mesh').attr('d', path(topojson.mesh(topo, topo.objects.states, (a, b) => a !== b)));
+  gLabels.selectAll('text.state').data(feats.filter(f => { const b = path.bounds(f); return (b[1][0] - b[0][0]) > 30 && (b[1][1] - b[0][1]) > 18; }), d => d.id)
+    .join('text').attr('class', 'lbl state').attr('font-size', 9).attr('transform', d => { const c = path.centroid(d); return `translate(${c[0]},${c[1] + 3})`; })
+    .text(d => POSTAL[d.id] || '');
+  const t = performance.now();
+  window.__firstMapRender = t;
+  console.log(`[perf] first map render at ${t.toFixed(0)} ms (states drawn)`);
+  recolor();
+}
+
+// ---------- counties (lazy) ----------
+let countiesPromise = null;
+const ric = window.requestIdleCallback ? (cb) => requestIdleCallback(cb, { timeout: 400 }) : (cb) => setTimeout(() => cb(null), 16);
+function ensureCounties() {
+  if (!countiesPromise) {
+    countiesPromise = fetch('./data/counties-10m.json').then(r => r.json()).then(topo => {
+      const feats = topojson.feature(topo, topo.objects.counties).features;
+      for (const f of feats) {
+        S.countyById.set(f.id, f);
+        const st = f.id.slice(0, 2);
+        if (!S.countiesByState.has(st)) S.countiesByState.set(st, []);
+        S.countiesByState.get(st).push(f);
+      }
+      // generate path strings in short setTimeout chunks (~3-5 ms each) so input stays responsive; cached by id
+      let i = 0;
+      const step = () => {
+        const t = performance.now();
+        while (i < feats.length && performance.now() - t < 6) { const f = feats[i++]; if (!pathCache.has(f.id)) { pathCache.set(f.id, path(f)); const b = path.bounds(f); S.countyLabelW.set(f.id, b[1][0] - b[0][0]); } }
+        if (i < feats.length) setTimeout(step, 0); else console.log(`[perf] county paths cached at ${performance.now().toFixed(0)} ms`);
+      };
+      ric(step);
+      buildSearchIndex();
+      return feats;
+    });
+  }
+  return countiesPromise;
+}
+function countyPath(f) { let d = pathCache.get(f.id); if (!d) { d = path(f); pathCache.set(f.id, d); const b = path.bounds(f); S.countyLabelW.set(f.id, b[1][0] - b[0][0]); } return d; }
+function renderCountiesFor(stateFips) {
+  const feats = stateFips ? (S.countiesByState.get(stateFips) || []) : [];
+  gCounties.selectAll('path').data(feats, d => d.id).join(
+    enter => enter.append('path').attr('class', 'region county').attr('data-id', d => d.id).attr('id', d => 'r-' + d.id).attr('d', countyPath).attr('fill', COL.neutral)
+      .on('click', (e, d) => { e.stopPropagation(); enterCounty(d.id); })
+      .on('mouseenter', hoverIn).on('mousemove', hoverMove).on('mouseleave', hoverOut),
+    update => update, exit => exit.remove());
+  gLabels.selectAll('text.lbl.county').data(feats, d => d.id).join('text').attr('class', 'lbl county')
+    .attr('transform', d => { const c = path.centroid(d); return `translate(${c[0]},${c[1] + 2})`; }).text(d => d.properties.name);
+  gStates.selectAll('path.region').classed('dim', d => stateFips ? d.id !== stateFips : false)
+    .style('pointer-events', d => stateFips && d.id === stateFips ? 'none' : null);
+  onScale();
+}
+
+// ---------- cities (lazy) ----------
+let citiesPromise = null;
+function ensureCities() {
+  if (!citiesPromise) citiesPromise = fetch('./data/cities.json').then(r => r.json()).then(j => {
+    S.cities = j.cities.map(c => { const p = projection([c.lon, c.lat]); return p ? Object.assign({}, c, { x: p[0], y: p[1], jkey: c.county_fips + ':' + c.slug }) : null; }).filter(Boolean);
+    S.citiesByCounty = d3.group(S.cities, c => c.county_fips);
+    buildSearchIndex();
+    return S.cities;
+  });
+  return citiesPromise;
+}
+function renderCitiesFor(countyFips) {
+  const list = countyFips && S.citiesByCounty ? (S.citiesByCounty.get(countyFips) || []) : [];
+  gCities.selectAll('circle').data(list, d => d.jkey).join('circle').attr('class', 'city').attr('data-id', d => d.jkey)
+    .attr('cx', d => d.x).attr('cy', d => d.y)
+    .on('click', (e, d) => { e.stopPropagation(); enterCity(d); })
+    .on('mouseenter', (e, d) => showTip(e, `<b>${esc(d.name)}</b><div class="l">City, pop. ${d.pop.toLocaleString()}</div>`)).on('mousemove', hoverMove).on('mouseleave', hoverOut)
+    .append('title').text(d => d.name);
+  gLabels.selectAll('text.lbl.city').data(list, d => d.jkey).join('text').attr('class', 'lbl city')
+    .attr('x', d => d.x).attr('y', d => d.y).attr('dy', '.35em').text(d => d.name);
+  onScale();
+}
+
+// ---------- hover / tooltip ----------
+function setLift(kind, id) {
+  gHover.selectAll('use.' + kind).remove(); gLiftLow.selectAll('use.' + kind).remove();
+  if (!id) return;
+  // a selected state lifts beneath its counties; counties and hover clones lift above everything
+  const layer = (kind === 'sel' && id.length === 2) ? gLiftLow : gHover;
+  const u = layer.append('use').attr('class', 'elev ' + kind).attr('href', '#r-' + id).attr('xlink:href', '#r-' + id);
+  if (kind === 'sel') u.lower();
+}
+function hoverIn(e, d) {
+  this.classList.add('hover'); setLift('hov', d.id);
+  const rf = resultFor(d.id, activeOffice());
+  const j = S.ds && S.ds.jurisdictions && S.ds.jurisdictions[d.id];
+  const name = d.properties ? d.properties.name : d.id;
+  let body = '';
+  if (rf && rf.result) {
+    const r = rf.result, c = rf.race.candidates || [];
+    const lead = r.leader && r.pct && r.pct[r.leader] != null ? `${partyName(r.leader, c)} ${fmtPct(r.pct[r.leader])}` : '';
+    body = `<div class="l">${esc(rf.race.label)}</div><div>${STATUS_LABEL[r.status] || r.status}${r.called ? ' · called' : ''}${r.pct_reporting != null ? ` · ${fmtPct(r.pct_reporting)} in` : ''}</div>${lead ? `<div>${esc(lead)}${r.margin != null ? ` (${marginText(r.margin)})` : ''}</div>` : ''}`;
+  } else if (rf && rf.multi) body = `<div class="l">${rf.multi.length} House districts</div>`;
+  else body = `<div class="l">${j ? 'No result for this race yet' : 'No data in this dataset'}</div>`;
+  showTip(e, `<b>${esc(name)}</b>${body}`);
+}
+function hoverMove(e) { tooltip.style.left = (e.clientX + 14) + 'px'; tooltip.style.top = (e.clientY + 14) + 'px'; }
+function hoverOut() { if (this.classList) { this.classList.remove('hover'); if (this.classList.contains('region')) setLift('hov', null); } tooltip.style.display = 'none'; }
+function showTip(e, html) { tooltip.innerHTML = html; tooltip.style.display = 'block'; hoverMove(e); }
+
+// ---------- scope navigation ----------
+function chainFor(level, st, co, city) {
+  if (level === 'city') return [co + ':' + city, co, st, 'US'];
+  if (level === 'county') return [co, st, 'US'];
+  if (level === 'state') return [st, 'US'];
+  return ['US'];
+}
+async function enterState(fips) {
+  const f = S.stateById.get(fips); if (!f) return;
+  S.scope = { level: 'state', jkey: fips, stateFips: fips, chain: chainFor('state', fips) };
+  select(fips);
+  const p = ensureCounties();
+  zoomTo(f);
+  await p;
+  if (S.scope.stateFips !== fips) return;
+  renderCountiesFor(fips); renderCitiesFor(null); recolor(); afterScope();
+}
+async function enterCounty(cfips) {
+  const st = cfips.slice(0, 2);
+  await ensureCounties();
+  const f = S.countyById.get(cfips); if (!f) return;
+  if (S.scope.stateFips !== st || gCounties.selectAll('path').size() === 0) { renderCountiesFor(st); }
+  S.scope = { level: 'county', jkey: cfips, stateFips: st, countyFips: cfips, chain: chainFor('county', st, cfips) };
+  select(cfips);
+  const p = ensureCities();
+  zoomTo(f, 0.8);
+  await p;
+  if (S.scope.countyFips !== cfips) return;
+  renderCitiesFor(cfips); recolor(); afterScope();
+}
+async function enterCity(c) {
+  if (S.scope.countyFips !== c.county_fips) await enterCounty(c.county_fips);
+  S.scope = { level: 'city', jkey: c.jkey, stateFips: c.state_fips, countyFips: c.county_fips, citySlug: c.slug, city: c, chain: chainFor('city', c.state_fips, c.county_fips, c.slug) };
+  gCities.selectAll('circle').classed('selected', d => d.jkey === c.jkey);
+  select(c.jkey, c);
+  zoomToPoint(c.x, c.y, Math.max(S.k, 28));
+  afterScope();
+}
+function goNational() {
+  S.scope = { level: 'national', jkey: 'US', chain: ['US'] };
+  renderCountiesFor(null); renderCitiesFor(null); select(null); zoomReset(); recolor(); afterScope();
+}
+function goUp() {
+  const s = S.scope;
+  if (s.level === 'city') { gCities.selectAll('circle').classed('selected', false); enterCounty(s.countyFips); }
+  else if (s.level === 'county') { renderCitiesFor(null); enterState(s.stateFips); }
+  else if (s.level === 'state') goNational();
+}
+function select(jkey, city) {
+  S.selected = jkey;
+  view.selectAll('path.region').classed('selected', d => d.id === jkey);
+  setLift('sel', jkey && !city ? jkey : null);
+  renderDetail(jkey, city);
+}
+function afterScope() { renderCrumbs(); layoutVideos(); }
+svg.on('click', () => { /* background click: nothing */ });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { if ($('#search-list').classList.contains('hidden')) goUp(); else closeSearch(); } });
+$('#back').addEventListener('click', goUp);
+
+function renderCrumbs() {
+  const s = S.scope, parts = [{ t: 'United States', f: goNational }];
+  if (s.stateFips) parts.push({ t: (S.stateById.get(s.stateFips) || { properties: {} }).properties.name || s.stateFips, f: () => enterState(s.stateFips) });
+  if (s.countyFips) { const c = S.countyById.get(s.countyFips); parts.push({ t: c ? countyLabel(c) : s.countyFips, f: () => enterCounty(s.countyFips) }); }
+  if (s.city) parts.push({ t: s.city.name, f: null });
+  const el = $('#crumbs'); el.innerHTML = '';
+  parts.forEach((p, i) => {
+    if (i) { const sp = document.createElement('span'); sp.className = 'sep'; sp.textContent = '›'; el.appendChild(sp); }
+    const b = document.createElement('button'); b.textContent = p.t; b.type = 'button';
+    if (i === parts.length - 1) b.classList.add('cur'); else b.addEventListener('click', p.f);
+    el.appendChild(b);
+  });
+  $('#hint').textContent = s.level === 'national' ? 'Click a state to drill in. Scroll to zoom.' : s.level === 'state' ? 'Click a county. Esc or Back to zoom out.' : s.level === 'county' ? 'Click a city marker. Esc or Back to zoom out.' : 'Esc or Back to return to the county.';
+}
+function countyLabel(f) { const st = f.id.slice(0, 2); const n = f.properties.name; const suffix = (st === '22') ? ' Parish' : (st === '02' ? '' : ' County'); return n + (/(County|Parish|Borough|Census Area|Municipality|city|City)$/.test(n) ? '' : suffix); }
+
+// ---------- search ----------
+let searchIndex = [];
+function buildSearchIndex() {
+  const idx = [];
+  if (S.states) for (const f of S.states) idx.push({ t: 'state', name: f.properties.name, sub: POSTAL[f.id] || '', key: (f.properties.name + ' ' + (POSTAL[f.id] || '')).toLowerCase(), id: f.id });
+  for (const [st, feats] of S.countiesByState) for (const f of feats) idx.push({ t: 'county', name: countyLabel(f), sub: POSTAL[st] || st, key: (f.properties.name + ' ' + (POSTAL[st] || '')).toLowerCase(), id: f.id });
+  if (S.cities) for (const c of S.cities) idx.push({ t: 'city', name: c.name, sub: c.state + ', pop. ' + c.pop.toLocaleString(), key: (c.name + ' ' + c.state).toLowerCase(), c, pop: c.pop });
+  searchIndex = idx;
+}
+function searchPlaces(q, n = 8) {
+  q = q.trim().toLowerCase(); if (!q) return [];
+  const score = e => e.key === q ? 0 : e.name.toLowerCase() === q ? 1 : e.name.toLowerCase().startsWith(q) ? 2 : e.key.startsWith(q) ? 3 : e.key.includes(q) ? 4 : 9;
+  const tOrder = { state: 0, city: 1, county: 2 };
+  return searchIndex.map(e => ({ e, s: score(e) })).filter(x => x.s < 9)
+    .sort((a, b) => a.s - b.s || tOrder[a.e.t] - tOrder[b.e.t] || (b.e.pop || 0) - (a.e.pop || 0) || a.e.name.localeCompare(b.e.name)).slice(0, n).map(x => x.e);
+}
+async function navigateTo(e) {
+  closeSearch();
+  if (e.t === 'state') return enterState(e.id);
+  if (e.t === 'county') { await enterState(e.id.slice(0, 2)); return enterCounty(e.id); }
+  if (e.t === 'city') { await enterState(e.c.state_fips); await enterCounty(e.c.county_fips); return enterCity(e.c); }
+}
+const searchIn = $('#search-in'), searchList = $('#search-list');
+let searchAct = -1;
+function closeSearch() { searchList.classList.add('hidden'); searchAct = -1; }
+function renderSearch() {
+  const res = searchPlaces(searchIn.value);
+  if (!res.length) return closeSearch();
+  searchList.innerHTML = '';
+  res.forEach((e, i) => {
+    const d = document.createElement('div'); d.setAttribute('role', 'option'); d.className = i === searchAct ? 'act' : '';
+    d.innerHTML = `<span>${esc(e.name)} <small>${e.t}</small></span><small>${esc(e.sub)}</small>`;
+    d.addEventListener('mousedown', ev => { ev.preventDefault(); searchIn.value = e.name; navigateTo(e); });
+    searchList.appendChild(d);
+  });
+  searchList.classList.remove('hidden');
+  searchList._res = res;
+}
+searchIn.addEventListener('focus', () => { ensureCounties(); ensureCities().then(renderSearch); });
+searchIn.addEventListener('input', () => { searchAct = -1; renderSearch(); });
+searchIn.addEventListener('blur', () => setTimeout(closeSearch, 150));
+searchIn.addEventListener('keydown', e => {
+  const res = searchList._res || [];
+  if (e.key === 'ArrowDown') { searchAct = Math.min(res.length - 1, searchAct + 1); renderSearch(); e.preventDefault(); }
+  else if (e.key === 'ArrowUp') { searchAct = Math.max(0, searchAct - 1); renderSearch(); e.preventDefault(); }
+  else if (e.key === 'Enter') { e.preventDefault(); const pick = res[searchAct >= 0 ? searchAct : 0]; if (pick) { searchIn.value = pick.name; navigateTo(pick); } }
+});
+
+// ---------- layers ----------
+$$('#layers button').forEach(b => b.addEventListener('click', () => {
+  $$('#layers button').forEach(x => x.classList.toggle('on', x === b));
+  S.layer = b.dataset.layer;
+  $('#swing-opts').classList.toggle('hidden', S.layer !== 'SWING');
+  recolor(); renderDetail(S.selected, S.scope.city);
+}));
+$('#swing-office').addEventListener('change', e => { S.swingOffice = e.target.value; recolor(); renderDetail(S.selected, S.scope.city); });
+$('#swing-base').addEventListener('change', e => { S.swingBase = e.target.value; recolor(); renderDetail(S.selected, S.scope.city); });
+$('#tilt').addEventListener('click', () => { S.tilt = !S.tilt; $('#map-stage').classList.toggle('tilt', S.tilt); $('#tilt').classList.toggle('on', S.tilt); LS.set('ed.tilt', S.tilt ? '1' : '0'); });
+if (!S.tilt) { $('#map-stage').classList.remove('tilt'); $('#tilt').classList.remove('on'); }
+
+function renderLegend() {
+  const el = $('#legend');
+  const swing = S.layer === 'SWING';
+  const span = swing ? 15 : 30;
+  const steps = [-1, -.66, -.4, -.2, 0, .2, .4, .66, 1];
+  const ramp = (rep) => `<span class="ramp">${steps.map(s => `<i style="background:${s === 0 ? COL.neutral : marginColor(s < 0 ? 'D' : 'R', s * span, rep, span)}"></i>`).join('')}</span>`;
+  el.innerHTML = `<div class="lt">${swing ? `Swing vs ${S.swingBase}, ${OFFICE_LABEL[S.swingOffice]}` : OFFICE_LABEL[S.layer] + ' lead'}</div>
+    <div class="row">${ramp(100)}<span class="cap"><span class="t-D">D +${span}</span><span>tie</span><span class="t-R">R +${span}</span></span></div>
+    <div class="row">${ramp(20)}<span>low reporting (washed out)</span></div>
+    <div class="row"><span class="sw" style="background:${COL.neutral}"></span>pending / no data
+      <span class="sw" style="background:${COL.D};background-image:repeating-linear-gradient(45deg, rgba(8,11,18,.8) 0 1.5px, transparent 1.5px 4px)"></span>contested
+      <span class="sw" style="background:${COL.R};outline:1.5px solid #f4f6fb;outline-offset:-1.5px"></span>called</div>
+    ${swing ? '' : `<div class="row"><span class="sw" style="background:${COL.I};background-image:radial-gradient(rgba(8,11,18,.8) 1px, transparent 1.2px);background-size:4px 4px"></span>independent / other leads</div>`}`;
+}
+
+// ---------- detail panel ----------
+function partyName(p, cands) { const c = (cands || []).find(x => x.party === p); return c ? c.name : (p === 'D' ? 'Democrat' : p === 'R' ? 'Republican' : p === 'I' ? 'Independent' : 'Other'); }
+function fmtPct(v) { return v == null ? '–' : (Math.round(v * 10) / 10).toFixed(1) + '%'; }
+function marginText(m) { if (m == null) return '–'; const a = Math.abs(m).toFixed(1); return m > 0 ? `R +${a}` : m < 0 ? `D +${a}` : 'tie'; }
+function fmtTime(iso) { if (!iso) return '–'; const d = new Date(iso); return isNaN(d) ? iso : d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }); }
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+function safeUrl(u) { return /^https?:\/\//i.test(u || '') ? u : null; }
+function statusBadge(r) {
+  const cls = r.status === 'official_certified' ? 'certified' : r.status === 'official_preliminary' ? 'preliminary' : r.status;
+  return `<span class="badge ${cls}">${STATUS_GLYPH[r.status] || ''} ${STATUS_LABEL[r.status] || esc(r.status)}</span>`;
+}
+let detailRaceOverride = null; // { jkey, raceId } chosen in the panel's race selector
+function renderDetail(jkey, city) {
+  const el = $('#detail'), body = $('#stage-body');
+  const ds = S.ds;
+  if (!jkey) { body.classList.remove('open'); el.innerHTML = ''; return; }
+  body.classList.add('open');
+  const office = activeOffice();
+  const j = ds && ds.jurisdictions && ds.jurisdictions[jkey];
+  let name, kind;
+  if (city) { name = city.name; kind = `City in ${countyLabel(S.countyById.get(city.county_fips) || { id: city.county_fips, properties: { name: city.county_name || city.county_fips } })}, ${city.state}`; }
+  else if (jkey.length === 2) { name = (S.stateById.get(jkey) || { properties: { name: jkey } }).properties.name; kind = 'State'; }
+  else { const f = S.countyById.get(jkey); name = f ? countyLabel(f) : (j ? j.name : jkey); kind = `County, ${POSTAL[jkey.slice(0, 2)] || ''}`; }
+  let html = `<div class="top"><div><h2>${esc(name)}</h2><div class="kind">${esc(kind)}</div></div><button class="icon" id="detail-close" title="Close panel">×</button></div>`;
+  // city fallback: use the county's result with the tag
+  let targetKey = jkey, inheritedNote = null;
+  let rf = resultFor(targetKey, office);
+  if (city && (!rf || !rf.result)) { targetKey = city.county_fips; rf = resultFor(targetKey, office); if (rf && rf.result) inheritedNote = targetKey; }
+  if (rf && rf.all && detailRaceOverride && detailRaceOverride.jkey === jkey && rf.all.includes(detailRaceOverride.raceId)) { const id = detailRaceOverride.raceId; rf = Object.assign({}, rf, { race: ds.races[id] || { race_id: id, label: id, office, candidates: [] }, result: rf.j.results[id] }); }
+  const ids = rf ? (rf.all || rf.multi || []) : [];
+  if (rf && rf.multi) {
+    html += `<div class="race">${rf.multi.length} House districts touch this area</div><div class="chlist">${rf.multi.map(id => `<div><b>${esc((ds.races[id] || {}).label || id)}</b>: ${STATUS_LABEL[(rf.j.results[id] || {}).status] || '–'}, confidence ${(rf.j.results[id] || {}).confidence ?? '–'}</div>`).join('')}</div>`;
+  } else if (!rf || !rf.result) {
+    html += `<div class="race">${OFFICE_LABEL[office]}</div><div class="empty">${j ? 'No result for this race in the current dataset. Status: pending.' : 'This area is not in the current dataset. Status: pending.'}</div>`;
+    if (j && j.baseline) html += baselineHtml(j, office, null);
+  } else {
+    const r = rf.result, race = rf.race, cands = race.candidates || [];
+    const sel = ids.length > 1 ? `<select id="detail-race">${ids.map(id => `<option value="${esc(id)}" ${id === race.race_id ? 'selected' : ''}>${esc((ds.races[id] || {}).label || id)}</option>`).join('')}</select>` : esc(race.label);
+    html += `<div class="race">${sel}</div>`;
+    html += `<div class="badges">${statusBadge(r)}${r.called ? `<span class="badge called">✓ Called${r.called_by ? ' by ' + esc(r.called_by) : ''}</span>` : ''}${(r.inherited_from || inheritedNote) ? `<span class="badge county-level">county-level data</span>` : ''}</div>`;
+    html += `<div class="conf-row"><span>Confidence</span><span class="meter"><i style="width:${Math.max(0, Math.min(100, r.confidence || 0))}%"></i></span><b class="num">${r.confidence ?? '–'}</b></div>`;
+    html += `<dl class="kv"><dt>Precincts reporting</dt><dd class="num">${fmtPct(r.pct_reporting)}</dd><dt>Margin</dt><dd class="num">${marginText(r.margin)}</dd>${r.range ? `<dt>Contested range</dt><dd class="num">D ${fmtPct(r.range.D && r.range.D[0])}–${fmtPct(r.range.D && r.range.D[1])}, R ${fmtPct(r.range.R && r.range.R[0])}–${fmtPct(r.range.R && r.range.R[1])}</dd>` : ''}<dt>Updated</dt><dd>${fmtTime(r.updated_at)}</dd>${r.called_at ? `<dt>Called at</dt><dd>${fmtTime(r.called_at)}</dd>` : ''}</dl>`;
+    // candidates
+    const rows = cands.map(c => ({ c, pct: r.pct ? r.pct[c.party] : null, votes: r.votes ? r.votes[c.id] : null }));
+    const seen = new Set(cands.map(c => c.party));
+    if (r.pct) for (const p of Object.keys(r.pct)) if (!seen.has(p) && r.pct[p] != null && (p === 'O' || p === 'I')) rows.push({ c: { name: p === 'O' ? 'Other' : 'Independent', party: p }, pct: r.pct[p], votes: null });
+    rows.sort((a, b) => (b.pct ?? -1) - (a.pct ?? -1));
+    const maxP = Math.max(1, ...rows.map(x => x.pct || 0));
+    html += `<div class="cands">${rows.map(x => `<div class="cand"><div class="nm t-${esc(x.c.party)}">${esc(x.c.name)} <span>(${esc(x.c.party)}${x.c.incumbent ? ', incumbent' : ''})</span></div><div class="pct">${fmtPct(x.pct)}</div><div class="bar"><i class="p-${esc(x.c.party)}" style="width:${x.pct == null ? 0 : (x.pct / 100 * 100)}%"></i>${r.range && r.range[x.c.party] ? `<span class="rng" style="left:${r.range[x.c.party][0]}%;width:${Math.max(0, r.range[x.c.party][1] - r.range[x.c.party][0])}%"></span>` : ''}</div><div class="votes">${x.votes != null && x.votes > 0 ? x.votes.toLocaleString() + ' votes' : (x.pct != null && (r.inherited_from || inheritedNote) ? 'county-level' : '')}</div></div>`).join('')}</div>`;
+    html += baselineHtml(rf.j, office, r, race);
+    // sources
+    html += `<div class="sect"><h3>Sources used</h3>${(r.sources_used || []).length ? r.sources_used.map(s => `<div class="src"><span class="tier">${esc(s.tier || '')}</span>${safeUrl(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.url.replace(/^https?:\/\//, '').slice(0, 60))}</a>` : esc(s.id)}<span class="tier">${fmtTime(s.ts)}</span></div>`).join('') : '<div class="empty">None recorded.</div>'}</div>`;
+    if ((r.sources_rejected || []).length) html += `<div class="sect"><h3>Sources rejected</h3>${r.sources_rejected.map(s => `<div class="src rej"><span>${esc(s.id)}</span><span class="why">${esc(s.reason)}</span></div>`).join('')}</div>`;
+    if (inheritedNote) html += `<div class="empty">Shown from ${esc((S.countyById.get(inheritedNote) || { properties: { name: inheritedNote } }).properties.name)} County: this city has no row of its own in the dataset.</div>`;
+    if (r.inherited_from) html += `<div class="empty">Inherited from county ${esc(r.inherited_from)}.</div>`;
+  }
+  el.innerHTML = html;
+  $('#detail-close').addEventListener('click', () => { select(null); });
+  const rs = $('#detail-race'); if (rs) rs.addEventListener('change', () => { detailRaceOverride = { jkey, raceId: rs.value }; renderDetail(jkey, city); });
+}
+function baselineHtml(j, office, r, race) {
+  const b = j.baseline || {}; const rows = [];
+  const b24 = b['2024'] && (b['2024'].PRES || b['2024'][office]); const b22 = b['2022'] && b['2022'][office];
+  if (b24) rows.push(['2024 ' + (b['2024'].PRES ? 'Pres.' : office), b24, r ? r.swing_vs_2024 : null]);
+  if (b22 && (b22.D || b22.R)) rows.push(['2022 ' + office, b22, r ? r.swing_vs_2022 : null]);
+  if (!rows.length && race && race.baseline) { const rb = race.baseline; if (rb['2024']) rows.push(['2024 ' + rb['2024'].office + ' (state)', rb['2024'], r ? r.swing_vs_2024 : null]); if (rb['2022']) rows.push(['2022 ' + rb['2022'].office + ' (state)', rb['2022'], r ? r.swing_vs_2022 : null]); }
+  if (!rows.length) return '';
+  return `<div class="sect"><h3>Baseline and swing</h3><div class="base"><span class="h">Race</span><span class="h">D / R</span><span class="h">Swing now</span>${rows.map(([l, x, sw]) => `<span>${esc(l)}</span><span class="num">${fmtPct(x.D)} / ${fmtPct(x.R)} (${marginText(x.margin)})</span><span class="num">${sw == null ? '–' : (sw > 0 ? 'R +' : 'D +') + Math.abs(sw).toFixed(1)}</span>`).join('')}</div></div>`;
+}
+
+// ---------- header ----------
+function renderHeader() {
+  const ds = S.ds; if (!ds) return;
+  const n = ds.national || {}, m = ds.meta || {};
+  const hl = $('#headline'); hl.textContent = n.headline || 'No headline in this dataset.'; hl.classList.toggle('empty', !n.headline);
+  const ch = n.chambers || {};
+  const tally = (key, label) => {
+    const c = ch[key]; if (!c) return '';
+    const nu = c.not_up || {}, ca = c.called || {};
+    const segs = [['D not up', nu.D || 0, '#1c4f93'], ['D called', ca.D || 0, COL.D], ['undecided', c.undecided || 0, COL.neutral], ['R called', ca.R || 0, COL.R], ['R not up', nu.R || 0, '#8f3a3a']];
+    if (nu.I || ca.I) segs.splice(2, 0, ['I', (nu.I || 0) + (ca.I || 0), COL.I]);
+    const total = segs.reduce((a, s) => a + s[1], 0) || 1;
+    const maj = c.majority ? (c.majority / total * 100) : null;
+    return `<div class="tally"><div class="lbl"><b>${label}</b><span>${c.majority ? c.majority + ' for majority' : ''}</span></div>
+      <div class="seatbar">${segs.map(s => `<span title="${s[0]}: ${s[1]}" style="width:${s[1] / total * 100}%;background:${s[2]}"></span>`).join('')}${maj != null ? `<i class="maj" style="left:${maj}%"></i>` : ''}</div>
+      <div class="nums"><span class="dotD">D <b>${ca.D ?? 0}</b></span><span class="dotR">R <b>${ca.R ?? 0}</b></span><span>undecided <b>${c.undecided ?? '–'}</b></span>${(nu.D != null || nu.R != null) ? `<span title="Seats not up this cycle">not up D ${nu.D ?? 0} / R ${nu.R ?? 0}</span>` : ''}</div></div>`;
+  };
+  $('#tallies').innerHTML = tally('SEN', 'Senate') + tally('HOU', 'House') + tally('GOV', 'Governors');
+  $('#conf-bar').style.width = Math.max(0, Math.min(100, n.overall_confidence || 0)) + '%';
+  $('#conf-num').textContent = n.overall_confidence ?? '–';
+  const ag = m.agents || {};
+  $('#agents').innerHTML = ['official', 'media', 'scoring', 'video'].map(a => { const x = ag[a]; const st = !x ? '' : x.ok ? 'ok' : 'fail'; return `<span class="agent ${st}" title="${esc(a)}: ${x ? (x.ok ? 'ok' : 'failed') + (x.ran_at ? ', ran ' + fmtTime(x.ran_at) : '') + (x.note ? '. ' + x.note : '') : 'no report'}"><i></i>${a}</span>`; }).join('');
+  $('#flags').innerHTML = (m.stale ? `<span class="pill stale" title="An agent failed and older data was carried forward">STALE DATA</span> ` : '') + (m.note ? `<span class="pill" style="color:var(--ink-3);border-color:var(--line)">${esc(m.note.split('.')[0])}</span>` : '');
+  renderChanges();
+}
+function stamp(text, strong) { $('#stamp').innerHTML = text + (strong ? ` <b>${esc(strong)}</b>` : ''); }
+function renderChanges() {
+  const list = ((S.ds && S.ds.changes) || []).slice().sort((a, b) => (b.ts || '').localeCompare(a.ts || '')).slice(0, 3);
+  $('#changes').innerHTML = list.length ? list.map(c => `<div class="ch ${c.official && c.important ? 'imp' : ''}" title="${esc(c.text)}"><span class="t">${fmtTime(c.ts)}</span><span class="ty">${esc((c.type || '').replace(/_/g, ' '))}${c.official ? '' : ' · unofficial'}</span><span class="x">${esc(c.text)}</span></div>`).join('') : '<div class="ch">No changes logged yet.</div>';
+}
+
+// ---------- videos ----------
+function panelCount() {
+  const narrow = matchMedia('(max-width: 1100px)').matches;
+  if (narrow) return 6;
+  const h = $('#rail-l').clientHeight || 800, w = $('#rail-l').clientWidth || 260;
+  const per = Math.max(3, Math.min(4, Math.floor((h + 8) / (w * 9 / 16 + 70 + 8))));
+  return per * 2;
+}
+function rankVideos(chain) {
+  const vids = (S.ds && S.ds.videos) || [];
+  return vids.map(v => { const i = chain.indexOf(v.scope && v.scope.jkey); return { v, score: i < 0 ? 9 : i }; })
+    .sort((a, b) => a.score - b.score || (TIER_ORDER[a.v.tier] ?? 4) - (TIER_ORDER[b.v.tier] ?? 4) || (a.v.rank ?? 99) - (b.v.rank ?? 99));
+}
+function layoutVideos() {
+  const N = panelCount();
+  const ranked = rankVideos(S.scope.chain);
+  const list = ranked.filter(x => x.score < 9).slice(0, N).map(x => x.v);
+  if (list.length < N) for (const v of S.prevPanels) if (list.length < N && !list.includes(v) && ranked.some(x => x.v === v)) list.push(v);
+  if (list.length < N) for (const x of ranked) if (list.length < N && !list.includes(x.v)) list.push(x.v);
+  // slot assignment: keep panels that stay, fill vacated slots in rank order
+  const slots = new Array(N).fill(null);
+  S.slots.forEach((v, i) => { if (i < N && v && list.includes(v)) slots[i] = v; });
+  const pending = list.filter(v => !slots.includes(v));
+  for (let i = 0; i < N && pending.length; i++) if (!slots[i]) slots[i] = pending.shift();
+  S.slots = slots; S.prevPanels = list;
+  const narrow = matchMedia('(max-width: 1100px)').matches;
+  const half = Math.ceil(N / 2);
+  mountRail($('#rail-l'), narrow ? slots : slots.slice(0, half));
+  mountRail($('#rail-r'), narrow ? [] : slots.slice(half));
+}
+function mountRail(rail, vids) {
+  const want = vids.filter(Boolean);
+  const existing = Array.from(rail.querySelectorAll('.vpanel'));
+  // remove panels not wanted
+  for (const el of existing) if (!want.some(v => v.id === el.dataset.id)) { if (S.unmutedId === el.dataset.id) S.unmutedId = null; el.remove(); }
+  // ensure order: a kept panel never moves if it is already at its index
+  let foot = rail.querySelector('.foot'); if (!foot) { foot = document.createElement('div'); foot.className = 'foot'; rail.appendChild(foot); }
+  foot.textContent = inArtifact ? 'Streams open in a new tab. Embedded playback is available in the self-hosted build.' : 'Panels start muted. Unmute one at a time.';
+  want.forEach((v, i) => {
+    const exact = !!(v.scope && v.scope.jkey === S.scope.jkey);
+    const cur = rail.children[i];
+    if (cur && cur.dataset && cur.dataset.id === v.id) cur.classList.toggle('exact', exact);
+    if (cur && cur.dataset && cur.dataset.id === v.id) { updatePanel(cur, v); return; }
+    const existingEl = rail.querySelector(`.vpanel[data-id="${CSS.escape(v.id)}"]`);
+    const el = existingEl || buildPanel(v);
+    el.classList.toggle('exact', exact);
+    if (existingEl) updatePanel(existingEl, v);
+    rail.insertBefore(el, rail.children[i] || foot);
+  });
+  rail.appendChild(foot);
+}
+function embedSrc(v) {
+  const q = 'mute=1&autoplay=1&playsinline=1&enablejsapi=1&rel=0' + (/^https?:/.test(location.origin) ? '&origin=' + encodeURIComponent(location.origin) : '');
+  if (v.kind === 'channel_live' && v.youtube_channel_id) return `https://www.youtube.com/embed/live_stream?channel=${encodeURIComponent(v.youtube_channel_id)}&${q}`;
+  if (v.youtube_video_id) return `https://www.youtube.com/embed/${encodeURIComponent(v.youtube_video_id)}?${q}`;
+  return null;
+}
+function panelBadges(v) {
+  const lvl = v.scope && v.scope.level ? v.scope.level : 'national';
+  return `<span class="badge tier-${esc(v.tier)}">${TIER_LABEL[v.tier] || esc(v.tier)}</span>${v.live === true ? '<span class="badge live"><i></i>LIVE</span>' : ''}<span class="badge" title="Location confidence: ${esc(v.location_confidence)}">${esc(lvl)}-level · ${esc(v.location_confidence || 'unknown')}</span>`;
+}
+function buildPanel(v) {
+  const el = document.createElement('div'); el.className = 'vpanel'; el.dataset.id = v.id;
+  const link = safeUrl(v.link_url) || (v.youtube_channel_id ? `https://www.youtube.com/channel/${v.youtube_channel_id}/live` : '#');
+  const src = inArtifact ? null : embedSrc(v);
+  el.innerHTML = `<div class="frame">${src ? `<iframe src="${esc(src)}" title="${esc(v.title)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>` : `<div class="card"><div><div class="badges" style="justify-content:center">${panelBadges(v)}</div><div style="margin-top:10px"><a href="${esc(link)}" target="_blank" rel="noopener">Open stream</a></div></div></div>`}</div>
+    <div class="meta"><div class="ttl">${esc(v.title)}</div><div class="ch"><span>${esc(v.channel)}</span>${src ? `<button class="mute" type="button" title="Unmute this panel; any other panel is muted">Muted</button>` : ''}</div>${src ? `<div class="badges">${panelBadges(v)}</div>` : ''}</div>`;
+  const btn = el.querySelector('.mute');
+  if (btn) {
+    const ifr = el.querySelector('iframe');
+    ifr.addEventListener('load', () => { try { ifr.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: v.id, channel: 'widget' }), '*'); } catch (e) {} });
+    btn.addEventListener('click', () => setUnmuted(S.unmutedId === v.id ? null : v.id));
+  }
+  return el;
+}
+function updatePanel(el, v) { const b = el.querySelector('.ttl'); if (b && b.textContent !== v.title) b.textContent = v.title; const live = el.querySelector('.badge.live'); if ((v.live === true) !== !!live) { const bd = el.querySelector('.meta .badges') || el.querySelector('.card .badges'); if (bd) bd.innerHTML = panelBadges(v); } }
+function ytCmd(ifr, func) { try { ifr.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args: [] }), '*'); } catch (e) {} }
+function setUnmuted(id) {
+  S.unmutedId = id;
+  $$('.vpanel').forEach(el => {
+    const ifr = el.querySelector('iframe'), btn = el.querySelector('.mute'); if (!ifr) return;
+    const on = el.dataset.id === id;
+    ytCmd(ifr, on ? 'unMute' : 'mute'); el.classList.toggle('unmuted', on);
+    if (btn) { btn.textContent = on ? 'Sound on' : 'Muted'; btn.classList.toggle('on', on); }
+  });
+}
+let resizeT; window.addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTimeout(layoutVideos, 200); });
+
+// ---------- dataset loading ----------
+let dbPromise = null;
+function getDb() { if (!dbPromise) dbPromise = Promise.race([window.claude.use('db'), new Promise(r => setTimeout(() => r(null), 12000))]).catch(() => null); return dbPromise; }
+async function loadFromDb() {
+  const db = await getDb(); if (!db) throw new Error('data store unavailable in this view');
+  const snap = await db.doc('dataset/current').get();
+  if (!snap.exists) throw new Error('no dataset published yet (dataset/current is empty)');
+  const d = snap.data() || {};
+  if (d.data && typeof d.data === 'object') return d.data;
+  if (typeof d.json === 'string') return JSON.parse(d.json);
+  if (d.parts > 0) {
+    const chunks = new Array(d.parts);
+    for (let i = 0; i < d.parts; i += 6) {
+      const idx = []; for (let k = i; k < Math.min(d.parts, i + 6); k++) idx.push(k);
+      const snaps = await Promise.all(idx.map(k => db.doc(`dataset/current-p${k}`).get()));
+      snaps.forEach((p, n) => { if (!p.exists) throw new Error('missing dataset part ' + idx[n]); chunks[idx[n]] = (p.data() || {}).json || ''; });
+    }
+    return JSON.parse(chunks.join(''));
+  }
+  throw new Error('dataset/current has no json, data or parts field');
+}
+async function loadFromFile() {
+  const over = new URLSearchParams(location.search).get('data');
+  const tries = over ? [over] : ['./data/dataset.json', './data/dataset.sample.json'];
+  let lastErr = null;
+  for (const u of tries) { try { const bust = (u.includes('?') ? '&' : '?') + 't=' + Date.now(); /* bypasses the GitHub Pages CDN cache (max-age=600) */ const r = await fetch(u + bust, { cache: 'no-store' }); if (r.ok) { const j = await r.json(); j.__from = u; return j; } lastErr = new Error(`${u}: HTTP ${r.status}`); } catch (e) { lastErr = e; } }
+  throw lastErr || new Error('no dataset reachable');
+}
+let loading = false;
+async function loadDataset(manual) {
+  if (loading) return; loading = true;
+  const btn = $('#refresh'); btn.disabled = true; btn.textContent = 'Refreshing';
+  try {
+    const ds = inArtifact ? await loadFromDb() : await loadFromFile();
+    applyDataset(ds, 'live');
+  } catch (e) {
+    console.warn('[dataset] refresh failed:', e.message);
+    stamp(`Refresh failed (${esc(e.message)}).` + (S.ds ? ' Showing data from' : ''), S.ds ? fmtTime(S.ds.meta && S.ds.meta.generated_at) : '');
+  } finally { loading = false; btn.disabled = false; btn.textContent = 'Refresh'; }
+}
+function cacheDataset(ds) {
+  // full copy when it fits; otherwise a trimmed copy (national, states, videos, changes, briefing) so the next open still paints instantly
+  const full = JSON.stringify(ds);
+  let ok = false;
+  try { localStorage.setItem('ed.dataset', full); ok = true; } catch (e) { ok = false; }
+  if (ok) return;
+  try {
+    const lite = Object.assign({}, ds, { jurisdictions: {} });
+    for (const [k, j] of Object.entries(ds.jurisdictions)) if (j.level === 'national' || j.level === 'state') lite.jurisdictions[k] = j;
+    lite.meta = Object.assign({}, ds.meta, { cache_lite: true });
+    localStorage.setItem('ed.dataset', JSON.stringify(lite));
+  } catch (e) { /* storage unavailable: live fetch only */ }
+}
+function validDataset(ds) { return ds && typeof ds === 'object' && ds.meta && ds.jurisdictions && typeof ds.jurisdictions === 'object'; }
+function applyDataset(ds, source) {
+  if (!validDataset(ds)) { console.warn('[dataset] rejected: does not match CONTRACT.md'); stamp('Dataset rejected: missing meta or jurisdictions.'); return; }
+  const prev = S.ds;
+  S.ds = ds; S.source = source;
+  if (source === 'live') cacheDataset(ds);
+  renderHeader(); recolor(); renderDetail(S.selected, S.scope.city); layoutVideos();
+  const m = ds.meta || {};
+  const srcNote = source === 'cache' ? 'From this browser’s last session' : `Updated`;
+  stamp(`${srcNote} <b>${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}</b> · ${esc(m.refresh_id || '–')} generated ${fmtTime(m.generated_at)}${ds.__from && /sample/.test(ds.__from) ? ' · sample file' : ''}`);
+  if (source === 'live' && S.briefingStarted) speakNewChanges(prev);
+}
+setInterval(() => loadDataset(false), 5 * 60 * 1000);
+$('#refresh').addEventListener('click', () => loadDataset(true));
+
+// ---------- voice ----------
+const synth = window.speechSynthesis || null;
+let voice = null;
+function pickVoice() {
+  if (!synth) return null;
+  const vs = synth.getVoices() || []; const en = vs.filter(v => /^en[-_]/i.test(v.lang));
+  const pref = ['Google US English', 'Samantha', 'Microsoft Aria', 'Microsoft Jenny', 'Microsoft Guy', 'Daniel', 'Karen', 'Alex', 'Natural'];
+  for (const p of pref) { const v = en.find(x => x.name.includes(p)); if (v) return v; }
+  return en.find(v => v.localService) || en[0] || vs[0] || null;
+}
+if (synth) { voice = pickVoice(); synth.onvoiceschanged = () => { voice = pickVoice(); }; }
+const tx = $('#transcript'), txt = $('#transcript-txt');
+function transcript(text, q) { txt.textContent = text; txt.classList.toggle('q', !!q); }
+function speak(text) {
+  if (!text) return;
+  transcript(text);
+  if (S.voiceMuted || !synth) return;
+  const u = new SpeechSynthesisUtterance(text);
+  if (voice) u.voice = voice; u.rate = 1.02; u.pitch = 1; u.lang = 'en-US';
+  u.onstart = () => tx.classList.add('speaking'); u.onend = u.onerror = () => tx.classList.remove('speaking');
+  try { synth.speak(u); } catch (e) { tx.classList.remove('speaking'); }
+}
+function setVoiceMuted(m) { S.voiceMuted = m; LS.set('ed.voiceMuted', m ? '1' : '0'); $('#voice-mute').textContent = m ? 'Unmute voice' : 'Mute voice'; $('#voice-mute').classList.toggle('on', m); if (m && synth) { try { synth.cancel(); } catch (e) {} tx.classList.remove('speaking'); } }
+$('#voice-mute').addEventListener('click', () => setVoiceMuted(!S.voiceMuted));
+setVoiceMuted(S.voiceMuted);
+function startBriefing(withVoice) {
+  $('#start').remove();
+  S.briefingStarted = true;
+  if (!withVoice) setVoiceMuted(true);
+  const ds = S.ds; if (!ds) { transcript('No dataset loaded yet. The briefing starts when data arrives.'); S.pendingBriefing = true; return; }
+  runOpeningBriefing(ds);
+}
+function runOpeningBriefing(ds) {
+  const b = ds.briefing || {}; const m = ds.meta || {};
+  const lastId = LS.get('ed.lastRefreshId');
+  if (b.on_open) speak(b.on_open); else transcript('No briefing text in this dataset.');
+  if (b.delta && lastId && lastId !== m.refresh_id) speak(b.delta);
+  LS.set('ed.lastRefreshId', m.refresh_id || '');
+  if (!S.lastSpokenTs) { const newest = ((ds.changes || []).map(c => c.ts).sort().pop()) || new Date().toISOString(); S.lastSpokenTs = newest; LS.set('ed.lastSpokenTs', newest); }
+}
+function speakNewChanges() {
+  const ds = S.ds; if (!ds) return;
+  if (S.pendingBriefing) { S.pendingBriefing = false; runOpeningBriefing(ds); return; }
+  const fresh = (ds.changes || []).filter(c => c.official && c.important && c.ts && (!S.lastSpokenTs || c.ts > S.lastSpokenTs)).sort((a, b) => a.ts.localeCompare(b.ts));
+  for (const c of fresh) speak(c.text);
+  if (fresh.length) { S.lastSpokenTs = fresh[fresh.length - 1].ts; LS.set('ed.lastSpokenTs', S.lastSpokenTs); }
+  LS.set('ed.lastRefreshId', (ds.meta || {}).refresh_id || '');
+}
+$('#start-go').addEventListener('click', () => { setVoiceMuted(false); if (synth) { try { synth.cancel(); } catch (e) {} } startBriefing(true); });
+$('#start-skip').addEventListener('click', () => startBriefing(false));
+
+// ---------- questions (rule-based, dataset values only) ----------
+function describe(jkey, label) {
+  const ds = S.ds; if (!ds) return 'No dataset is loaded yet.';
+  const office = activeOffice();
+  const rf = resultFor(jkey, office);
+  if (rf && rf.multi) return `${label}: ${rf.multi.length} House districts are in the dataset. ${rf.multi.map(id => `${(ds.races[id] || {}).label || id} is ${STATUS_LABEL[(rf.j.results[id] || {}).status] || 'pending'} with confidence ${(rf.j.results[id] || {}).confidence ?? 'unknown'}`).join('. ')}.`;
+  if (!rf || !rf.result) return `${label}: no ${OFFICE_LABEL[office]} result in the current dataset. Status pending, confidence not available.`;
+  const r = rf.result, c = rf.race.candidates || [];
+  let s = `${label}, ${rf.race.label}: status ${STATUS_LABEL[r.status] || r.status}, confidence ${r.confidence ?? 'unknown'} out of 100`;
+  s += r.pct_reporting != null ? `, ${fmtPct(r.pct_reporting)} of precincts reporting.` : ', precincts reporting not available.';
+  if (r.pct && r.leader && r.pct[r.leader] != null) {
+    const others = ['D', 'R', 'I'].filter(p => p !== r.leader && r.pct[p] != null).map(p => `${partyName(p, c)} ${fmtPct(r.pct[p])}`);
+    s += ` ${partyName(r.leader, c)} leads with ${fmtPct(r.pct[r.leader])}${others.length ? ' to ' + others.join(' and ') : ''}${r.margin != null ? `, a margin of ${Math.abs(r.margin).toFixed(1)} points` : ''}.`;
+  }
+  if (r.called) s += ` Called${r.called_by ? ' by ' + r.called_by : ''}.`;
+  if (r.status === 'contested' && r.range) s += ` Contested range: Democrat ${fmtPct(r.range.D[0])} to ${fmtPct(r.range.D[1])}, Republican ${fmtPct(r.range.R[0])} to ${fmtPct(r.range.R[1])}.`;
+  if (r.inherited_from) s += ' These are county-level figures.';
+  return s;
+}
+function chamberText(key) {
+  const c = S.ds && S.ds.national && S.ds.national.chambers && S.ds.national.chambers[key]; if (!c) return `No ${key} tally in the dataset.`;
+  const nm = { SEN: 'Senate', HOU: 'House', GOV: 'Governors' }[key];
+  const nu = c.not_up || {}, ca = c.called || {};
+  return `${nm}: called Democrats ${ca.D ?? 0}, called Republicans ${ca.R ?? 0}${ca.I ? ', independents ' + ca.I : ''}, ${c.undecided ?? 'unknown'} undecided.${c.majority ? ` ${c.majority} needed for a majority.` : ''}${(nu.D != null) ? ` Not up this cycle: Democrats ${nu.D ?? 0}, Republicans ${nu.R ?? 0}.` : ''} Overall confidence ${S.ds.national.overall_confidence ?? 'unknown'}.`;
+}
+async function answer(q) {
+  q = q.trim(); if (!q) return;
+  transcript(q, true);
+  const l = q.toLowerCase();
+  let a;
+  if (/\b(what'?s new|whats new|latest|new\b|recent)/.test(l)) {
+    const ch = ((S.ds && S.ds.changes) || []).slice().sort((a, b) => (b.ts || '').localeCompare(a.ts || '')).slice(0, 3);
+    a = ch.length ? 'Latest: ' + ch.map(c => `${fmtTime(c.ts)}, ${c.official ? 'official' : 'unofficial'}: ${c.text}`).join(' ') : 'No changes are logged in the dataset.';
+  } else if (/\b(refresh|reload|update)\b/.test(l)) { a = 'Refreshing the dataset.'; loadDataset(true); }
+  else if (/\bsenate\b/.test(l) && !/what'?s (in |up in |happening in )?[a-z]/.test(l.replace(/senate/, ''))) a = chamberText('SEN');
+  else if (/\bhouse\b/.test(l)) a = chamberText('HOU');
+  else if (/\bgovernors?\b/.test(l)) a = chamberText('GOV');
+  else {
+    const m = l.match(/^(?:what'?s|whats|what is|show|go to|zoom to|find|open|how is|how's)\s+(?:in |up in |happening in |the )?(.+?)\??$/) || [null, l];
+    const term = m[1].replace(/\b(county|city|state|results?)\b/g, '').trim();
+    await ensureCounties(); await ensureCities();
+    const hits = searchPlaces(term, 1);
+    if (!hits.length) a = `I could not find "${q}" among states, counties and cities. Try a state, county or city name, "what's new", "senate", "house", "governors" or "refresh".`;
+    else {
+      const e = hits[0];
+      const label = e.t === 'city' ? `${e.name}, ${e.c.state}` : e.t === 'county' ? `${e.name}, ${e.sub}` : e.name;
+      let jkey = e.t === 'city' ? e.c.jkey : e.id;
+      if (e.t === 'city' && !(S.ds && S.ds.jurisdictions && S.ds.jurisdictions[jkey])) { a = describe(e.c.county_fips, label) + ' Shown at county level: this city has no row of its own.'; }
+      else a = describe(jkey, label);
+      navigateTo(e);
+    }
+  }
+  speak(a);
+}
+$('#ask').addEventListener('submit', e => { e.preventDefault(); const v = $('#ask-in').value; $('#ask-in').value = ''; answer(v); });
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (SR && !inArtifact) {
+  const mic = $('#mic'); mic.classList.remove('hidden');
+  mic.addEventListener('click', () => {
+    try {
+      const rec = new SR(); rec.lang = 'en-US'; rec.interimResults = false; rec.maxAlternatives = 1;
+      mic.classList.add('on'); mic.textContent = 'Listening';
+      rec.onresult = ev => { const t = ev.results[0][0].transcript; answer(t); };
+      rec.onend = rec.onerror = () => { mic.classList.remove('on'); mic.textContent = 'Mic'; };
+      rec.start();
+    } catch (e) { mic.classList.remove('on'); mic.textContent = 'Mic'; transcript('Voice input is not available in this browser.'); }
+  });
+}
+
+// ---------- boot ----------
+(function boot() {
+  // 1. last dataset from localStorage, synchronously, before any network
+  try { const raw = LS.get('ed.dataset'); if (raw) { const ds = JSON.parse(raw); if (validDataset(ds)) { S.ds = ds; renderHeader(); stamp('From this browser’s last session ·', (ds.meta || {}).refresh_id); } } } catch (e) { /* ignore */ }
+  // 2. states first, nothing else blocks it
+  fetch('./data/states-10m.json').then(r => r.json()).then(topo => {
+    renderStates(topo); buildSearchIndex(); renderCrumbs(); renderLegend(); layoutVideos();
+    // 3. counties in the background after first paint
+    setTimeout(() => ensureCounties(), 60);
+  }).catch(e => { console.error('states-10m.json failed', e); $('#hint').textContent = 'Map data could not be loaded (data/states-10m.json).'; });
+  // 4. live dataset, never blocking the map
+  if (inArtifact) { stamp((S.ds ? 'From this browser\u2019s last session ' + esc((S.ds.meta || {}).refresh_id || '') + ' \u00b7 ' : '') + 'connecting to the data store\u2026'); }
+  loadDataset(false);
+  console.log(`[mode] ${inArtifact ? 'artifact (db document dataset/current)' : 'standalone (./data/dataset.json)'} · boot script ran at ${performance.now().toFixed(0)} ms`);
+})();
+})();
+</script>
+</body>
+</html>

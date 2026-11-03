@@ -1,0 +1,5491 @@
+{
+ "meta": {
+  "schema_version": "1.0",
+  "generated_at": "2026-11-04T02:35:00Z",
+  "refresh_id": "r-0007",
+  "previous_refresh_id": "r-0006",
+  "election_date": "2026-11-03",
+  "stale": false,
+  "note": "SAMPLE DATA. Candidate names, figures and sources are illustrative placeholders for dashboard testing.",
+  "agents": {
+   "official": {
+    "ok": true,
+    "ran_at": "2026-11-04T02:35:00Z",
+    "note": ""
+   },
+   "media": {
+    "ok": true,
+    "ran_at": "2026-11-04T02:35:00Z",
+    "note": ""
+   },
+   "scoring": {
+    "ok": true,
+    "ran_at": "2026-11-04T02:35:00Z",
+    "note": ""
+   },
+   "video": {
+    "ok": false,
+    "ran_at": "2026-11-04T02:05:00Z",
+    "note": "YouTube live-check timed out; carried previous list"
+   }
+  }
+ },
+ "national": {
+  "headline": "Sample data: Ohio and Texas Senate seats called for Republicans; Pennsylvania and Michigan still counting.",
+  "overall_confidence": 61,
+  "states_with_official_data": 6,
+  "chambers": {
+   "SEN": {
+    "not_up": {
+     "D": 28,
+     "R": 37,
+     "I": 2
+    },
+    "called": {
+     "D": 0,
+     "R": 2,
+     "I": 0
+    },
+    "undecided": 33,
+    "majority": 51
+   },
+   "HOU": {
+    "called": {
+     "D": 112,
+     "R": 118
+    },
+    "undecided": 205,
+    "majority": 218
+   },
+   "GOV": {
+    "not_up": {
+     "D": 9,
+     "R": 5
+    },
+    "called": {
+     "D": 1,
+     "R": 2
+    },
+    "undecided": 33
+   }
+  }
+ },
+ "races": {
+  "PA-SEN-2026": {
+   "race_id": "PA-SEN-2026",
+   "state": "PA",
+   "state_fips": "42",
+   "office": "SEN",
+   "district": null,
+   "special": false,
+   "label": "Pennsylvania U.S. Senate",
+   "candidates": [
+    {
+     "id": "PA-SEN-2026:whitaker",
+     "name": "Dana Whitaker",
+     "party": "D",
+     "incumbent": false
+    },
+    {
+     "id": "PA-SEN-2026:castellano",
+     "name": "Mark Castellano",
+     "party": "R",
+     "incumbent": false
+    },
+    {
+     "id": "PA-SEN-2026:ortiz",
+     "name": "Lena Ortiz",
+     "party": "L",
+     "incumbent": false
+    }
+   ],
+   "poll_close_et": "20:00",
+   "baseline": {
+    "2022": {
+     "office": "SEN",
+     "D": 51.2,
+     "R": 46.3,
+     "margin": -4.9
+    },
+    "2024": {
+     "office": "PRES",
+     "D": 48.7,
+     "R": 50.4,
+     "margin": 1.7
+    }
+   }
+  },
+  "PA-GOV-2026": {
+   "race_id": "PA-GOV-2026",
+   "state": "PA",
+   "state_fips": "42",
+   "office": "GOV",
+   "district": null,
+   "special": false,
+   "label": "Pennsylvania Governor",
+   "candidates": [
+    {
+     "id": "PA-GOV-2026:reinhart",
+     "name": "Josh Reinhart",
+     "party": "D",
+     "incumbent": true
+    },
+    {
+     "id": "PA-GOV-2026:brennan",
+     "name": "Carla Brennan",
+     "party": "R",
+     "incumbent": false
+    }
+   ],
+   "poll_close_et": "20:00",
+   "baseline": {
+    "2022": {
+     "office": "GOV",
+     "D": 56.5,
+     "R": 41.7,
+     "margin": -14.8
+    },
+    "2024": {
+     "office": "PRES",
+     "D": 48.7,
+     "R": 50.4,
+     "margin": 1.7
+    }
+   }
+  },
+  "PA-HOU-2026-07": {
+   "race_id": "PA-HOU-2026-07",
+   "state": "PA",
+   "state_fips": "42",
+   "office": "HOU",
+   "district": "07",
+   "special": false,
+   "label": "Pennsylvania 7th District",
+   "candidates": [
+    {
+     "id": "PA-HOU-2026-07:wilde",
+     "name": "Susan Wilde",
+     "party": "D",
+     "incumbent": false
+    },
+    {
+     "id": "PA-HOU-2026-07:mackenzie",
+     "name": "Ryan Mackenzie",
+     "party": "R",
+     "incumbent": true
+    }
+   ],
+   "poll_close_et": "20:00",
+   "baseline": {
+    "2022": {
+     "office": "HOU",
+     "D": 51,
+     "R": 49,
+     "margin": -2
+    },
+    "2024": {
+     "office": "PRES",
+     "D": 47.6,
+     "R": 51.3,
+     "margin": 3.7
+    }
+   }
+  },
+  "OH-SEN-2026-S": {
+   "race_id": "OH-SEN-2026-S",
+   "state": "OH",
+   "state_fips": "39",
+   "office": "SEN",
+   "district": null,
+   "special": true,
+   "label": "Ohio U.S. Senate (special)",
+   "candidates": [
+    {
+     "id": "OH-SEN-2026-S:dolan",
+     "name": "Amy Dolan",
+     "party": "D",
+     "incumbent": false
+    },
+    {
+     "id": "OH-SEN-2026-S:husted",
+     "name": "Jon Husted",
+     "party": "R",
+     "incumbent": true
+    }
+   ],
+   "poll_close_et": "19:30",
+   "baseline": {
+    "2022": {
+     "office": "SEN",
+     "D": 46.5,
+     "R": 53,
+     "margin": 6.5
+    },
+    "2024": {
+     "office": "PRES",
+     "D": 43.9,
+     "R": 55.1,
+     "margin": 11.2
+    }
+   }
+  },
+  "OH-GOV-2026": {
+   "race_id": "OH-GOV-2026",
+   "state": "OH",
+   "state_fips": "39",
+   "office": "GOV",
+   "district": null,
+   "special": false,
+   "label": "Ohio Governor",
+   "candidates": [
+    {
+     "id": "OH-GOV-2026:keller",
+     "name": "Tim Keller",
+     "party": "D",
+     "incumbent": false
+    },
+    {
+     "id": "OH-GOV-2026:ramaswamy",
+     "name": "Vivek Ramaswamy",
+     "party": "R",
+     "incumbent": false
+    }
+   ],
+   "poll_close_et": "19:30",
+   "baseline": {
+    "2022": {
+     "office": "GOV",
+     "D": 37.4,
+     "R": 62.4,
+     "margin": 25
+    },
+    "2024": {
+     "office": "PRES",
+     "D": 43.9,
+     "R": 55.1,
+     "margin": 11.2
+    }
+   }
+  },
+  "MI-SEN-2026": {
+   "race_id": "MI-SEN-2026",
+   "state": "MI",
+   "state_fips": "26",
+   "office": "SEN",
+   "district": null,
+   "special": false,
+   "label": "Michigan U.S. Senate",
+   "candidates": [
+    {
+     "id": "MI-SEN-2026:stevens",
+     "name": "Haley Stevens",
+     "party": "D",
+     "incumbent": false
+    },
+    {
+     "id": "MI-SEN-2026:rogers",
+     "name": "Mike Rogers",
+     "party": "R",
+     "incumbent": false
+    }
+   ],
+   "poll_close_et": "21:00",
+   "baseline": {
+    "2022": {
+     "office": "SEN",
+     "D": 0,
+     "R": 0,
+     "margin": 0
+    },
+    "2024": {
+     "office": "PRES",
+     "D": 48.3,
+     "R": 49.7,
+     "margin": 1.4
+    }
+   }
+  },
+  "MI-GOV-2026": {
+   "race_id": "MI-GOV-2026",
+   "state": "MI",
+   "state_fips": "26",
+   "office": "GOV",
+   "district": null,
+   "special": false,
+   "label": "Michigan Governor",
+   "candidates": [
+    {
+     "id": "MI-GOV-2026:benson",
+     "name": "Jocelyn Benson",
+     "party": "D",
+     "incumbent": false
+    },
+    {
+     "id": "MI-GOV-2026:james",
+     "name": "John James",
+     "party": "R",
+     "incumbent": false
+    }
+   ],
+   "poll_close_et": "21:00",
+   "baseline": {
+    "2022": {
+     "office": "GOV",
+     "D": 54.5,
+     "R": 43.9,
+     "margin": -10.6
+    },
+    "2024": {
+     "office": "PRES",
+     "D": 48.3,
+     "R": 49.7,
+     "margin": 1.4
+    }
+   }
+  },
+  "GA-SEN-2026": {
+   "race_id": "GA-SEN-2026",
+   "state": "GA",
+   "state_fips": "13",
+   "office": "SEN",
+   "district": null,
+   "special": false,
+   "label": "Georgia U.S. Senate",
+   "candidates": [
+    {
+     "id": "GA-SEN-2026:ossoff",
+     "name": "Jon Ossoff",
+     "party": "D",
+     "incumbent": true
+    },
+    {
+     "id": "GA-SEN-2026:carter",
+     "name": "Buddy Carter",
+     "party": "R",
+     "incumbent": false
+    }
+   ],
+   "poll_close_et": "19:00",
+   "baseline": {
+    "2022": {
+     "office": "SEN",
+     "D": 49.4,
+     "R": 48.5,
+     "margin": -0.9
+    },
+    "2024": {
+     "office": "PRES",
+     "D": 48.5,
+     "R": 50.7,
+     "margin": 2.2
+    }
+   }
+  },
+  "GA-GOV-2026": {
+   "race_id": "GA-GOV-2026",
+   "state": "GA",
+   "state_fips": "13",
+   "office": "GOV",
+   "district": null,
+   "special": false,
+   "label": "Georgia Governor",
+   "candidates": [
+    {
+     "id": "GA-GOV-2026:bottoms",
+     "name": "Keisha Lance Bottoms",
+     "party": "D",
+     "incumbent": false
+    },
+    {
+     "id": "GA-GOV-2026:jones",
+     "name": "Burt Jones",
+     "party": "R",
+     "incumbent": false
+    }
+   ],
+   "poll_close_et": "19:00",
+   "baseline": {
+    "2022": {
+     "office": "GOV",
+     "D": 45.9,
+     "R": 53.4,
+     "margin": 7.5
+    },
+    "2024": {
+     "office": "PRES",
+     "D": 48.5,
+     "R": 50.7,
+     "margin": 2.2
+    }
+   }
+  },
+  "AZ-GOV-2026": {
+   "race_id": "AZ-GOV-2026",
+   "state": "AZ",
+   "state_fips": "04",
+   "office": "GOV",
+   "district": null,
+   "special": false,
+   "label": "Arizona Governor",
+   "candidates": [
+    {
+     "id": "AZ-GOV-2026:hobbs",
+     "name": "Katie Hobbs",
+     "party": "D",
+     "incumbent": true
+    },
+    {
+     "id": "AZ-GOV-2026:biggs",
+     "name": "Andy Biggs",
+     "party": "R",
+     "incumbent": false
+    }
+   ],
+   "poll_close_et": "21:00",
+   "baseline": {
+    "2022": {
+     "office": "GOV",
+     "D": 50.3,
+     "R": 49.6,
+     "margin": -0.7
+    },
+    "2024": {
+     "office": "PRES",
+     "D": 46.7,
+     "R": 52.2,
+     "margin": 5.5
+    }
+   }
+  },
+  "NC-SEN-2026": {
+   "race_id": "NC-SEN-2026",
+   "state": "NC",
+   "state_fips": "37",
+   "office": "SEN",
+   "district": null,
+   "special": false,
+   "label": "North Carolina U.S. Senate",
+   "candidates": [
+    {
+     "id": "NC-SEN-2026:cooper",
+     "name": "Roy Cooper",
+     "party": "D",
+     "incumbent": false
+    },
+    {
+     "id": "NC-SEN-2026:whatley",
+     "name": "Michael Whatley",
+     "party": "R",
+     "incumbent": false
+    }
+   ],
+   "poll_close_et": "19:30",
+   "baseline": {
+    "2022": {
+     "office": "SEN",
+     "D": 0,
+     "R": 0,
+     "margin": 0
+    },
+    "2024": {
+     "office": "PRES",
+     "D": 47.7,
+     "R": 50.9,
+     "margin": 3.2
+    }
+   }
+  },
+  "ME-SEN-2026": {
+   "race_id": "ME-SEN-2026",
+   "state": "ME",
+   "state_fips": "23",
+   "office": "SEN",
+   "district": null,
+   "special": false,
+   "label": "Maine U.S. Senate",
+   "candidates": [
+    {
+     "id": "ME-SEN-2026:platner",
+     "name": "Graham Platner",
+     "party": "D",
+     "incumbent": false
+    },
+    {
+     "id": "ME-SEN-2026:collins",
+     "name": "Susan Collins",
+     "party": "R",
+     "incumbent": true
+    }
+   ],
+   "poll_close_et": "20:00",
+   "baseline": {
+    "2022": {
+     "office": "SEN",
+     "D": 0,
+     "R": 0,
+     "margin": 0
+    },
+    "2024": {
+     "office": "PRES",
+     "D": 52.4,
+     "R": 45.5,
+     "margin": -6.9
+    }
+   }
+  },
+  "TX-SEN-2026": {
+   "race_id": "TX-SEN-2026",
+   "state": "TX",
+   "state_fips": "48",
+   "office": "SEN",
+   "district": null,
+   "special": false,
+   "label": "Texas U.S. Senate",
+   "candidates": [
+    {
+     "id": "TX-SEN-2026:allred",
+     "name": "Colin Allred",
+     "party": "D",
+     "incumbent": false
+    },
+    {
+     "id": "TX-SEN-2026:paxton",
+     "name": "Ken Paxton",
+     "party": "R",
+     "incumbent": false
+    }
+   ],
+   "poll_close_et": "20:00",
+   "baseline": {
+    "2022": {
+     "office": "GOV",
+     "D": 43.5,
+     "R": 54.8,
+     "margin": 11.3
+    },
+    "2024": {
+     "office": "PRES",
+     "D": 42.5,
+     "R": 56.2,
+     "margin": 13.7
+    }
+   }
+  },
+  "TX-GOV-2026": {
+   "race_id": "TX-GOV-2026",
+   "state": "TX",
+   "state_fips": "48",
+   "office": "GOV",
+   "district": null,
+   "special": false,
+   "label": "Texas Governor",
+   "candidates": [
+    {
+     "id": "TX-GOV-2026:hinojosa",
+     "name": "Gina Hinojosa",
+     "party": "D",
+     "incumbent": false
+    },
+    {
+     "id": "TX-GOV-2026:abbott",
+     "name": "Greg Abbott",
+     "party": "R",
+     "incumbent": true
+    }
+   ],
+   "poll_close_et": "20:00",
+   "baseline": {
+    "2022": {
+     "office": "GOV",
+     "D": 43.8,
+     "R": 54.8,
+     "margin": 11
+    },
+    "2024": {
+     "office": "PRES",
+     "D": 42.5,
+     "R": 56.2,
+     "margin": 13.7
+    }
+   }
+  }
+ },
+ "jurisdictions": {
+  "13": {
+   "jkey": "13",
+   "level": "state",
+   "name": "Georgia",
+   "state": "GA",
+   "state_fips": "13",
+   "parent": "US",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 49.4,
+      "R": 48.5,
+      "margin": -0.9
+     },
+     "GOV": {
+      "D": 45.9,
+      "R": 53.4,
+      "margin": 7.5
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 48.5,
+      "R": 50.7,
+      "margin": 2.2,
+      "total_votes": 5200000
+     }
+    }
+   },
+   "results": {
+    "GA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 66,
+     "pct_reporting": 77.9,
+     "votes": {
+      "GA-SEN-2026:ossoff": 2012400,
+      "GA-SEN-2026:carter": 1936300
+     },
+     "pct": {
+      "D": 50.3,
+      "R": 48.4,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -1.9,
+     "swing_vs_2024": -4.1,
+     "swing_vs_2022": -1,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ga-sos",
+       "tier": "official",
+       "url": "https://results.enr.clarityelections.com/GA/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "GA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 70,
+     "pct_reporting": 77.9,
+     "votes": {
+      "GA-GOV-2026:bottoms": 1896000,
+      "GA-GOV-2026:jones": 2064000
+     },
+     "pct": {
+      "D": 47.4,
+      "R": 51.6,
+      "O": 1
+     },
+     "leader": "R",
+     "margin": 4.2,
+     "swing_vs_2024": 2,
+     "swing_vs_2022": -3.3,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ga-sos",
+       "tier": "official",
+       "url": "https://results.enr.clarityelections.com/GA/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "23": {
+   "jkey": "23",
+   "level": "state",
+   "name": "Maine",
+   "state": "ME",
+   "state_fips": "23",
+   "parent": "US",
+   "baseline": {
+    "2022": {},
+    "2024": {
+     "PRES": {
+      "D": 52.4,
+      "R": 45.5,
+      "margin": -6.9,
+      "total_votes": 840000
+     }
+    }
+   },
+   "results": {
+    "ME-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 58,
+     "pct_reporting": 47,
+     "votes": {
+      "ME-SEN-2026:platner": 206400,
+      "ME-SEN-2026:collins": 193400
+     },
+     "pct": {
+      "D": 50.9,
+      "R": 47.7,
+      "O": 1.4
+     },
+     "leader": "D",
+     "margin": -3.2,
+     "swing_vs_2024": 3.7,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-me-sos",
+       "tier": "official",
+       "url": "https://www.maine.gov/sos/cec/elec/results/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "26": {
+   "jkey": "26",
+   "level": "state",
+   "name": "Michigan",
+   "state": "MI",
+   "state_fips": "26",
+   "parent": "US",
+   "baseline": {
+    "2022": {
+     "GOV": {
+      "D": 54.5,
+      "R": 43.9,
+      "margin": -10.6
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 48.3,
+      "R": 49.7,
+      "margin": 1.4,
+      "total_votes": 5600000
+     }
+    }
+   },
+   "results": {
+    "MI-SEN-2026": {
+     "status": "contested",
+     "confidence": 35,
+     "pct_reporting": 58.7,
+     "votes": {
+      "MI-SEN-2026:stevens": 1611230,
+      "MI-SEN-2026:rogers": 1601380
+     },
+     "pct": {
+      "D": 49.1,
+      "R": 48.8,
+      "O": 2.1
+     },
+     "leader": "D",
+     "margin": -0.3,
+     "swing_vs_2024": -1.7,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": {
+      "D": [
+       47.9,
+       50.4
+      ],
+      "R": [
+       47.6,
+       50.1
+      ]
+     },
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-detroit-fp",
+       "tier": "media_t2",
+       "url": "https://www.freep.com/elections",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [
+      {
+       "id": "src-x-3",
+       "reason": "two tier-1 outlets disagree by more than 2 points"
+      }
+     ],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "MI-GOV-2026": {
+     "status": "estimated",
+     "confidence": 52,
+     "pct_reporting": 58.7,
+     "votes": {
+      "MI-GOV-2026:benson": 1680000,
+      "MI-GOV-2026:james": 1539000
+     },
+     "pct": {
+      "D": 51.2,
+      "R": 46.9,
+      "O": 1.9
+     },
+     "leader": "D",
+     "margin": -4.3,
+     "swing_vs_2024": -5.7,
+     "swing_vs_2022": 6.3,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "37": {
+   "jkey": "37",
+   "level": "state",
+   "name": "North Carolina",
+   "state": "NC",
+   "state_fips": "37",
+   "parent": "US",
+   "baseline": {
+    "2022": {},
+    "2024": {
+     "PRES": {
+      "D": 47.7,
+      "R": 50.9,
+      "margin": 3.2,
+      "total_votes": 5700000
+     }
+    }
+   },
+   "results": {
+    "NC-SEN-2026": {
+     "status": "pending",
+     "confidence": 0,
+     "pct_reporting": null,
+     "votes": {
+      "NC-SEN-2026:cooper": 0,
+      "NC-SEN-2026:whatley": 0
+     },
+     "pct": {
+      "D": null,
+      "R": null,
+      "O": null
+     },
+     "leader": null,
+     "margin": null,
+     "swing_vs_2024": null,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [],
+     "sources_rejected": [
+      {
+       "id": "src-x-4",
+       "reason": "exit-poll screenshot, no outlet attribution"
+      }
+     ],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "39": {
+   "jkey": "39",
+   "level": "state",
+   "name": "Ohio",
+   "state": "OH",
+   "state_fips": "39",
+   "parent": "US",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 46.5,
+      "R": 53,
+      "margin": 6.5
+     },
+     "GOV": {
+      "D": 37.4,
+      "R": 62.4,
+      "margin": 25
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 43.9,
+      "R": 55.1,
+      "margin": 11.2,
+      "total_votes": 5900000
+     }
+    }
+   },
+   "results": {
+    "OH-SEN-2026-S": {
+     "status": "official_preliminary",
+     "confidence": 88,
+     "pct_reporting": 91.2,
+     "votes": {
+      "OH-SEN-2026-S:dolan": 1902330,
+      "OH-SEN-2026-S:husted": 2355210
+     },
+     "pct": {
+      "D": 44.1,
+      "R": 54.6,
+      "O": 1.3
+     },
+     "leader": "R",
+     "margin": 10.5,
+     "swing_vs_2024": -0.7,
+     "swing_vs_2022": 4,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-oh-sos",
+       "tier": "official",
+       "url": "https://www.ohiosos.gov/elections/election-results-and-data/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "OH-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 90,
+     "pct_reporting": 91.2,
+     "votes": {
+      "OH-GOV-2026:keller": 1803000,
+      "OH-GOV-2026:ramaswamy": 2458600
+     },
+     "pct": {
+      "D": 41.8,
+      "R": 57,
+      "O": 1.2
+     },
+     "leader": "R",
+     "margin": 15.2,
+     "swing_vs_2024": 4,
+     "swing_vs_2022": -9.8,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-oh-sos",
+       "tier": "official",
+       "url": "https://www.ohiosos.gov/elections/election-results-and-data/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42": {
+   "jkey": "42",
+   "level": "state",
+   "name": "Pennsylvania",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "US",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 51.2,
+      "R": 46.3,
+      "margin": -4.9
+     },
+     "GOV": {
+      "D": 56.5,
+      "R": 41.7,
+      "margin": -14.8
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 48.7,
+      "R": 50.4,
+      "margin": 1.7,
+      "total_votes": 7000000
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 72,
+     "pct_reporting": 63.4,
+     "votes": {
+      "PA-SEN-2026:whitaker": 2201455,
+      "PA-SEN-2026:castellano": 2117490,
+      "PA-SEN-2026:ortiz": 101688
+     },
+     "pct": {
+      "D": 49.8,
+      "R": 47.9,
+      "O": 2.3
+     },
+     "leader": "D",
+     "margin": -1.9,
+     "swing_vs_2024": -3.6,
+     "swing_vs_2022": 3,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [
+      {
+       "id": "src-x-1",
+       "reason": "unsourced social post claiming 100% reporting"
+      }
+     ],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 81,
+     "pct_reporting": 63.4,
+     "votes": {
+      "PA-GOV-2026:reinhart": 2435100,
+      "PA-GOV-2026:brennan": 1926800
+     },
+     "pct": {
+      "D": 55.1,
+      "R": 43.6,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -11.5,
+     "swing_vs_2024": -13.2,
+     "swing_vs_2022": 3.3,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-HOU-2026-07": {
+     "status": "estimated",
+     "confidence": 44,
+     "pct_reporting": 38,
+     "votes": {
+      "PA-HOU-2026-07:wilde": 98120,
+      "PA-HOU-2026-07:mackenzie": 95790
+     },
+     "pct": {
+      "D": 50.6,
+      "R": 49.4,
+      "O": 0
+     },
+     "leader": "D",
+     "margin": -1.2,
+     "swing_vs_2024": -2.9,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [
+      {
+       "id": "src-x-2",
+       "reason": "tier-3 account, figures contradict official feed"
+      }
+     ],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "48": {
+   "jkey": "48",
+   "level": "state",
+   "name": "Texas",
+   "state": "TX",
+   "state_fips": "48",
+   "parent": "US",
+   "baseline": {
+    "2022": {
+     "GOV": {
+      "D": 43.8,
+      "R": 54.8,
+      "margin": 11
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 42.5,
+      "R": 56.2,
+      "margin": 13.7,
+      "total_votes": 11400000
+     }
+    }
+   },
+   "results": {
+    "TX-SEN-2026": {
+     "status": "official_certified",
+     "confidence": 97,
+     "pct_reporting": 100,
+     "votes": {
+      "TX-SEN-2026:allred": 4950000,
+      "TX-SEN-2026:paxton": 5848000
+     },
+     "pct": {
+      "D": 45.2,
+      "R": 53.4,
+      "O": 1.4
+     },
+     "leader": "R",
+     "margin": 8.2,
+     "swing_vs_2024": -5.5,
+     "swing_vs_2022": null,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-tx-sos",
+       "tier": "official",
+       "url": "https://results.texas-election.com/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "TX-GOV-2026": {
+     "status": "official_certified",
+     "confidence": 98,
+     "pct_reporting": 100,
+     "votes": {
+      "TX-GOV-2026:hinojosa": 4720000,
+      "TX-GOV-2026:abbott": 6089000
+     },
+     "pct": {
+      "D": 43.1,
+      "R": 55.6,
+      "O": 1.3
+     },
+     "leader": "R",
+     "margin": 12.5,
+     "swing_vs_2024": -1.2,
+     "swing_vs_2022": 1.5,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-tx-sos",
+       "tier": "official",
+       "url": "https://results.texas-election.com/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "13067": {
+   "jkey": "13067",
+   "level": "county",
+   "name": "Cobb",
+   "state": "GA",
+   "state_fips": "13",
+   "parent": "13",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 55,
+      "R": 43.8,
+      "margin": -11.2
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 55.6,
+      "R": 43.1,
+      "margin": -12.5,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "GA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 64,
+     "pct_reporting": 70.5,
+     "votes": {
+      "GA-SEN-2026:ossoff": 200100,
+      "GA-SEN-2026:carter": 151700
+     },
+     "pct": {
+      "D": 56.2,
+      "R": 42.6,
+      "O": 1.2
+     },
+     "leader": "D",
+     "margin": -13.6,
+     "swing_vs_2024": -1.1,
+     "swing_vs_2022": -2.4,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ga-sos",
+       "tier": "official",
+       "url": "https://results.enr.clarityelections.com/GA/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "13089": {
+   "jkey": "13089",
+   "level": "county",
+   "name": "DeKalb",
+   "state": "GA",
+   "state_fips": "13",
+   "parent": "13",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 82,
+      "R": 17.1,
+      "margin": -64.9
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 81.3,
+      "R": 17.7,
+      "margin": -63.6,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "GA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 73,
+     "pct_reporting": 85.2,
+     "votes": {
+      "GA-SEN-2026:ossoff": 260800,
+      "GA-SEN-2026:carter": 52100
+     },
+     "pct": {
+      "D": 82.6,
+      "R": 16.5,
+      "O": 0.9
+     },
+     "leader": "D",
+     "margin": -66.1,
+     "swing_vs_2024": -2.5,
+     "swing_vs_2022": -1.2,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ga-sos",
+       "tier": "official",
+       "url": "https://results.enr.clarityelections.com/GA/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "13121": {
+   "jkey": "13121",
+   "level": "county",
+   "name": "Fulton",
+   "state": "GA",
+   "state_fips": "13",
+   "parent": "13",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 72,
+      "R": 26.9,
+      "margin": -45.1
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 72.6,
+      "R": 26.3,
+      "margin": -46.3,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "GA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 70,
+     "pct_reporting": 81,
+     "votes": {
+      "GA-SEN-2026:ossoff": 380200,
+      "GA-SEN-2026:carter": 131400
+     },
+     "pct": {
+      "D": 73.5,
+      "R": 25.4,
+      "O": 1.1
+     },
+     "leader": "D",
+     "margin": -48.1,
+     "swing_vs_2024": -1.8,
+     "swing_vs_2022": -3,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ga-sos",
+       "tier": "official",
+       "url": "https://results.enr.clarityelections.com/GA/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "GA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 72,
+     "pct_reporting": 81,
+     "votes": {
+      "GA-GOV-2026:bottoms": 362600,
+      "GA-GOV-2026:jones": 150000
+     },
+     "pct": {
+      "D": 70.1,
+      "R": 29,
+      "O": 0.9
+     },
+     "leader": "D",
+     "margin": -41.1,
+     "swing_vs_2024": 5.2,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ga-sos",
+       "tier": "official",
+       "url": "https://results.enr.clarityelections.com/GA/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "26099": {
+   "jkey": "26099",
+   "level": "county",
+   "name": "Macomb",
+   "state": "MI",
+   "state_fips": "26",
+   "parent": "26",
+   "baseline": {
+    "2022": {
+     "GOV": {
+      "D": 46,
+      "R": 52.5,
+      "margin": 6.5
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 41.1,
+      "R": 57.5,
+      "margin": 16.4,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "MI-SEN-2026": {
+     "status": "estimated",
+     "confidence": 48,
+     "pct_reporting": 62,
+     "votes": {
+      "MI-SEN-2026:stevens": 150300,
+      "MI-SEN-2026:rogers": 195400
+     },
+     "pct": {
+      "D": 42.6,
+      "R": 55.4,
+      "O": 2
+     },
+     "leader": "R",
+     "margin": 12.8,
+     "swing_vs_2024": -3.6,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "26125": {
+   "jkey": "26125",
+   "level": "county",
+   "name": "Oakland",
+   "state": "MI",
+   "state_fips": "26",
+   "parent": "26",
+   "baseline": {
+    "2022": {
+     "GOV": {
+      "D": 60,
+      "R": 38.5,
+      "margin": -21.5
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 55.4,
+      "R": 43.1,
+      "margin": -12.3,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "MI-SEN-2026": {
+     "status": "estimated",
+     "confidence": 50,
+     "pct_reporting": 66,
+     "votes": {
+      "MI-SEN-2026:stevens": 310200,
+      "MI-SEN-2026:rogers": 234700
+     },
+     "pct": {
+      "D": 55.9,
+      "R": 42.3,
+      "O": 1.8
+     },
+     "leader": "D",
+     "margin": -13.6,
+     "swing_vs_2024": -1.3,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "MI-GOV-2026": {
+     "status": "estimated",
+     "confidence": 52,
+     "pct_reporting": 66,
+     "votes": {
+      "MI-GOV-2026:benson": 321900,
+      "MI-GOV-2026:james": 223600
+     },
+     "pct": {
+      "D": 58,
+      "R": 40.3,
+      "O": 1.7
+     },
+     "leader": "D",
+     "margin": -17.7,
+     "swing_vs_2024": -5.4,
+     "swing_vs_2022": 3.8,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "26163": {
+   "jkey": "26163",
+   "level": "county",
+   "name": "Wayne",
+   "state": "MI",
+   "state_fips": "26",
+   "parent": "26",
+   "baseline": {
+    "2022": {
+     "GOV": {
+      "D": 67,
+      "R": 31.5,
+      "margin": -35.5
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 63.1,
+      "R": 35.2,
+      "margin": -27.9,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "MI-SEN-2026": {
+     "status": "contested",
+     "confidence": 30,
+     "pct_reporting": 41,
+     "votes": {
+      "MI-SEN-2026:stevens": 280100,
+      "MI-SEN-2026:rogers": 149300
+     },
+     "pct": {
+      "D": 64,
+      "R": 34.1,
+      "O": 1.9
+     },
+     "leader": "D",
+     "margin": -29.9,
+     "swing_vs_2024": -2,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": {
+      "D": [
+       62.5,
+       66
+      ],
+      "R": [
+       32,
+       35.5
+      ]
+     },
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [
+      {
+       "id": "src-x-wayne",
+       "reason": "county clerk feed stalled since 01:10 UTC; media figures unconfirmed"
+      }
+     ],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "MI-GOV-2026": {
+     "status": "estimated",
+     "confidence": 45,
+     "pct_reporting": 41,
+     "votes": {
+      "MI-GOV-2026:benson": 289700,
+      "MI-GOV-2026:james": 140000
+     },
+     "pct": {
+      "D": 66.2,
+      "R": 32,
+      "O": 1.8
+     },
+     "leader": "D",
+     "margin": -34.2,
+     "swing_vs_2024": -6.3,
+     "swing_vs_2022": 1.3,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "37119": {
+   "jkey": "37119",
+   "level": "county",
+   "name": "Mecklenburg",
+   "state": "NC",
+   "state_fips": "37",
+   "parent": "37",
+   "baseline": {
+    "2022": {},
+    "2024": {
+     "PRES": {
+      "D": 66.1,
+      "R": 32.3,
+      "margin": -33.8,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "NC-SEN-2026": {
+     "status": "pending",
+     "confidence": 0,
+     "pct_reporting": null,
+     "votes": {
+      "NC-SEN-2026:cooper": 0,
+      "NC-SEN-2026:whatley": 0
+     },
+     "pct": {
+      "D": null,
+      "R": null,
+      "O": null
+     },
+     "leader": null,
+     "margin": null,
+     "swing_vs_2024": null,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "37183": {
+   "jkey": "37183",
+   "level": "county",
+   "name": "Wake",
+   "state": "NC",
+   "state_fips": "37",
+   "parent": "37",
+   "baseline": {
+    "2022": {},
+    "2024": {
+     "PRES": {
+      "D": 61.7,
+      "R": 36.4,
+      "margin": -25.3,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "NC-SEN-2026": {
+     "status": "pending",
+     "confidence": 0,
+     "pct_reporting": null,
+     "votes": {
+      "NC-SEN-2026:cooper": 0,
+      "NC-SEN-2026:whatley": 0
+     },
+     "pct": {
+      "D": null,
+      "R": null,
+      "O": null
+     },
+     "leader": null,
+     "margin": null,
+     "swing_vs_2024": null,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "39035": {
+   "jkey": "39035",
+   "level": "county",
+   "name": "Cuyahoga",
+   "state": "OH",
+   "state_fips": "39",
+   "parent": "39",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 66.1,
+      "R": 31.8,
+      "margin": -34.3
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 65.1,
+      "R": 33.8,
+      "margin": -31.3,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "OH-SEN-2026-S": {
+     "status": "official_preliminary",
+     "confidence": 90,
+     "pct_reporting": 95,
+     "votes": {
+      "OH-SEN-2026-S:dolan": 321000,
+      "OH-SEN-2026-S:husted": 173000
+     },
+     "pct": {
+      "D": 64.2,
+      "R": 34.6,
+      "O": 1.2
+     },
+     "leader": "D",
+     "margin": -29.6,
+     "swing_vs_2024": 1.7,
+     "swing_vs_2022": 4.7,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-oh-sos",
+       "tier": "official",
+       "url": "https://www.ohiosos.gov/elections/election-results-and-data/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "OH-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 90,
+     "pct_reporting": 95,
+     "votes": {
+      "OH-GOV-2026:keller": 311000,
+      "OH-GOV-2026:ramaswamy": 183000
+     },
+     "pct": {
+      "D": 62.2,
+      "R": 36.6,
+      "O": 1.2
+     },
+     "leader": "D",
+     "margin": -25.6,
+     "swing_vs_2024": 5.7,
+     "swing_vs_2022": null,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-oh-sos",
+       "tier": "official",
+       "url": "https://www.ohiosos.gov/elections/election-results-and-data/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "39049": {
+   "jkey": "39049",
+   "level": "county",
+   "name": "Franklin",
+   "state": "OH",
+   "state_fips": "39",
+   "parent": "39",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 64.8,
+      "R": 32.9,
+      "margin": -31.9
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 63.8,
+      "R": 34.9,
+      "margin": -28.9,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "OH-SEN-2026-S": {
+     "status": "official_preliminary",
+     "confidence": 89,
+     "pct_reporting": 93.4,
+     "votes": {
+      "OH-SEN-2026-S:dolan": 315000,
+      "OH-SEN-2026-S:husted": 179000
+     },
+     "pct": {
+      "D": 63,
+      "R": 35.8,
+      "O": 1.2
+     },
+     "leader": "D",
+     "margin": -27.2,
+     "swing_vs_2024": 1.7,
+     "swing_vs_2022": 4.7,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-oh-sos",
+       "tier": "official",
+       "url": "https://www.ohiosos.gov/elections/election-results-and-data/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "OH-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 89,
+     "pct_reporting": 93.4,
+     "votes": {
+      "OH-GOV-2026:keller": 305000,
+      "OH-GOV-2026:ramaswamy": 189000
+     },
+     "pct": {
+      "D": 61,
+      "R": 37.8,
+      "O": 1.2
+     },
+     "leader": "D",
+     "margin": -23.2,
+     "swing_vs_2024": 5.7,
+     "swing_vs_2022": null,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-oh-sos",
+       "tier": "official",
+       "url": "https://www.ohiosos.gov/elections/election-results-and-data/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "39061": {
+   "jkey": "39061",
+   "level": "county",
+   "name": "Hamilton",
+   "state": "OH",
+   "state_fips": "39",
+   "parent": "39",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 58,
+      "R": 39.6,
+      "margin": -18.4
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 57,
+      "R": 41.6,
+      "margin": -15.4,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "OH-SEN-2026-S": {
+     "status": "official_preliminary",
+     "confidence": 86,
+     "pct_reporting": 90,
+     "votes": {
+      "OH-SEN-2026-S:dolan": 280500,
+      "OH-SEN-2026-S:husted": 213500
+     },
+     "pct": {
+      "D": 56.1,
+      "R": 42.7,
+      "O": 1.2
+     },
+     "leader": "D",
+     "margin": -13.4,
+     "swing_vs_2024": 2,
+     "swing_vs_2022": 5,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-oh-sos",
+       "tier": "official",
+       "url": "https://www.ohiosos.gov/elections/election-results-and-data/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "OH-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 86,
+     "pct_reporting": 90,
+     "votes": {
+      "OH-GOV-2026:keller": 270500,
+      "OH-GOV-2026:ramaswamy": 223500
+     },
+     "pct": {
+      "D": 54.1,
+      "R": 44.7,
+      "O": 1.2
+     },
+     "leader": "D",
+     "margin": -9.4,
+     "swing_vs_2024": 6,
+     "swing_vs_2022": null,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-oh-sos",
+       "tier": "official",
+       "url": "https://www.ohiosos.gov/elections/election-results-and-data/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "39153": {
+   "jkey": "39153",
+   "level": "county",
+   "name": "Summit",
+   "state": "OH",
+   "state_fips": "39",
+   "parent": "39",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 55.1,
+      "R": 42.6,
+      "margin": -12.5
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 54.1,
+      "R": 44.6,
+      "margin": -9.5,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "OH-SEN-2026-S": {
+     "status": "official_preliminary",
+     "confidence": 84,
+     "pct_reporting": 88.2,
+     "votes": {
+      "OH-SEN-2026-S:dolan": 265000,
+      "OH-SEN-2026-S:husted": 229000
+     },
+     "pct": {
+      "D": 53,
+      "R": 45.8,
+      "O": 1.2
+     },
+     "leader": "D",
+     "margin": -7.2,
+     "swing_vs_2024": 2.3,
+     "swing_vs_2022": 5.3,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-oh-sos",
+       "tier": "official",
+       "url": "https://www.ohiosos.gov/elections/election-results-and-data/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "OH-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 84,
+     "pct_reporting": 88.2,
+     "votes": {
+      "OH-GOV-2026:keller": 255000,
+      "OH-GOV-2026:ramaswamy": 239000
+     },
+     "pct": {
+      "D": 51,
+      "R": 47.8,
+      "O": 1.2
+     },
+     "leader": "D",
+     "margin": -3.2,
+     "swing_vs_2024": 6.3,
+     "swing_vs_2022": null,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-oh-sos",
+       "tier": "official",
+       "url": "https://www.ohiosos.gov/elections/election-results-and-data/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42003": {
+   "jkey": "42003",
+   "level": "county",
+   "name": "Allegheny",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 62.7,
+      "R": 35.1,
+      "margin": -27.6
+     },
+     "GOV": {
+      "D": 67.2,
+      "R": 30.6,
+      "margin": -36.6
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 60.2,
+      "R": 38.6,
+      "margin": -21.6,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 74,
+     "pct_reporting": 71.3,
+     "votes": {
+      "PA-SEN-2026:whitaker": 173972,
+      "PA-SEN-2026:castellano": 106950,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 61,
+      "R": 37.5,
+      "O": 1.5
+     },
+     "leader": "D",
+     "margin": -23.5,
+     "swing_vs_2024": -1.9,
+     "swing_vs_2022": 4.1,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 74,
+     "pct_reporting": 71.3,
+     "votes": {
+      "PA-GOV-2026:reinhart": 186806,
+      "PA-GOV-2026:brennan": 91264
+     },
+     "pct": {
+      "D": 65.5,
+      "R": 32,
+      "O": 1
+     },
+     "leader": "D",
+     "margin": -33.5,
+     "swing_vs_2024": -11.9,
+     "swing_vs_2022": 3.1,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42011": {
+   "jkey": "42011",
+   "level": "county",
+   "name": "Berks",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 46.3,
+      "R": 51.4,
+      "margin": 5.1
+     },
+     "GOV": {
+      "D": 50.8,
+      "R": 46.9,
+      "margin": -3.9
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 43.8,
+      "R": 54.9,
+      "margin": 11.1,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 72,
+     "pct_reporting": 70.2,
+     "votes": {
+      "PA-SEN-2026:whitaker": 123552,
+      "PA-SEN-2026:castellano": 153598,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 44,
+      "R": 54.7,
+      "O": 1.3
+     },
+     "leader": "R",
+     "margin": 10.7,
+     "swing_vs_2024": -0.4,
+     "swing_vs_2022": 5.6,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 72,
+     "pct_reporting": 70.2,
+     "votes": {
+      "PA-GOV-2026:reinhart": 136188,
+      "PA-GOV-2026:brennan": 138154
+     },
+     "pct": {
+      "D": 48.5,
+      "R": 49.2,
+      "O": 1
+     },
+     "leader": "R",
+     "margin": 0.7,
+     "swing_vs_2024": -10.4,
+     "swing_vs_2022": 4.6,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42017": {
+   "jkey": "42017",
+   "level": "county",
+   "name": "Bucks",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 51.4,
+      "R": 46.5,
+      "margin": -4.9
+     },
+     "GOV": {
+      "D": 55.9,
+      "R": 42,
+      "margin": -13.9
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 48.9,
+      "R": 50,
+      "margin": 1.1,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 61,
+     "pct_reporting": 55,
+     "votes": {
+      "PA-SEN-2026:whitaker": 110440,
+      "PA-SEN-2026:castellano": 106920,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 50.2,
+      "R": 48.6,
+      "O": 1.2
+     },
+     "leader": "D",
+     "margin": -1.6,
+     "swing_vs_2024": -2.7,
+     "swing_vs_2022": 3.3,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 61,
+     "pct_reporting": 55,
+     "votes": {
+      "PA-GOV-2026:reinhart": 120340,
+      "PA-GOV-2026:brennan": 94820
+     },
+     "pct": {
+      "D": 54.7,
+      "R": 43.1,
+      "O": 1
+     },
+     "leader": "D",
+     "margin": -11.6,
+     "swing_vs_2024": -12.7,
+     "swing_vs_2022": 2.3,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42019": {
+   "jkey": "42019",
+   "level": "county",
+   "name": "Butler",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 34,
+      "R": 63.8,
+      "margin": 29.8
+     },
+     "GOV": {
+      "D": 38.5,
+      "R": 59.3,
+      "margin": 20.8
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 31.5,
+      "R": 67.3,
+      "margin": 35.8,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 86,
+     "pct_reporting": 88,
+     "votes": {
+      "PA-SEN-2026:whitaker": 112640,
+      "PA-SEN-2026:castellano": 234784,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 32,
+      "R": 66.7,
+      "O": 1.3
+     },
+     "leader": "R",
+     "margin": 34.7,
+     "swing_vs_2024": -1.1,
+     "swing_vs_2022": 4.9,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 86,
+     "pct_reporting": 88,
+     "votes": {
+      "PA-GOV-2026:reinhart": 128480,
+      "PA-GOV-2026:brennan": 215424
+     },
+     "pct": {
+      "D": 36.5,
+      "R": 61.2,
+      "O": 1
+     },
+     "leader": "R",
+     "margin": 24.7,
+     "swing_vs_2024": -11.1,
+     "swing_vs_2022": 3.9,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42021": {
+   "jkey": "42021",
+   "level": "county",
+   "name": "Cambria",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 32.1,
+      "R": 66,
+      "margin": 33.9
+     },
+     "GOV": {
+      "D": 36.6,
+      "R": 61.5,
+      "margin": 24.9
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 29.6,
+      "R": 69.5,
+      "margin": 39.9,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "pending",
+     "confidence": 0,
+     "pct_reporting": null,
+     "votes": {
+      "PA-SEN-2026:whitaker": 0,
+      "PA-SEN-2026:castellano": 0,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": null,
+      "R": null,
+      "O": null
+     },
+     "leader": null,
+     "margin": null,
+     "swing_vs_2024": null,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "pending",
+     "confidence": 0,
+     "pct_reporting": null,
+     "votes": {
+      "PA-GOV-2026:reinhart": 0,
+      "PA-GOV-2026:brennan": 0
+     },
+     "pct": {
+      "D": null,
+      "R": null,
+      "O": null
+     },
+     "leader": null,
+     "margin": null,
+     "swing_vs_2024": null,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42027": {
+   "jkey": "42027",
+   "level": "county",
+   "name": "Centre",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 55.3,
+      "R": 42.1,
+      "margin": -13.2
+     },
+     "GOV": {
+      "D": 59.8,
+      "R": 37.6,
+      "margin": -22.2
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 52.8,
+      "R": 45.6,
+      "margin": -7.2,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "estimated",
+     "confidence": 19,
+     "pct_reporting": 12,
+     "votes": {
+      "PA-SEN-2026:whitaker": 25632,
+      "PA-SEN-2026:castellano": 21696,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 53.4,
+      "R": 45.2,
+      "O": 1.4
+     },
+     "leader": "D",
+     "margin": -8.2,
+     "swing_vs_2024": -1,
+     "swing_vs_2022": 5,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "estimated",
+     "confidence": 19,
+     "pct_reporting": 12,
+     "votes": {
+      "PA-GOV-2026:reinhart": 27792,
+      "PA-GOV-2026:brennan": 19056
+     },
+     "pct": {
+      "D": 57.9,
+      "R": 39.7,
+      "O": 1
+     },
+     "leader": "D",
+     "margin": -18.2,
+     "swing_vs_2024": -11,
+     "swing_vs_2022": 4,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42029": {
+   "jkey": "42029",
+   "level": "county",
+   "name": "Chester",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 58.7,
+      "R": 39.1,
+      "margin": -19.6
+     },
+     "GOV": {
+      "D": 63.2,
+      "R": 34.6,
+      "margin": -28.6
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 56.2,
+      "R": 42.6,
+      "margin": -13.6,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 59,
+     "pct_reporting": 48.9,
+     "votes": {
+      "PA-SEN-2026:whitaker": 111492,
+      "PA-SEN-2026:castellano": 81565,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 57,
+      "R": 41.7,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -15.3,
+     "swing_vs_2024": -1.7,
+     "swing_vs_2022": 4.3,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 59,
+     "pct_reporting": 48.9,
+     "votes": {
+      "PA-GOV-2026:reinhart": 120294,
+      "PA-GOV-2026:brennan": 70807
+     },
+     "pct": {
+      "D": 61.5,
+      "R": 36.2,
+      "O": 1
+     },
+     "leader": "D",
+     "margin": -25.3,
+     "swing_vs_2024": -11.7,
+     "swing_vs_2022": 3.3,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42043": {
+   "jkey": "42043",
+   "level": "county",
+   "name": "Dauphin",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 56.7,
+      "R": 41,
+      "margin": -15.7
+     },
+     "GOV": {
+      "D": 61.2,
+      "R": 36.5,
+      "margin": -24.7
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 54.2,
+      "R": 44.5,
+      "margin": -9.7,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 68,
+     "pct_reporting": 61.5,
+     "votes": {
+      "PA-SEN-2026:whitaker": 135300,
+      "PA-SEN-2026:castellano": 107502,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 55,
+      "R": 43.7,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -11.3,
+     "swing_vs_2024": -1.6,
+     "swing_vs_2022": 4.4,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 68,
+     "pct_reporting": 61.5,
+     "votes": {
+      "PA-GOV-2026:reinhart": 146370,
+      "PA-GOV-2026:brennan": 93972
+     },
+     "pct": {
+      "D": 59.5,
+      "R": 38.2,
+      "O": 1
+     },
+     "leader": "D",
+     "margin": -21.3,
+     "swing_vs_2024": -11.6,
+     "swing_vs_2022": 3.4,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42045": {
+   "jkey": "42045",
+   "level": "county",
+   "name": "Delaware",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 65.4,
+      "R": 32.6,
+      "margin": -32.8
+     },
+     "GOV": {
+      "D": 69.9,
+      "R": 28.1,
+      "margin": -41.8
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 62.9,
+      "R": 36.1,
+      "margin": -26.8,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 70,
+     "pct_reporting": 60.1,
+     "votes": {
+      "PA-SEN-2026:whitaker": 153375,
+      "PA-SEN-2026:castellano": 84140,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 63.8,
+      "R": 35,
+      "O": 1.2
+     },
+     "leader": "D",
+     "margin": -28.8,
+     "swing_vs_2024": -2,
+     "swing_vs_2022": 4,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 70,
+     "pct_reporting": 60.1,
+     "votes": {
+      "PA-GOV-2026:reinhart": 164193,
+      "PA-GOV-2026:brennan": 70918
+     },
+     "pct": {
+      "D": 68.3,
+      "R": 29.5,
+      "O": 1
+     },
+     "leader": "D",
+     "margin": -38.8,
+     "swing_vs_2024": -12,
+     "swing_vs_2022": 3,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42049": {
+   "jkey": "42049",
+   "level": "county",
+   "name": "Erie",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 51.3,
+      "R": 46.4,
+      "margin": -4.9
+     },
+     "GOV": {
+      "D": 55.8,
+      "R": 41.9,
+      "margin": -13.9
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 48.8,
+      "R": 49.9,
+      "margin": 1.1,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "contested",
+     "confidence": 31,
+     "pct_reporting": 62,
+     "votes": {
+      "PA-SEN-2026:whitaker": 122016,
+      "PA-SEN-2026:castellano": 122760,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 49.2,
+      "R": 49.5,
+      "O": 1.3
+     },
+     "leader": "R",
+     "margin": 0.3,
+     "swing_vs_2024": -0.8,
+     "swing_vs_2022": 5.2,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": {
+      "D": [
+       47.5,
+       51
+      ],
+      "R": [
+       47.8,
+       51.2
+      ]
+     },
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [
+      {
+       "id": "src-x-erie",
+       "reason": "county site and AP feed disagree on precincts reporting"
+      }
+     ],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "contested",
+     "confidence": 31,
+     "pct_reporting": 62,
+     "votes": {
+      "PA-GOV-2026:reinhart": 133176,
+      "PA-GOV-2026:brennan": 109120
+     },
+     "pct": {
+      "D": 53.7,
+      "R": 44,
+      "O": 1
+     },
+     "leader": "D",
+     "margin": -9.7,
+     "swing_vs_2024": -10.8,
+     "swing_vs_2022": 4.2,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42069": {
+   "jkey": "42069",
+   "level": "county",
+   "name": "Lackawanna",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 54.4,
+      "R": 43.5,
+      "margin": -10.9
+     },
+     "GOV": {
+      "D": 58.9,
+      "R": 39,
+      "margin": -19.9
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 51.9,
+      "R": 47,
+      "margin": -4.9,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 64,
+     "pct_reporting": 58.8,
+     "votes": {
+      "PA-SEN-2026:whitaker": 120658,
+      "PA-SEN-2026:castellano": 111485,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 51.3,
+      "R": 47.4,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -3.9,
+     "swing_vs_2024": 1,
+     "swing_vs_2022": 7,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 64,
+     "pct_reporting": 58.8,
+     "votes": {
+      "PA-GOV-2026:reinhart": 131242,
+      "PA-GOV-2026:brennan": 98549
+     },
+     "pct": {
+      "D": 55.8,
+      "R": 41.9,
+      "O": 1
+     },
+     "leader": "D",
+     "margin": -13.9,
+     "swing_vs_2024": -9,
+     "swing_vs_2022": 6,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42071": {
+   "jkey": "42071",
+   "level": "county",
+   "name": "Lancaster",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 42.7,
+      "R": 54.8,
+      "margin": 12.1
+     },
+     "GOV": {
+      "D": 47.2,
+      "R": 50.3,
+      "margin": 3.1
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 40.2,
+      "R": 58.3,
+      "margin": 18.1,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 83,
+     "pct_reporting": 80.4,
+     "votes": {
+      "PA-SEN-2026:whitaker": 132178,
+      "PA-SEN-2026:castellano": 185242,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 41.1,
+      "R": 57.6,
+      "O": 1.3
+     },
+     "leader": "R",
+     "margin": 16.5,
+     "swing_vs_2024": -1.6,
+     "swing_vs_2022": 4.4,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 83,
+     "pct_reporting": 80.4,
+     "votes": {
+      "PA-GOV-2026:reinhart": 146650,
+      "PA-GOV-2026:brennan": 167554
+     },
+     "pct": {
+      "D": 45.6,
+      "R": 52.1,
+      "O": 1
+     },
+     "leader": "R",
+     "margin": 6.5,
+     "swing_vs_2024": -11.6,
+     "swing_vs_2022": 3.4,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42077": {
+   "jkey": "42077",
+   "level": "county",
+   "name": "Lehigh",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 54.8,
+      "R": 43,
+      "margin": -11.8
+     },
+     "GOV": {
+      "D": 59.3,
+      "R": 38.5,
+      "margin": -20.8
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 52.3,
+      "R": 46.5,
+      "margin": -5.8,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "estimated",
+     "confidence": 41,
+     "pct_reporting": 44.2,
+     "votes": {
+      "PA-SEN-2026:whitaker": 91936,
+      "PA-SEN-2026:castellano": 82566,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 52,
+      "R": 46.7,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -5.3,
+     "swing_vs_2024": 0.5,
+     "swing_vs_2022": 6.5,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "estimated",
+     "confidence": 41,
+     "pct_reporting": 44.2,
+     "votes": {
+      "PA-GOV-2026:reinhart": 99892,
+      "PA-GOV-2026:brennan": 72842
+     },
+     "pct": {
+      "D": 56.5,
+      "R": 41.2,
+      "O": 1
+     },
+     "leader": "D",
+     "margin": -15.3,
+     "swing_vs_2024": -9.5,
+     "swing_vs_2022": 5.5,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-HOU-2026-07": {
+     "status": "estimated",
+     "confidence": 40,
+     "pct_reporting": 44.2,
+     "votes": {
+      "PA-HOU-2026-07:wilde": 52100,
+      "PA-HOU-2026-07:mackenzie": 50060
+     },
+     "pct": {
+      "D": 51,
+      "R": 49,
+      "O": 0
+     },
+     "leader": "D",
+     "margin": -2,
+     "swing_vs_2024": 3.8,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42079": {
+   "jkey": "42079",
+   "level": "county",
+   "name": "Luzerne",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 41.2,
+      "R": 56.7,
+      "margin": 15.5
+     },
+     "GOV": {
+      "D": 45.7,
+      "R": 52.2,
+      "margin": 6.5
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 38.7,
+      "R": 60.2,
+      "margin": 21.5,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 78,
+     "pct_reporting": 74.5,
+     "votes": {
+      "PA-SEN-2026:whitaker": 117412,
+      "PA-SEN-2026:castellano": 176714,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 39.4,
+      "R": 59.3,
+      "O": 1.3
+     },
+     "leader": "R",
+     "margin": 19.9,
+     "swing_vs_2024": -1.6,
+     "swing_vs_2022": 4.4,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 78,
+     "pct_reporting": 74.5,
+     "votes": {
+      "PA-GOV-2026:reinhart": 130822,
+      "PA-GOV-2026:brennan": 160324
+     },
+     "pct": {
+      "D": 43.9,
+      "R": 53.8,
+      "O": 1
+     },
+     "leader": "R",
+     "margin": 9.9,
+     "swing_vs_2024": -11.6,
+     "swing_vs_2022": 3.4,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42091": {
+   "jkey": "42091",
+   "level": "county",
+   "name": "Montgomery",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 63.4,
+      "R": 34.5,
+      "margin": -28.9
+     },
+     "GOV": {
+      "D": 67.9,
+      "R": 30,
+      "margin": -37.9
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 60.9,
+      "R": 38,
+      "margin": -22.9,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 77,
+     "pct_reporting": 66.8,
+     "votes": {
+      "PA-SEN-2026:whitaker": 166466,
+      "PA-SEN-2026:castellano": 97261,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 62.3,
+      "R": 36.4,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -25.9,
+     "swing_vs_2024": -3,
+     "swing_vs_2022": 3,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 77,
+     "pct_reporting": 66.8,
+     "votes": {
+      "PA-GOV-2026:reinhart": 178490,
+      "PA-GOV-2026:brennan": 82565
+     },
+     "pct": {
+      "D": 66.8,
+      "R": 30.9,
+      "O": 1
+     },
+     "leader": "D",
+     "margin": -35.9,
+     "swing_vs_2024": -13,
+     "swing_vs_2022": 2,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42095": {
+   "jkey": "42095",
+   "level": "county",
+   "name": "Northampton",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 51.5,
+      "R": 46.4,
+      "margin": -5.1
+     },
+     "GOV": {
+      "D": 56,
+      "R": 41.9,
+      "margin": -14.1
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 49,
+      "R": 49.9,
+      "margin": 0.9,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "estimated",
+     "confidence": 38,
+     "pct_reporting": 39.7,
+     "votes": {
+      "PA-SEN-2026:whitaker": 76383,
+      "PA-SEN-2026:castellano": 80194,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 48.1,
+      "R": 50.5,
+      "O": 1.4
+     },
+     "leader": "R",
+     "margin": 2.4,
+     "swing_vs_2024": 1.5,
+     "swing_vs_2022": 7.5,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "estimated",
+     "confidence": 38,
+     "pct_reporting": 39.7,
+     "votes": {
+      "PA-GOV-2026:reinhart": 83529,
+      "PA-GOV-2026:brennan": 71460
+     },
+     "pct": {
+      "D": 52.6,
+      "R": 45,
+      "O": 1
+     },
+     "leader": "D",
+     "margin": -7.6,
+     "swing_vs_2024": -8.5,
+     "swing_vs_2022": 6.5,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-HOU-2026-07": {
+     "status": "estimated",
+     "confidence": 36,
+     "pct_reporting": 39.7,
+     "votes": {
+      "PA-HOU-2026-07:wilde": 41200,
+      "PA-HOU-2026-07:mackenzie": 41860
+     },
+     "pct": {
+      "D": 49.6,
+      "R": 50.4,
+      "O": 0
+     },
+     "leader": "R",
+     "margin": 0.8,
+     "swing_vs_2024": -0.1,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42101": {
+   "jkey": "42101",
+   "level": "county",
+   "name": "Philadelphia",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 81.4,
+      "R": 16.6,
+      "margin": -64.8
+     },
+     "GOV": {
+      "D": 85.9,
+      "R": 12.1,
+      "margin": -73.8
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 78.9,
+      "R": 20.1,
+      "margin": -58.8,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 88,
+     "pct_reporting": 92.1,
+     "votes": {
+      "PA-SEN-2026:whitaker": 296194,
+      "PA-SEN-2026:castellano": 67417,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 80.4,
+      "R": 18.3,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -62.1,
+     "swing_vs_2024": -3.3,
+     "swing_vs_2022": 2.7,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 88,
+     "pct_reporting": 92.1,
+     "votes": {
+      "PA-GOV-2026:reinhart": 312772,
+      "PA-GOV-2026:brennan": 47155
+     },
+     "pct": {
+      "D": 84.9,
+      "R": 12.8,
+      "O": 1
+     },
+     "leader": "D",
+     "margin": -72.1,
+     "swing_vs_2024": -13.3,
+     "swing_vs_2022": 1.7,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42125": {
+   "jkey": "42125",
+   "level": "county",
+   "name": "Washington",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 39.4,
+      "R": 58.5,
+      "margin": 19.1
+     },
+     "GOV": {
+      "D": 43.9,
+      "R": 54,
+      "margin": 10.1
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 36.9,
+      "R": 62,
+      "margin": 25.1,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "pending",
+     "confidence": 0,
+     "pct_reporting": null,
+     "votes": {
+      "PA-SEN-2026:whitaker": 0,
+      "PA-SEN-2026:castellano": 0,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": null,
+      "R": null,
+      "O": null
+     },
+     "leader": null,
+     "margin": null,
+     "swing_vs_2024": null,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "pending",
+     "confidence": 0,
+     "pct_reporting": null,
+     "votes": {
+      "PA-GOV-2026:reinhart": 0,
+      "PA-GOV-2026:brennan": 0
+     },
+     "pct": {
+      "D": null,
+      "R": null,
+      "O": null
+     },
+     "leader": null,
+     "margin": null,
+     "swing_vs_2024": null,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42129": {
+   "jkey": "42129",
+   "level": "county",
+   "name": "Westmoreland",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 37,
+      "R": 60.9,
+      "margin": 23.9
+     },
+     "GOV": {
+      "D": 41.5,
+      "R": 56.4,
+      "margin": 14.9
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 34.5,
+      "R": 64.4,
+      "margin": 29.9,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "pending",
+     "confidence": 0,
+     "pct_reporting": null,
+     "votes": {
+      "PA-SEN-2026:whitaker": 0,
+      "PA-SEN-2026:castellano": 0,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": null,
+      "R": null,
+      "O": null
+     },
+     "leader": null,
+     "margin": null,
+     "swing_vs_2024": null,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "pending",
+     "confidence": 0,
+     "pct_reporting": null,
+     "votes": {
+      "PA-GOV-2026:reinhart": 0,
+      "PA-GOV-2026:brennan": 0
+     },
+     "pct": {
+      "D": null,
+      "R": null,
+      "O": null
+     },
+     "leader": null,
+     "margin": null,
+     "swing_vs_2024": null,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42133": {
+   "jkey": "42133",
+   "level": "county",
+   "name": "York",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42",
+   "baseline": {
+    "2022": {
+     "SEN": {
+      "D": 37.7,
+      "R": 60,
+      "margin": 22.3
+     },
+     "GOV": {
+      "D": 42.2,
+      "R": 55.5,
+      "margin": 13.3
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 35.2,
+      "R": 63.5,
+      "margin": 28.3,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 85,
+     "pct_reporting": 83.1,
+     "votes": {
+      "PA-SEN-2026:whitaker": 119332,
+      "PA-SEN-2026:castellano": 208747,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 35.9,
+      "R": 62.8,
+      "O": 1.3
+     },
+     "leader": "R",
+     "margin": 26.9,
+     "swing_vs_2024": -1.4,
+     "swing_vs_2022": 4.6,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 85,
+     "pct_reporting": 83.1,
+     "votes": {
+      "PA-GOV-2026:reinhart": 134290,
+      "PA-GOV-2026:brennan": 190465
+     },
+     "pct": {
+      "D": 40.4,
+      "R": 57.3,
+      "O": 1
+     },
+     "leader": "R",
+     "margin": 16.9,
+     "swing_vs_2024": -11.4,
+     "swing_vs_2022": 3.6,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "48029": {
+   "jkey": "48029",
+   "level": "county",
+   "name": "Bexar",
+   "state": "TX",
+   "state_fips": "48",
+   "parent": "48",
+   "baseline": {
+    "2022": {},
+    "2024": {
+     "PRES": {
+      "D": 55.6,
+      "R": 43,
+      "margin": -12.6,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "TX-SEN-2026": {
+     "status": "official_certified",
+     "confidence": 97,
+     "pct_reporting": 100,
+     "votes": {
+      "TX-SEN-2026:allred": 330200,
+      "TX-SEN-2026:paxton": 238600
+     },
+     "pct": {
+      "D": 57.3,
+      "R": 41.4,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -15.9,
+     "swing_vs_2024": -3.3,
+     "swing_vs_2022": null,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-tx-sos",
+       "tier": "official",
+       "url": "https://results.texas-election.com/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "48113": {
+   "jkey": "48113",
+   "level": "county",
+   "name": "Dallas",
+   "state": "TX",
+   "state_fips": "48",
+   "parent": "48",
+   "baseline": {
+    "2022": {
+     "GOV": {
+      "D": 60,
+      "R": 38.9,
+      "margin": -21.1
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 61.3,
+      "R": 37.5,
+      "margin": -23.8,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "TX-SEN-2026": {
+     "status": "official_certified",
+     "confidence": 97,
+     "pct_reporting": 100,
+     "votes": {
+      "TX-SEN-2026:allred": 520100,
+      "TX-SEN-2026:paxton": 295500
+     },
+     "pct": {
+      "D": 63,
+      "R": 35.8,
+      "O": 1.2
+     },
+     "leader": "D",
+     "margin": -27.2,
+     "swing_vs_2024": -3.4,
+     "swing_vs_2022": null,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-tx-sos",
+       "tier": "official",
+       "url": "https://results.texas-election.com/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "48201": {
+   "jkey": "48201",
+   "level": "county",
+   "name": "Harris",
+   "state": "TX",
+   "state_fips": "48",
+   "parent": "48",
+   "baseline": {
+    "2022": {
+     "GOV": {
+      "D": 50,
+      "R": 48.9,
+      "margin": -1.1
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 52,
+      "R": 46.9,
+      "margin": -5.1,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "TX-SEN-2026": {
+     "status": "official_certified",
+     "confidence": 97,
+     "pct_reporting": 100,
+     "votes": {
+      "TX-SEN-2026:allred": 830200,
+      "TX-SEN-2026:paxton": 674800
+     },
+     "pct": {
+      "D": 54.5,
+      "R": 44.3,
+      "O": 1.2
+     },
+     "leader": "D",
+     "margin": -10.2,
+     "swing_vs_2024": -5.1,
+     "swing_vs_2022": null,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-tx-sos",
+       "tier": "official",
+       "url": "https://results.texas-election.com/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "TX-GOV-2026": {
+     "status": "official_certified",
+     "confidence": 97,
+     "pct_reporting": 100,
+     "votes": {
+      "TX-GOV-2026:hinojosa": 790600,
+      "TX-GOV-2026:abbott": 714400
+     },
+     "pct": {
+      "D": 51.9,
+      "R": 46.9,
+      "O": 1.2
+     },
+     "leader": "D",
+     "margin": -5,
+     "swing_vs_2024": 0.1,
+     "swing_vs_2022": -3.9,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-tx-sos",
+       "tier": "official",
+       "url": "https://results.texas-election.com/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "48453": {
+   "jkey": "48453",
+   "level": "county",
+   "name": "Travis",
+   "state": "TX",
+   "state_fips": "48",
+   "parent": "48",
+   "baseline": {
+    "2022": {
+     "GOV": {
+      "D": 69,
+      "R": 29.5,
+      "margin": -39.5
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 70.9,
+      "R": 26.6,
+      "margin": -44.3,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "TX-SEN-2026": {
+     "status": "official_certified",
+     "confidence": 97,
+     "pct_reporting": 100,
+     "votes": {
+      "TX-SEN-2026:allred": 380300,
+      "TX-SEN-2026:paxton": 140100
+     },
+     "pct": {
+      "D": 71.9,
+      "R": 26.5,
+      "O": 1.6
+     },
+     "leader": "D",
+     "margin": -45.4,
+     "swing_vs_2024": -1.1,
+     "swing_vs_2022": null,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-tx-sos",
+       "tier": "official",
+       "url": "https://results.texas-election.com/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "US": {
+   "jkey": "US",
+   "level": "national",
+   "name": "United States",
+   "state": null,
+   "state_fips": null,
+   "parent": null,
+   "baseline": {
+    "2022": {},
+    "2024": {
+     "PRES": {
+      "D": 48.3,
+      "R": 49.8,
+      "margin": 1.5,
+      "total_votes": 155000000
+     }
+    }
+   },
+   "results": {}
+  },
+  "04": {
+   "jkey": "04",
+   "level": "state",
+   "name": "Arizona",
+   "state": "AZ",
+   "state_fips": "04",
+   "parent": "US",
+   "baseline": {
+    "2022": {
+     "GOV": {
+      "D": 50.3,
+      "R": 49.6,
+      "margin": -0.7
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 46.7,
+      "R": 52.2,
+      "margin": 5.5,
+      "total_votes": 3400000
+     }
+    }
+   },
+   "results": {
+    "AZ-GOV-2026": {
+     "status": "estimated",
+     "confidence": 28,
+     "pct_reporting": 21.5,
+     "votes": {
+      "AZ-GOV-2026:hobbs": 402300,
+      "AZ-GOV-2026:biggs": 362800
+     },
+     "pct": {
+      "D": 51.9,
+      "R": 46.8,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -5.1,
+     "swing_vs_2024": -10.6,
+     "swing_vs_2022": -4.4,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42101:philadelphia": {
+   "jkey": "42101:philadelphia",
+   "level": "city",
+   "name": "Philadelphia",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42101",
+   "baseline": {
+    "2022": {},
+    "2024": {
+     "PRES": {
+      "D": 78.9,
+      "R": 20.1,
+      "margin": -58.8,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 85,
+     "pct_reporting": 92.1,
+     "votes": {
+      "PA-SEN-2026:whitaker": 532100,
+      "PA-SEN-2026:castellano": 121050,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 80.4,
+      "R": 18.3,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -62.1,
+     "swing_vs_2024": -3.3,
+     "swing_vs_2022": null,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-phila-cc",
+       "tier": "official",
+       "url": "https://vote.phila.gov/results/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 86,
+     "pct_reporting": 92.1,
+     "votes": {
+      "PA-GOV-2026:reinhart": 556500,
+      "PA-GOV-2026:brennan": 96600
+     },
+     "pct": {
+      "D": 84.1,
+      "R": 14.6,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -69.5,
+     "swing_vs_2024": -10.7,
+     "swing_vs_2022": null,
+     "called": true,
+     "called_by": "AP",
+     "called_at": "2026-11-04T02:12:00Z",
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-phila-cc",
+       "tier": "official",
+       "url": "https://vote.phila.gov/results/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42003:pittsburgh": {
+   "jkey": "42003:pittsburgh",
+   "level": "city",
+   "name": "Pittsburgh",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42003",
+   "baseline": {
+    "2022": {},
+    "2024": {
+     "PRES": {
+      "D": 60.2,
+      "R": 38.6,
+      "margin": -21.6,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "official_preliminary",
+     "confidence": 74,
+     "pct_reporting": 71.3,
+     "votes": {
+      "PA-SEN-2026:whitaker": 0,
+      "PA-SEN-2026:castellano": 0,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 61,
+      "R": 37.5,
+      "O": 1.5
+     },
+     "leader": "D",
+     "margin": -23.5,
+     "swing_vs_2024": -1.9,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": "42003",
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    },
+    "PA-GOV-2026": {
+     "status": "official_preliminary",
+     "confidence": 74,
+     "pct_reporting": 71.3,
+     "votes": {
+      "PA-GOV-2026:reinhart": 0,
+      "PA-GOV-2026:brennan": 0
+     },
+     "pct": {
+      "D": 65.5,
+      "R": 32,
+      "O": 1
+     },
+     "leader": "D",
+     "margin": -33.5,
+     "swing_vs_2024": -11.9,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": "42003",
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "42077:allentown": {
+   "jkey": "42077:allentown",
+   "level": "city",
+   "name": "Allentown",
+   "state": "PA",
+   "state_fips": "42",
+   "parent": "42077",
+   "baseline": {
+    "2022": {},
+    "2024": {
+     "PRES": {
+      "D": 52.3,
+      "R": 46.5,
+      "margin": -5.8,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "PA-SEN-2026": {
+     "status": "estimated",
+     "confidence": 41,
+     "pct_reporting": 44.2,
+     "votes": {
+      "PA-SEN-2026:whitaker": 0,
+      "PA-SEN-2026:castellano": 0,
+      "PA-SEN-2026:ortiz": 0
+     },
+     "pct": {
+      "D": 52,
+      "R": 46.7,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -5.3,
+     "swing_vs_2024": 0.5,
+     "swing_vs_2022": null,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": "42077",
+     "sources_used": [
+      {
+       "id": "src-pa-dos",
+       "tier": "official",
+       "url": "https://www.electionreturns.pa.gov/",
+       "ts": "2026-11-04T02:35:00Z"
+      },
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "04013": {
+   "jkey": "04013",
+   "level": "county",
+   "name": "Maricopa",
+   "state": "AZ",
+   "state_fips": "04",
+   "parent": "04",
+   "baseline": {
+    "2022": {
+     "GOV": {
+      "D": 50.8,
+      "R": 49.1,
+      "margin": -1.7
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 47.3,
+      "R": 51.7,
+      "margin": 4.4,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "AZ-GOV-2026": {
+     "status": "estimated",
+     "confidence": 25,
+     "pct_reporting": 18.2,
+     "votes": {
+      "AZ-GOV-2026:hobbs": 260300,
+      "AZ-GOV-2026:biggs": 230000
+     },
+     "pct": {
+      "D": 52.4,
+      "R": 46.3,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -6.1,
+     "swing_vs_2024": -10.5,
+     "swing_vs_2022": -4.4,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  },
+  "04019": {
+   "jkey": "04019",
+   "level": "county",
+   "name": "Pima",
+   "state": "AZ",
+   "state_fips": "04",
+   "parent": "04",
+   "baseline": {
+    "2022": {
+     "GOV": {
+      "D": 59,
+      "R": 40,
+      "margin": -19
+     }
+    },
+    "2024": {
+     "PRES": {
+      "D": 57.9,
+      "R": 40.3,
+      "margin": -17.6,
+      "total_votes": 0
+     }
+    }
+   },
+   "results": {
+    "AZ-GOV-2026": {
+     "status": "estimated",
+     "confidence": 30,
+     "pct_reporting": 30,
+     "votes": {
+      "AZ-GOV-2026:hobbs": 95500,
+      "AZ-GOV-2026:biggs": 61100
+     },
+     "pct": {
+      "D": 60.2,
+      "R": 38.5,
+      "O": 1.3
+     },
+     "leader": "D",
+     "margin": -21.7,
+     "swing_vs_2024": -4.1,
+     "swing_vs_2022": -2.7,
+     "called": false,
+     "called_by": null,
+     "called_at": null,
+     "range": null,
+     "inherited_from": null,
+     "sources_used": [
+      {
+       "id": "src-ap",
+       "tier": "media_t1",
+       "url": "https://apnews.com/hub/election-results",
+       "ts": "2026-11-04T02:35:00Z"
+      }
+     ],
+     "sources_rejected": [],
+     "updated_at": "2026-11-04T02:35:00Z"
+    }
+   }
+  }
+ },
+ "videos": [
+  {
+   "id": "vid-pbs",
+   "platform": "youtube",
+   "kind": "channel_live",
+   "youtube_channel_id": "UC6ZFN9Tx6xh-skXCuRHCDpQ",
+   "youtube_video_id": null,
+   "title": "PBS NewsHour election night live",
+   "channel": "PBS NewsHour",
+   "tier": "major_outlet",
+   "live": true,
+   "started_at": "2026-11-03T23:00:00Z",
+   "scope": {
+    "level": "national",
+    "jkey": "US"
+   },
+   "location_confidence": "exact",
+   "embed_url": "https://www.youtube.com/embed/live_stream?channel=UC6ZFN9Tx6xh-skXCuRHCDpQ&mute=1&autoplay=1",
+   "link_url": "https://www.youtube.com/channel/UC6ZFN9Tx6xh-skXCuRHCDpQ/live",
+   "muted": true,
+   "rank": 1
+  },
+  {
+   "id": "vid-ap",
+   "platform": "youtube",
+   "kind": "channel_live",
+   "youtube_channel_id": "UC52X5wxOL_s5yw0dQk7NtgA",
+   "youtube_video_id": null,
+   "title": "AP live: Midterm election results",
+   "channel": "Associated Press",
+   "tier": "major_outlet",
+   "live": true,
+   "started_at": "2026-11-03T22:30:00Z",
+   "scope": {
+    "level": "national",
+    "jkey": "US"
+   },
+   "location_confidence": "exact",
+   "embed_url": "https://www.youtube.com/embed/live_stream?channel=UC52X5wxOL_s5yw0dQk7NtgA&mute=1&autoplay=1",
+   "link_url": "https://www.youtube.com/channel/UC52X5wxOL_s5yw0dQk7NtgA/live",
+   "muted": true,
+   "rank": 2
+  },
+  {
+   "id": "vid-cspan",
+   "platform": "youtube",
+   "kind": "channel_live",
+   "youtube_channel_id": "UCb--64Gl51jIEVE-GLDAVTg",
+   "youtube_video_id": null,
+   "title": "C-SPAN: Election night coverage and candidate speeches",
+   "channel": "C-SPAN",
+   "tier": "official",
+   "live": null,
+   "started_at": null,
+   "scope": {
+    "level": "national",
+    "jkey": "US"
+   },
+   "location_confidence": "exact",
+   "embed_url": "https://www.youtube.com/embed/live_stream?channel=UCb--64Gl51jIEVE-GLDAVTg&mute=1&autoplay=1",
+   "link_url": "https://www.youtube.com/channel/UCb--64Gl51jIEVE-GLDAVTg/live",
+   "muted": true,
+   "rank": 3
+  },
+  {
+   "id": "vid-nbc",
+   "platform": "youtube",
+   "kind": "channel_live",
+   "youtube_channel_id": "UCeY0bbntWzzVIaj2z3QigXg",
+   "youtube_video_id": null,
+   "title": "NBC News NOW: Decision 2026",
+   "channel": "NBC News",
+   "tier": "major_outlet",
+   "live": true,
+   "started_at": "2026-11-03T23:00:00Z",
+   "scope": {
+    "level": "national",
+    "jkey": "US"
+   },
+   "location_confidence": "exact",
+   "embed_url": "https://www.youtube.com/embed/live_stream?channel=UCeY0bbntWzzVIaj2z3QigXg&mute=1&autoplay=1",
+   "link_url": "https://www.youtube.com/channel/UCeY0bbntWzzVIaj2z3QigXg/live",
+   "muted": true,
+   "rank": 4
+  },
+  {
+   "id": "vid-whyy",
+   "platform": "youtube",
+   "kind": "channel_live",
+   "youtube_channel_id": "UCSAMPLE-WHYY00000000",
+   "youtube_video_id": null,
+   "title": "WHYY: Pennsylvania election night special",
+   "channel": "WHYY (PBS Philadelphia)",
+   "tier": "regional_outlet",
+   "live": true,
+   "started_at": "2026-11-04T00:00:00Z",
+   "scope": {
+    "level": "state",
+    "jkey": "42"
+   },
+   "location_confidence": "state",
+   "embed_url": "https://www.youtube.com/embed/live_stream?channel=UCSAMPLE-WHYY00000000&mute=1&autoplay=1",
+   "link_url": "https://www.youtube.com/channel/UCSAMPLE-WHYY00000000/live",
+   "muted": true,
+   "rank": 1
+  },
+  {
+   "id": "vid-6abc",
+   "platform": "youtube",
+   "kind": "channel_live",
+   "youtube_channel_id": "UCSAMPLE-6ABC00000000",
+   "youtube_video_id": null,
+   "title": "6abc Action News: Philadelphia results desk",
+   "channel": "6abc Philadelphia",
+   "tier": "regional_outlet",
+   "live": true,
+   "started_at": "2026-11-04T00:30:00Z",
+   "scope": {
+    "level": "city",
+    "jkey": "42101:philadelphia"
+   },
+   "location_confidence": "city",
+   "embed_url": "https://www.youtube.com/embed/live_stream?channel=UCSAMPLE-6ABC00000000&mute=1&autoplay=1",
+   "link_url": "https://www.youtube.com/channel/UCSAMPLE-6ABC00000000/live",
+   "muted": true,
+   "rank": 1
+  },
+  {
+   "id": "vid-kdka",
+   "platform": "youtube",
+   "kind": "video",
+   "youtube_channel_id": "UCSAMPLE-KDKA00000000",
+   "youtube_video_id": "SAMPLEvid01",
+   "title": "KDKA: Allegheny County returns, Senate race watch party",
+   "channel": "KDKA-TV Pittsburgh",
+   "tier": "regional_outlet",
+   "live": false,
+   "started_at": "2026-11-04T01:10:00Z",
+   "scope": {
+    "level": "county",
+    "jkey": "42003"
+   },
+   "location_confidence": "exact",
+   "embed_url": "https://www.youtube.com/embed/SAMPLEvid01?mute=1&autoplay=1",
+   "link_url": "https://www.youtube.com/watch?v=SAMPLEvid01",
+   "muted": true,
+   "rank": 2
+  },
+  {
+   "id": "vid-wcpo",
+   "platform": "youtube",
+   "kind": "channel_live",
+   "youtube_channel_id": "UCSAMPLE-WCPO00000000",
+   "youtube_video_id": null,
+   "title": "WCPO 9: Ohio Senate special election coverage",
+   "channel": "WCPO Cincinnati",
+   "tier": "regional_outlet",
+   "live": true,
+   "started_at": "2026-11-04T00:00:00Z",
+   "scope": {
+    "level": "county",
+    "jkey": "39061"
+   },
+   "location_confidence": "city",
+   "embed_url": "https://www.youtube.com/embed/live_stream?channel=UCSAMPLE-WCPO00000000&mute=1&autoplay=1",
+   "link_url": "https://www.youtube.com/channel/UCSAMPLE-WCPO00000000/live",
+   "muted": true,
+   "rank": 1
+  },
+  {
+   "id": "vid-gpb",
+   "platform": "youtube",
+   "kind": "channel_live",
+   "youtube_channel_id": "UCSAMPLE-GPB000000000",
+   "youtube_video_id": null,
+   "title": "GPB: Georgia decides 2026",
+   "channel": "Georgia Public Broadcasting",
+   "tier": "regional_outlet",
+   "live": true,
+   "started_at": "2026-11-03T23:30:00Z",
+   "scope": {
+    "level": "state",
+    "jkey": "13"
+   },
+   "location_confidence": "state",
+   "embed_url": "https://www.youtube.com/embed/live_stream?channel=UCSAMPLE-GPB000000000&mute=1&autoplay=1",
+   "link_url": "https://www.youtube.com/channel/UCSAMPLE-GPB000000000/live",
+   "muted": true,
+   "rank": 1
+  },
+  {
+   "id": "vid-mi-stream",
+   "platform": "youtube",
+   "kind": "channel_live",
+   "youtube_channel_id": "UCSAMPLE-MISTREAM0000",
+   "youtube_video_id": null,
+   "title": "Detroit count watch (independent stream)",
+   "channel": "MotorCityLive",
+   "tier": "unverified",
+   "live": true,
+   "started_at": "2026-11-04T01:40:00Z",
+   "scope": {
+    "level": "county",
+    "jkey": "26163"
+   },
+   "location_confidence": "inferred",
+   "embed_url": "https://www.youtube.com/embed/live_stream?channel=UCSAMPLE-MISTREAM0000&mute=1&autoplay=1",
+   "link_url": "https://www.youtube.com/channel/UCSAMPLE-MISTREAM0000/live",
+   "muted": true,
+   "rank": 3
+  },
+  {
+   "id": "vid-azfam",
+   "platform": "youtube",
+   "kind": "channel_live",
+   "youtube_channel_id": "UCSAMPLE-AZFAM0000000",
+   "youtube_video_id": null,
+   "title": "Arizona's Family: Governor's race live",
+   "channel": "AZFamily",
+   "tier": "regional_outlet",
+   "live": true,
+   "started_at": "2026-11-04T02:00:00Z",
+   "scope": {
+    "level": "state",
+    "jkey": "04"
+   },
+   "location_confidence": "state",
+   "embed_url": "https://www.youtube.com/embed/live_stream?channel=UCSAMPLE-AZFAM0000000&mute=1&autoplay=1",
+   "link_url": "https://www.youtube.com/channel/UCSAMPLE-AZFAM0000000/live",
+   "muted": true,
+   "rank": 1
+  }
+ ],
+ "changes": [
+  {
+   "ts": "2026-11-04T00:00:30Z",
+   "type": "polls_closed",
+   "race_id": null,
+   "jkey": "US",
+   "official": true,
+   "important": false,
+   "text": "Polls closed in Pennsylvania, Maine, Texas and 13 other states."
+  },
+  {
+   "ts": "2026-11-04T01:05:00Z",
+   "type": "newly_official",
+   "race_id": "PA-SEN-2026",
+   "jkey": "42",
+   "official": true,
+   "important": false,
+   "text": "Pennsylvania Senate: first official county returns posted by the Department of State."
+  },
+  {
+   "ts": "2026-11-04T01:48:00Z",
+   "type": "contested",
+   "race_id": "MI-SEN-2026",
+   "jkey": "26",
+   "official": false,
+   "important": true,
+   "text": "Michigan Senate marked contested: AP and Detroit Free Press figures differ by more than two points."
+  },
+  {
+   "ts": "2026-11-04T02:12:00Z",
+   "type": "race_called",
+   "race_id": "OH-SEN-2026-S",
+   "jkey": "39",
+   "official": true,
+   "important": true,
+   "text": "Ohio Senate special: officially called for Jon Husted (R) with 91 percent of precincts reporting."
+  },
+  {
+   "ts": "2026-11-04T02:12:30Z",
+   "type": "race_called",
+   "race_id": "TX-SEN-2026",
+   "jkey": "48",
+   "official": true,
+   "important": true,
+   "text": "Texas Senate: certified for Ken Paxton (R)."
+  },
+  {
+   "ts": "2026-11-04T02:20:00Z",
+   "type": "race_called",
+   "race_id": "PA-GOV-2026",
+   "jkey": "42",
+   "official": true,
+   "important": true,
+   "text": "Pennsylvania Governor: officially called for Josh Reinhart (D)."
+  },
+  {
+   "ts": "2026-11-04T02:31:00Z",
+   "type": "confidence_shift",
+   "race_id": "AZ-GOV-2026",
+   "jkey": "04",
+   "official": false,
+   "important": false,
+   "text": "Arizona Governor: confidence down to 28 as early Maricopa ballots shift the margin."
+  }
+ ],
+ "briefing": {
+  "on_open": "Good evening. As of 9:35 PM Eastern, this is sample data. Ohio's Senate special and Texas Senate have been called for Republicans. Pennsylvania's Senate race is a two-point Democratic lead with 63 percent reporting, and Michigan's Senate race is contested.",
+  "delta": "Since your last look: Pennsylvania Governor was officially called for the Democrat, and Arizona's governor race confidence fell to 28.",
+  "alerts": [
+   "Ohio Senate special officially called for Jon Husted.",
+   "Texas Senate certified for Ken Paxton.",
+   "Pennsylvania Governor officially called for Josh Reinhart."
+  ]
+ },
+ "sources": {
+  "official": {
+   "PA": {
+    "name": "Pennsylvania Department of State",
+    "url": "https://www.electionreturns.pa.gov/",
+    "feed": {
+     "type": "json",
+     "url": "https://www.electionreturns.pa.gov/api/"
+    }
+   },
+   "OH": {
+    "name": "Ohio Secretary of State",
+    "url": "https://www.ohiosos.gov/elections/election-results-and-data/",
+    "feed": {
+     "type": "html",
+     "url": ""
+    }
+   },
+   "GA": {
+    "name": "Georgia Secretary of State",
+    "url": "https://results.enr.clarityelections.com/GA/",
+    "feed": {
+     "type": "json",
+     "url": ""
+    }
+   },
+   "TX": {
+    "name": "Texas Secretary of State",
+    "url": "https://results.texas-election.com/",
+    "feed": {
+     "type": "json",
+     "url": ""
+    }
+   }
+  },
+  "media_tiers": {
+   "1": [
+    "AP",
+    "Reuters",
+    "NBC News",
+    "ABC News",
+    "CBS News",
+    "CNN",
+    "Fox News",
+    "PBS"
+   ],
+   "2": [
+    "state and regional newspapers and TV stations"
+   ],
+   "3": [
+    "official or very-high-reach accounts on two or more platforms"
+   ]
+  }
+ }
+}

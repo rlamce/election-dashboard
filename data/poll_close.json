@@ -1,0 +1,265 @@
+{
+ "_meta": {
+  "generated_at": "2026-11-03T20:57:33Z",
+  "election_date": "2026-11-03",
+  "timezone_note": "close_et is U.S. Eastern Standard Time (UTC-5). Values 00:00/01:00 fall on Nov 4 ET. close_utc is unambiguous.",
+  "sources": [
+   "https://ballotpedia.org/State_Poll_Opening_and_Closing_Times_(2026)"
+  ]
+ },
+ "AK": {
+  "close_et": "01:00",
+  "close_utc": "2026-11-04T06:00:00Z",
+  "notes": "8 p.m. local. Mainland Alaska (AKST) = 00:00 ET Nov 4; Aleutian precincts on Hawaii-Aleutian time = 01:00 ET Nov 4 (last close)."
+ },
+ "AL": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "7 p.m. CT statewide (20:00 ET); the few Eastern-time localities close 7 p.m. ET (19:00 ET)."
+ },
+ "AR": {
+  "close_et": "20:30",
+  "close_utc": "2026-11-04T01:30:00Z",
+  "notes": "7:30 p.m. CT."
+ },
+ "AZ": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "7 p.m. MST (Arizona does not observe DST) = 21:00 ET."
+ },
+ "CA": {
+  "close_et": "23:00",
+  "close_utc": "2026-11-04T04:00:00Z",
+  "notes": "8 p.m. PT. Largely vote-by-mail; ballots postmarked by election day count if received within 7 days."
+ },
+ "CO": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "7 p.m. MT. All-mail state."
+ },
+ "CT": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "8 p.m. ET."
+ },
+ "DC": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "8 p.m. ET. Largely vote-by-mail."
+ },
+ "DE": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "8 p.m. ET."
+ },
+ "FL": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "7 p.m. local: peninsula (ET) closes 19:00 ET; panhandle (CT) closes 20:00 ET (last close). Statewide results are typically withheld until 20:00 ET."
+ },
+ "GA": {
+  "close_et": "19:00",
+  "close_utc": "2026-11-04T00:00:00Z",
+  "notes": "7 p.m. ET."
+ },
+ "HI": {
+  "close_et": "00:00",
+  "close_utc": "2026-11-04T05:00:00Z",
+  "notes": "7 p.m. HST = 00:00 ET Nov 4. Largely vote-by-mail."
+ },
+ "IA": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "8 p.m. CT."
+ },
+ "ID": {
+  "close_et": "23:00",
+  "close_utc": "2026-11-04T04:00:00Z",
+  "notes": "8 p.m. local: southern Idaho (MT) = 22:00 ET; northern panhandle (PT) = 23:00 ET (last close)."
+ },
+ "IL": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "7 p.m. CT."
+ },
+ "IN": {
+  "close_et": "19:00",
+  "close_utc": "2026-11-04T00:00:00Z",
+  "notes": "6 p.m. local: most of state (ET) = 18:00 ET; northwest/southwest counties (CT) = 19:00 ET (last close)."
+ },
+ "KS": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "7 p.m. local: most of state (CT) = 20:00 ET; four western counties (MT) = 21:00 ET (last close). Counties may stay open until 8 p.m. CT."
+ },
+ "KY": {
+  "close_et": "19:00",
+  "close_utc": "2026-11-04T00:00:00Z",
+  "notes": "6 p.m. local: eastern Kentucky (ET) = 18:00 ET; western Kentucky (CT) = 19:00 ET (last close)."
+ },
+ "LA": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "8 p.m. CT."
+ },
+ "MA": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "8 p.m. ET."
+ },
+ "MD": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "8 p.m. ET."
+ },
+ "ME": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "8 p.m. ET. Ranked-choice voting used for federal general elections."
+ },
+ "MI": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "8 p.m. local: Lower Peninsula and most of Upper Peninsula (ET) = 20:00 ET; four western UP counties (CT) = 21:00 ET (last close)."
+ },
+ "MN": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "8 p.m. CT."
+ },
+ "MO": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "7 p.m. CT."
+ },
+ "MS": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "7 p.m. CT."
+ },
+ "MT": {
+  "close_et": "22:00",
+  "close_utc": "2026-11-04T03:00:00Z",
+  "notes": "8 p.m. MT."
+ },
+ "NC": {
+  "close_et": "19:30",
+  "close_utc": "2026-11-04T00:30:00Z",
+  "notes": "7:30 p.m. ET."
+ },
+ "ND": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "Counties set hours; polls close between 7 and 9 p.m. local. Most close 7 p.m. local (20:00 ET Central / 21:00 ET Mountain). Statutory latest possible close is 9 p.m. MT (23:00 ET)."
+ },
+ "NE": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "8 p.m. CT / 7 p.m. MT = 21:00 ET statewide."
+ },
+ "NH": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "Set by municipality; no earlier than 7 p.m. ET. Most towns close 7 p.m.; largest cities 8 p.m. (last close 20:00 ET)."
+ },
+ "NJ": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "8 p.m. ET."
+ },
+ "NM": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "7 p.m. MT."
+ },
+ "NV": {
+  "close_et": "22:00",
+  "close_utc": "2026-11-04T03:00:00Z",
+  "notes": "7 p.m. PT. Largely vote-by-mail."
+ },
+ "NY": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "9 p.m. ET."
+ },
+ "OH": {
+  "close_et": "19:30",
+  "close_utc": "2026-11-04T00:30:00Z",
+  "notes": "7:30 p.m. ET."
+ },
+ "OK": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "7 p.m. CT."
+ },
+ "OR": {
+  "close_et": "23:00",
+  "close_utc": "2026-11-04T04:00:00Z",
+  "notes": "8 p.m. local: most of state (PT) = 23:00 ET; Malheur County (MT) = 22:00 ET. All-mail state."
+ },
+ "PA": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "8 p.m. ET."
+ },
+ "RI": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "8 p.m. ET."
+ },
+ "SC": {
+  "close_et": "19:00",
+  "close_utc": "2026-11-04T00:00:00Z",
+  "notes": "7 p.m. ET."
+ },
+ "SD": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "7 p.m. local: eastern SD (CT) = 20:00 ET; western SD (MT) = 21:00 ET (last close)."
+ },
+ "TN": {
+  "close_et": "20:00",
+  "close_utc": "2026-11-04T01:00:00Z",
+  "notes": "8 p.m. ET in East Tennessee / 7 p.m. CT in Middle and West Tennessee = 20:00 ET statewide."
+ },
+ "TX": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "7 p.m. local: most of state (CT) = 20:00 ET; El Paso and Hudspeth counties (MT) = 21:00 ET (last close)."
+ },
+ "UT": {
+  "close_et": "22:00",
+  "close_utc": "2026-11-04T03:00:00Z",
+  "notes": "8 p.m. MT. Largely vote-by-mail."
+ },
+ "VA": {
+  "close_et": "19:00",
+  "close_utc": "2026-11-04T00:00:00Z",
+  "notes": "7 p.m. ET."
+ },
+ "VT": {
+  "close_et": "19:00",
+  "close_utc": "2026-11-04T00:00:00Z",
+  "notes": "7 p.m. ET."
+ },
+ "WA": {
+  "close_et": "23:00",
+  "close_utc": "2026-11-04T04:00:00Z",
+  "notes": "8 p.m. PT. All-mail state."
+ },
+ "WI": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "8 p.m. CT."
+ },
+ "WV": {
+  "close_et": "19:30",
+  "close_utc": "2026-11-04T00:30:00Z",
+  "notes": "7:30 p.m. ET."
+ },
+ "WY": {
+  "close_et": "21:00",
+  "close_utc": "2026-11-04T02:00:00Z",
+  "notes": "7 p.m. MT."
+ }
+}

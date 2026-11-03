@@ -1,0 +1,734 @@
+{
+  "_meta": {
+    "generated_at": "2026-11-03T21:00:00Z",
+    "election_date": "2026-11-03",
+    "method": "WebSearch (official domains) + direct fetch (curl/WebFetch) on 2026-11-03 ~20:45-21:00 UTC, before most polls closed; feed URLs marked verified were fetched and returned the described content. verified_at=null means the page/host could not be fetched (bot protection or not yet switched on) and the URL is taken from search results on the official domain or from an official page that was fetched.",
+    "platform_patterns": {
+      "Scytl/Clarity": "<base>/<ST>/<EID>/current_ver.txt -> <ver>; <base>/<ST>/<EID>/<ver>/json/en/summary.json (statewide), electionsettings.json (county file list, gzip), <base>/<ST>/<EID>/<ver>/json/en/<county>.json; elections.json lists EIDs. Used by CO, IA (electionresults.iowa.gov), SC (enr-scvotes.org).",
+      "Enhanced Voting": "<base>/results/public/api/jurisdictions/<slug> (elections list + childLocalities); <base>/results/public/api/elections/<slug>/<publicElectionId> (statewide), .../localities (per-county), .../stats, .../turnout, .../vr; ballot-items/<id> per contest. Used by GA, ID, RI, UT, VA, WA.",
+      "ES&S ElectionResults (ASP.NET)": "<base>/ResultsSW.aspx?type=SW&map=CTY (statewide), ResultsSW.aspx?type=CTYALL&cty=<nn>&map=CTY (county), ResultsMedia.aspx lists resultsCSV.aspx?text=All&type=<CAT>&map=CTY CSV feeds. Used by NE, NM, SD, OR, ND, MT."
+    },
+    "states_with_feed": [
+      "CA",
+      "CO",
+      "DC",
+      "DE",
+      "FL",
+      "GA",
+      "IA",
+      "ID",
+      "IN",
+      "LA",
+      "MD",
+      "NC",
+      "NE",
+      "NM",
+      "RI",
+      "SD",
+      "TX",
+      "UT",
+      "VA",
+      "VT",
+      "WA"
+    ],
+    "states_without_feed": [
+      "AK",
+      "AL",
+      "AR",
+      "AZ",
+      "CT",
+      "HI",
+      "IL",
+      "KS",
+      "KY",
+      "MA",
+      "ME",
+      "MI",
+      "MN",
+      "MO",
+      "MS",
+      "MT",
+      "ND",
+      "NH",
+      "NJ",
+      "NV",
+      "NY",
+      "OH",
+      "OK",
+      "OR",
+      "PA",
+      "SC",
+      "TN",
+      "WI",
+      "WV",
+      "WY"
+    ],
+    "unverified_pages": [
+      "AZ",
+      "CT",
+      "IL",
+      "KY",
+      "MI",
+      "MN",
+      "NH",
+      "NV",
+      "OH",
+      "OK",
+      "PA",
+      "TN"
+    ]
+  },
+  "AK": {
+    "name": "Alaska Division of Elections",
+    "url": "https://www.elections.alaska.gov/election-results/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "Fetched 2026-11-03: results index lists 2026 Primary (id=26prim) but no general-election entry yet. Primary pattern observed: per-house-district PDFs at /enr26/results/HD<n>.pdf and statewide precinct CSV at /enr26/results/GA_ENR_Precinct_State_of_Alaska.csv (verified for the Aug 18 primary). Expect the general to appear on the same index page; re-check on election night."
+    },
+    "county_level": false,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "custom (PDF/CSV)"
+  },
+  "AL": {
+    "name": "Alabama Secretary of State",
+    "url": "https://www2.alabamavotes.gov/electionNight/statewideResultsByContest.aspx?ecode=1001305",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "Fetched 2026-11-03: 'Unofficial Election Night Results \u2014 Results Coming Soon, polls close 7:00 pm CST'. Statewide and County Results views (chooseCounty.aspx?ecode=1001305). 'Export Data' is an ASP.NET postback (hlnkExportData), not a stable file URL. No JSON/CSV endpoint found."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "custom ASP.NET"
+  },
+  "AR": {
+    "name": "Arkansas Secretary of State",
+    "url": "https://arkansas.tally-enr.com/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "Fetched 2026-11-03: sos.arkansas.gov election-results page links the 2026 General Election & Judicial Runoff to the new Tally ENR site (vendor transition; SOS notes downloads temporarily unavailable, contact electionsemail@sos.arkansas.gov for data). Site is a JS SPA (/assets/index-1.10.20-*.js); no public JSON endpoint identified. No longer on Clarity (results.enr.clarityelections.com/AR returns 403)."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "Tally ENR"
+  },
+  "AZ": {
+    "name": "Arizona Secretary of State",
+    "url": "https://results.arizona.vote/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "UNVERIFIED FETCH: results.arizona.vote returned Cloudflare challenge (HTTP 403) to both fetchers; URL comes from azsos.gov search results (official). azsos.gov 2026 election info page also 403'd. County-level results are the norm on this platform; no machine-readable endpoint confirmed."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": null
+  },
+  "CA": {
+    "name": "California Secretary of State",
+    "url": "https://electionresults.sos.ca.gov/",
+    "feed": {
+      "type": "json",
+      "url": "https://api.sos.ca.gov/returns/status",
+      "notes": "api.sos.ca.gov/returns/* verified live 2026-11-03 (JSON; currently serving the last election's data until polls close). Patterns verified: /returns/status (per-county precincts reporting), /returns/<office>/county/<county> (e.g. /returns/secretary-of-state/county/fresno). electionresults.sos.ca.gov currently 302s to sos.ca.gov/elections/prior-elections until election night (Incapsula-protected)."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "CA SOS API"
+  },
+  "CO": {
+    "name": "Colorado Secretary of State",
+    "url": "https://results.enr.clarityelections.com/CO/127407/",
+    "feed": {
+      "type": "json",
+      "url": "https://results.enr.clarityelections.com/CO/127407/current_ver.txt",
+      "notes": "Scytl/Clarity. Verified 2026-11-03: current_ver.txt -> 383402; summary JSON at https://results.enr.clarityelections.com/CO/127407/<ver>/json/en/summary.json (shows 2026 US Senate: Hickenlooper/Baisley etc.); electionsettings.json also present (gzip). County JSON: /CO/127407/<ver>/json/en/<countyJsonFile> per electionsettings. SOS also posts unaggregated county results at https://www.coloradosos.gov/pubs/elections/Results/ENR/countyLevelResults.html."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "Scytl/Clarity"
+  },
+  "CT": {
+    "name": "Connecticut Secretary of the State",
+    "url": "https://electionresults.ct.gov/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "UNVERIFIED FETCH: electionresults.ct.gov refused (robots_disallowed / proxy CONNECT 502). This is the SOTS Election Night Reporting system (town-level, as used in 2024). portal.ct.gov election-results page lists only archives. Town (not county) is the reporting unit; map towns to counties."
+    },
+    "county_level": false,
+    "precinct_level": false,
+    "verified_at": null
+  },
+  "DC": {
+    "name": "District of Columbia Board of Elections",
+    "url": "https://electionresults.dcboe.org/",
+    "feed": {
+      "type": "json",
+      "url": "https://electionresults.dcboe.org/electionResults/getElectionResultsId",
+      "notes": "Verified 2026-11-03: JSON list of elections (ElectionResultsId, UrlText, IsLive, IsPublished). The Nov 3 2026 General was NOT yet listed (latest: 2026 Primary, id 1158, IsLive=false). Once published, the SPA loads per-election JSON from the same electionResults/* API; ward and precinct views are standard on this site."
+    },
+    "county_level": false,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "custom DCBOE API"
+  },
+  "DE": {
+    "name": "Delaware Department of Elections",
+    "url": "https://elections.delaware.gov/results/enr/GE2026.html",
+    "feed": {
+      "type": "csv",
+      "url": "https://data.delaware.gov/resource/yg7x-kgjc.csv?election_name=2026%20General%20Election",
+      "notes": "Verified 2026-11-03: GE2026.html labeled 'Unofficial Results', auto-refresh 5 min, views Statewide / By County / By Election District. Open-data Socrata feed also JSON: https://data.delaware.gov/resource/yg7x-kgjc.json?election_name=2026%20General%20Election (rows per office/candidate: machine/absentee/early/total votes, data_as_of). Statewide totals only in the Socrata dataset; county/ED on the HTML page."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "custom + Socrata"
+  },
+  "FL": {
+    "name": "Florida Department of State, Division of Elections",
+    "url": "https://floridaelectionwatch.gov/",
+    "feed": {
+      "type": "csv",
+      "url": "https://flelectionfiles.floridados.gov/enightfilespublic/20261103_ElecResultsFL.txt",
+      "notes": "Verified 2026-11-03: tab-delimited file with columns ElectionDate, PartyCode, RaceCode, RaceName, CountyCode, CountyName, Precincts, PrecinctsReporting, CanNameLast/First, CanVotes (one row per candidate per county; 2026-11-03 US Senate rows present). Pipe-delimited variants: 20261103_ElecResultsFL_PipeDlm_Info.txt and _PipeDlm_Votes.txt. Results released statewide at 8:00 pm ET. Downloads page: https://floridaelectionwatch.gov/Downloads."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "Florida Election Watch"
+  },
+  "GA": {
+    "name": "Georgia Secretary of State",
+    "url": "https://results.sos.ga.gov/results/public/Georgia/elections/11032026GeneralAndSpecialElection",
+    "feed": {
+      "type": "json",
+      "url": "https://results.sos.ga.gov/results/public/api/elections/Georgia/11032026GeneralAndSpecialElection",
+      "notes": "Verified 2026-11-03 (Enhanced Voting platform; GA left Clarity). Election JSON returned name 'November 3, 2026 - General & Special Elections', isOfficialResults=false, publishDate 2026-11-03T20:03Z. County roll-up: .../api/elections/Georgia/11032026GeneralAndSpecialElection/localities ; jurisdiction/election list: .../api/jurisdictions/Georgia ; county sites use shortName e.g. chatham-county-ga. Per-contest county/precinct results via ballot-items/<id> under each locality. Also 'Total Votes Excel' report blob."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "Enhanced Voting"
+  },
+  "HI": {
+    "name": "Hawaii Office of Elections",
+    "url": "https://elections.hawaii.gov/election-results/",
+    "feed": {
+      "type": "csv",
+      "url": null,
+      "notes": "Fetched 2026-11-03: 2026 General section lists placeholder files (statewide summary.txt and precinct-detail media.txt plus PDFs) under /wp-content/results/Placeholders/ until results post; primary files lived at /wp-content/results/2026%20Primary/ (histatewide.pdf, cch.pdf, coh.pdf...). Expect general files to move to a '2026 General' folder; grab the links from this page after first release (~7 pm HST)."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "custom (txt/PDF)"
+  },
+  "IA": {
+    "name": "Iowa Secretary of State",
+    "url": "https://electionresults.iowa.gov/IA/127077/",
+    "feed": {
+      "type": "json",
+      "url": "https://electionresults.iowa.gov/IA/127077/current_ver.txt",
+      "notes": "Scytl/Clarity hosted at electionresults.iowa.gov. Verified 2026-11-03: elections.json lists EID 127077 '2026 General Election' 11/3/2026; current_ver.txt -> 383360; summary at https://electionresults.iowa.gov/IA/127077/<ver>/json/en/summary.json (US Senate: Hinson/Turek/Laehn). electionsettings.json present. County JSON files per Clarity convention."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "Scytl/Clarity"
+  },
+  "ID": {
+    "name": "Idaho Secretary of State",
+    "url": "https://results.voteidaho.gov/results/public/ID/elections/nov2026",
+    "feed": {
+      "type": "json",
+      "url": "https://results.voteidaho.gov/results/public/api/elections/ID/nov2026",
+      "notes": "Verified 2026-11-03 (Enhanced Voting). Election JSON: 'General Election - November 3, 2026'. Jurisdiction list: https://results.voteidaho.gov/results/public/api/jurisdictions/ID (44 child localities = counties, e.g. bonner-county-id). County roll-up at .../api/elections/ID/nov2026/localities."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "Enhanced Voting"
+  },
+  "IL": {
+    "name": "Illinois State Board of Elections",
+    "url": "https://www.elections.il.gov/electionoperations/ElectionVoteTotals.aspx",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "ISBE does not run a live statewide election-night feed; it posts unofficial vote totals (by county via ElectionVoteTotalsCounty.aspx) after counties report, and certified results later. County clerks (Cook, Chicago BOE, DuPage, etc.) publish live results. Not fetched beyond search results from elections.il.gov."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": null
+  },
+  "IN": {
+    "name": "Indiana Secretary of State / Election Division",
+    "url": "https://enr.indianavoters.in.gov/",
+    "feed": {
+      "type": "json",
+      "url": "https://enr.indianavoters.in.gov/site/data/settings.json",
+      "notes": "Verified 2026-11-03: settings.json -> CurrentElection 11/03/2026, ElectionType G, VersionType 'B', IntervalInMinutes 2. Data files are data/<name>_<VersionType>.json, e.g. https://enr.indianavoters.in.gov/site/data/statewideTurnout_B.json (county turnout) and statewideElectionsR_B.json (county referendum map); office summaries follow the same pattern (loaded by enrOfficeSelection.js). data/version.json also present. County breakdown per office in UI; precinct not shown."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "custom Angular ENR"
+  },
+  "KS": {
+    "name": "Kansas Secretary of State",
+    "url": "https://ent.sos.ks.gov/kssos_ent.html",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "Fetched 2026-11-03: ent.sos.ks.gov served the 2026 Primary results page (HTTP 403 status but full HTML; meta refresh 5s) \u2014 general page will replace it after 7 pm CST. Companion national.html showed 2024 general. County map/list drill-down; no CSV/XML/JSON links found on page. sos.ks.gov results page returned 502."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "custom static HTML"
+  },
+  "KY": {
+    "name": "Kentucky State Board of Elections / Secretary of State",
+    "url": "https://vrsws.sos.ky.gov/liveresults?id=2",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "Search results on vrsws.sos.ky.gov list '2026 General Election' at liveresults?id=2 and county pages liveresults/County?id=<n>; site returned 'Under Maintenance' / 403 Acceptable Use Policy to fetchers on 2026-11-03. Precinct PDFs exist per county (liveresults/PrecinctPdf/<id>). No machine-readable feed found. KY left Clarity (results.enr.clarityelections.com/KY -> 403)."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": null,
+    "platform": "KY SBE ENR"
+  },
+  "LA": {
+    "name": "Louisiana Secretary of State",
+    "url": "https://voterportal.sos.la.gov/static/2026-11-03",
+    "feed": {
+      "type": "json",
+      "url": "https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/Votes_Multiparish.htm",
+      "notes": "Verified 2026-11-03: JSON blobs served from /ElectionResults/ElectionResults/Data?blob=<path>. Verified: ElectionDates.htm (DefaultElectionDate 11/03/2026, PKElectionID 344), 20261103/ElectionRaces.htm (RaceID 67997 = U.S. Senator), 20261103/Votes_Multiparish.htm (per-race PrecinctsReporting/Expected and Choice VoteTotal), 20261103/ParishesInElection.htm (per-parish precincts reported). Parish and precinct files per race are loaded by the app (raceParishResults / racePrecinctResults). Louisiana reports by parish (county equivalent)."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "LA SOS static JSON"
+  },
+  "MA": {
+    "name": "Massachusetts Secretary of the Commonwealth",
+    "url": "https://electionstats.state.ma.us/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "Secretary's office states 'We don't publish results on Election Night'; certified results appear on electionstats.state.ma.us (PD43+) after certification. Election night: municipalities and AP. Page fetched 2026-11-03."
+    },
+    "county_level": false,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "post-certification database"
+  },
+  "MD": {
+    "name": "Maryland State Board of Elections",
+    "url": "https://elections.maryland.gov/elections/2026/general_results/index.html",
+    "feed": {
+      "type": "html",
+      "url": "https://elections.maryland.gov/elections/2026/election_data/index.html",
+      "notes": "Verified 2026-11-03: 'Unofficial 2026 Gubernatorial General Election Results' with statewide office pages (gen_results_2026_<n>.html) and per-county pages (gen_results_2026_by_county_<n>.html). Election-data page currently lists primary CSVs (GP26_*Results.csv, GP26_*Precincts*.csv); general CSVs (same naming with the general code) are posted there post-election. No live JSON."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "custom static HTML"
+  },
+  "ME": {
+    "name": "Maine Secretary of State",
+    "url": "https://www.maine.gov/sos/elections-voting/election-results-data",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "Maine has no live statewide election-night reporting; SOS posts tabulations (xlsx/PDF by municipality) days after the election and RCV tabulations later. Page fetched 2026-11-03: lists June 2026 primary files only. Municipalities/AP are the election-night sources."
+    },
+    "county_level": false,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "post-election files"
+  },
+  "MI": {
+    "name": "Michigan Department of State / Bureau of Elections",
+    "url": "https://mvic.sos.state.mi.us/votehistory/Index?type=C&electionDate=11-3-2026",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "Link labeled 'Nov. 3, 2026 General Election Results' on michigan.gov/sos/elections (fetched 2026-11-03). mvic.sos.state.mi.us returned a Cloudflare challenge to direct fetch, so the page itself is UNVERIFIED. Michigan's state site typically shows county-level unofficial results; counties post precinct detail."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": null
+  },
+  "MN": {
+    "name": "Minnesota Secretary of State",
+    "url": "https://electionresults.sos.mn.gov/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "electionresults.sos.mn.gov (Results/Index?ersElectionId=<id>&scenario=...) is the official ENR; the general's ersElectionId was not discoverable because the host sits behind Radware bot-manager (captcha) for automated fetchers. MN SOS normally publishes semicolon-delimited media result text files from the same host; not verified this cycle. sos.mn.gov results index lists only the Aug 11 primary so far."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": null
+  },
+  "MO": {
+    "name": "Missouri Secretary of State",
+    "url": "https://enr.sos.mo.gov/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "enr.sos.mo.gov currently 302s to https://www.sos.mo.gov/elections/results (fetched 2026-11-03), which lists the Aug 4 primary PDFs; the ENR app is switched on election night. No machine-readable feed confirmed."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "MO ENR"
+  },
+  "MS": {
+    "name": "Mississippi Secretary of State",
+    "url": "https://www.sos.ms.gov/elections-voting/election-results",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "No statewide live ENR located. SOS results page (fetched 2026-11-03) lists only March 2026 primary results (PDF by county). Mississippi unofficial election-night numbers come from county circuit clerks / AP; SOS posts certified PDFs later."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "post-election PDFs"
+  },
+  "MT": {
+    "name": "Montana Secretary of State",
+    "url": "https://electionresults.mt.gov/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "electionresults.mt.gov currently redirects to https://sosmt.gov/elections/results/ (fetched 2026-11-03); ES&S ElectionResults platform (ResultsSW.aspx, ResultsList.aspx) \u2014 sibling sites (NE, NM, SD) expose resultsCSV.aspx?text=All&type=All&map=CTY but MT's returned an error page pre-election. Re-check after polls close (8 pm MT)."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "ES&S ElectionResults"
+  },
+  "NC": {
+    "name": "North Carolina State Board of Elections",
+    "url": "https://er.ncsbe.gov/?election_dt=11/03/2026",
+    "feed": {
+      "type": "json",
+      "url": "https://er.ncsbe.gov/enr/20261103/data/results_0.txt",
+      "notes": "Verified 2026-11-03: results_0.txt is a JSON array (cid, cnm contest name, bnm candidate, pty, vct votes, pct, prt/ptl precincts reporting/total, evc/ovc/avc/pvc by vote method) with 2026 US SENATE rows. Precinct-level TSV zip: https://dl.ncsbe.gov/ENRS/2026_11_03/results_pct_20261103.zip (verified, 637 KB; layout at https://dl.ncsbe.gov/ENRS/layout_results_pct.txt). County-level file pattern on the Downloads page (er.ncsbe.gov/downloads.html)."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "NCSBE ENR"
+  },
+  "ND": {
+    "name": "North Dakota Secretary of State",
+    "url": "https://results.sos.nd.gov/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "Fetched 2026-11-03: site still displays 'Official 2024 General Election Results' \u2014 the 2026 general had not been switched on. ES&S ElectionResults platform with ResultsExport.aspx (CSV/Excel/XML export form); resultsCSV.aspx returned an HTML page pre-election. Re-check after polls close."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "ES&S ElectionResults"
+  },
+  "NE": {
+    "name": "Nebraska Secretary of State",
+    "url": "https://electionresults.nebraska.gov/",
+    "feed": {
+      "type": "csv",
+      "url": "https://electionresults.nebraska.gov/resultsCSV.aspx?text=All&type=All&map=CTY",
+      "notes": "Verified 2026-11-03: page header 'General Election November 3, 2026'; CSV (RaceID,RaceName,PartyCode,AreaType,AreaNum,...,CandidateVotes,CandidatePercentage,PrecinctsReporting) returned 2026 US Senate rows (Ricketts etc.). Media page: https://electionresults.nebraska.gov/ResultsMedia.aspx lists per-category CSVs (type=CC, CG, ED, LD, ...). County pages: ResultsSW.aspx?type=CTYALL&cty=<nn>&map=CTY."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "ES&S ElectionResults"
+  },
+  "NH": {
+    "name": "New Hampshire Secretary of State",
+    "url": "https://www.sos.nh.gov/2026-general-election-results",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "URL from sos.nh.gov search results ('2026 General Election Results'); sos.nh.gov returned Akamai 'Access Denied' (403) to fetchers, so UNVERIFIED. NH SOS posts results by town as PDF/HTML pages on election night and after; no feed. Towns (not counties) are the reporting unit."
+    },
+    "county_level": false,
+    "precinct_level": true,
+    "verified_at": null
+  },
+  "NJ": {
+    "name": "New Jersey Department of State, Division of Elections",
+    "url": "https://www.nj.gov/state/elections/election-information-results.shtml",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "Fetched 2026-11-03: Division posts PDFs \u2014 official candidate lists and, on/after election night, unofficial county 'periodic reports' (assets/pdf/periodic-report/2026/2026-<mmdd>-<county>-periodic-report.pdf, pattern seen for the June primary) and official results PDFs. No statewide live ENR or machine-readable feed; county clerks/boards publish live results."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "PDF reports"
+  },
+  "NM": {
+    "name": "New Mexico Secretary of State",
+    "url": "https://electionresults.sos.nm.gov/",
+    "feed": {
+      "type": "csv",
+      "url": "https://electionresults.sos.nm.gov/resultsCSV.aspx?text=All&type=STATE&map=CTY",
+      "notes": "Verified 2026-11-03: header 'Unofficial Results GENERAL 2026 November 3, 2026'; CSV (RaceID,RaceName,PartyCode,AreaNum,CandidateID,CandidateName,VoteFor,CandidateVotes,CandidatePercentage,PrecinctsReporting,Absentee/ElectionDay/Early) returned US Senate rows (Lujan/Marker). type=All returned only a header; use type=STATE, FED, LGX, CTY etc. (listed on ResultsMedia.aspx). County pages: resultsSW.aspx?type=CTYALL&map=CTY&cty=<nn>."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "ES&S ElectionResults"
+  },
+  "NV": {
+    "name": "Nevada Secretary of State",
+    "url": "https://silverstateelection.nv.gov/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "UNVERIFIED FETCH: silverstateelection.nv.gov is Incapsula-protected (empty shell returned). It is the SOS's official results site (nvsos.gov links it); nvsos.gov also publishes static county pages after canvass (SOSelectionPages/results/<election>/<County>.aspx, seen for the 2026 primary). County-level is standard; precinct via county clerks."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": null
+  },
+  "NY": {
+    "name": "New York State Board of Elections",
+    "url": "https://nyenr.elections.ny.gov/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "Verified via WebFetch 2026-11-03: 'NYS Board of Elections Unofficial Election Night Results' showing Governor (Hochul/Adams vs Blakeman/Hood) with zeros; results uploaded by county boards. Cloudflare blocks direct curl. No CSV/JSON links seen; county-level only on the state site (NYC BOE and county boards post ED-level)."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "NYSBOE ENR"
+  },
+  "OH": {
+    "name": "Ohio Secretary of State",
+    "url": "https://liveresults.ohiosos.gov/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "UNVERIFIED FETCH: liveresults.ohiosos.gov blocked automated access ('security service has detected suspicious activity', HTTP 403); WebFetch received a stale cached 2021 special-election page. It is the SOS's official election-night results site (county-level; Detailed Reports tab offers downloads). ohiosos.gov/data portal hosts post-election files."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": null
+  },
+  "OK": {
+    "name": "Oklahoma State Election Board",
+    "url": "https://results.okelections.us/OKER/?elecDate=20261103",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "URL taken from the official oklahoma.gov November General Election page (fetched 2026-11-03), which says results appear after 7 pm and an Export tab provides zipped county/race/precinct-level result files. results.okelections.us itself answered 403 to automated fetchers (one attempt redirected to results.okelections.gov and loaded the SPA). Feed URL for the export not confirmed."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": null,
+    "platform": "OKER SPA"
+  },
+  "OR": {
+    "name": "Oregon Secretary of State",
+    "url": "https://results.oregonvotes.gov/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "Verified 2026-11-03: header 'Unofficial General Election November 3, 2026', ballots counted 0, results last updated 10/30. ES&S ElectionResults platform; 'Statewide and County Exports' at https://results.oregonvotes.gov/ResultsExport.aspx offers CSV/Excel/RSS/XML via ASP.NET postback (no direct file URL; resultsCSV.aspx returned an error page). County pages ResultsSW.aspx?type=CTYALL&cty=<nn>&map=CTY."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "ES&S ElectionResults"
+  },
+  "PA": {
+    "name": "Pennsylvania Department of State",
+    "url": "https://www.electionreturns.pa.gov/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "UNVERIFIED FETCH: electionreturns.pa.gov is Incapsula-protected (403 to both fetchers). It is the official unofficial-returns site (county drill-down: /General/CountyResults?...&countyName=<County>; Report Center offers CSV/XML exports per prior cycles \u2014 not confirmed this cycle). pa.gov elections-data page (fetched) lists only the daily mail-ballot xlsx for 2026 general."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": null
+  },
+  "RI": {
+    "name": "Rhode Island Board of Elections",
+    "url": "https://electionresults.ri.gov/results/public/rhodeisland/elections/2026StatewideGeneralElection",
+    "feed": {
+      "type": "json",
+      "url": "https://electionresults.ri.gov/results/public/api/elections/rhodeisland/2026StatewideGeneralElection",
+      "notes": "Verified 2026-11-03 (Enhanced Voting): jurisdictions/rhodeisland lists publicElectionId '2026StatewideGeneralElection' (2026-11-03, 'Statewide General Election') with 40 child localities (cities/towns, e.g. pawtucket-ri). Locality roll-up at .../api/elections/rhodeisland/2026StatewideGeneralElection/localities; precinct results under locality ballot-items. RI reports by city/town (map to the 5 counties)."
+    },
+    "county_level": false,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "Enhanced Voting"
+  },
+  "SC": {
+    "name": "South Carolina State Election Commission",
+    "url": "https://scvotes.gov/elections-statistics/election-results/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "SEC hosts Clarity-style ENR at https://www.enr-scvotes.org/SC/<EID>/ (2026 primaries: 126294, runoffs 126718, specials 127017/127179/127227 \u2014 fetched via scvotes results page 2026-11-03). The Nov 3 general EID was not yet listed (enr-scvotes.org/SC/elections.json returned []). Once live, Clarity JSON pattern applies: /SC/<EID>/current_ver.txt and /SC/<EID>/<ver>/json/en/summary.json."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "Scytl/Clarity (enr-scvotes.org)"
+  },
+  "SD": {
+    "name": "South Dakota Secretary of State",
+    "url": "https://electionresults.sd.gov/",
+    "feed": {
+      "type": "csv",
+      "url": "https://electionresults.sd.gov/resultsCSV.aspx?text=All&type=CTY&map=CTY",
+      "notes": "Verified 2026-11-03: header 'Unofficial Results General Election November 3, 2026' (updated 11/3/2026 12:21 PM CT). type=All returned header only; per-category CSVs listed on https://electionresults.sd.gov/ResultsMedia.aspx: type=SWR (statewide races), LEG&map=DIST, BQ (ballot questions), CTY, MUN. CSV columns RaceID,RaceName,PartyCode,AreaType,AreaNum,...,CandidateVotes,CandidatePercentage,PrecinctsReporting."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "ES&S ElectionResults"
+  },
+  "TN": {
+    "name": "Tennessee Secretary of State, Division of Elections",
+    "url": "https://www.elections.tn.gov/home",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "UNVERIFIED FETCH: elections.tn.gov ('Election Night Reporting Dashboard') returned CloudFront 403 to fetchers. URL from search results on the official domain (categories/congressional/offices, county-breakdown/... pages exist). County breakdown pages are part of the dashboard; no feed confirmed."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": null
+  },
+  "TX": {
+    "name": "Texas Secretary of State",
+    "url": "https://electionresults.sos.state.tx.us/results.html",
+    "feed": {
+      "type": "html",
+      "url": "https://electionresults.sos.state.tx.us/results.html",
+      "notes": "Verified 2026-11-03: static HTML 'Election Results - Tuesday, November 3, 2026 \u2014 2026 NOVEMBER GENERAL ELECTION' listing statewide races (US Senator: Paxton/Talarico...) with 'Polling Locations Reporting: 0%'. Statewide totals only; no county drill-down or download links on the page (counties publish their own). Page is parseable HTML tables."
+    },
+    "county_level": false,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "TX SOS static HTML"
+  },
+  "UT": {
+    "name": "Utah Lieutenant Governor / Elections Office",
+    "url": "https://electionresults.utah.gov/results/public/Utah/elections/General11032026",
+    "feed": {
+      "type": "json",
+      "url": "https://electionresults.utah.gov/results/public/api/elections/Utah/General11032026",
+      "notes": "Verified 2026-11-03 (Enhanced Voting): jurisdictions/Utah lists publicElectionId 'General11032026' (2026-11-03, '2026 General Election'), 29 child localities (counties, e.g. salt-lake-county-ut). County roll-up at .../api/elections/Utah/General11032026/localities; precinct results via county ballot-items."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "Enhanced Voting"
+  },
+  "VA": {
+    "name": "Virginia Department of Elections",
+    "url": "https://enr.elections.virginia.gov/results/public/virginia/elections/2026-November-General",
+    "feed": {
+      "type": "json",
+      "url": "https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General",
+      "notes": "Verified 2026-11-03 (Enhanced Voting): jurisdictions/virginia lists publicElectionId '2026-November-General' (2026-11-03) with 133 child localities (counties + independent cities). Locality roll-up at .../api/elections/virginia/2026-November-General/localities; precinct results under locality ballot-items."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "Enhanced Voting"
+  },
+  "VT": {
+    "name": "Vermont Secretary of State",
+    "url": "https://electionresults.vermont.gov/",
+    "feed": {
+      "type": "json",
+      "url": "https://static.electionresults.vermont.gov/elections/68d61e96-1d28-4210-8c1d-8e90512ae105.json",
+      "notes": "Verified 2026-11-03: elections list at https://static.electionresults.vermont.gov/elections/elections.json; '2026 GENERAL ELECTION' guid 68d61e96-1d28-4210-8c1d-8e90512ae105 (isDefault, isStateWideElection). Election JSON exposes paths for federal/stateWide/senate/... result files (e.g. elections/<guid>-f-<timestamp>.json). Vermont reports by town (map towns to counties)."
+    },
+    "county_level": false,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "VT SOS static JSON"
+  },
+  "WA": {
+    "name": "Washington Secretary of State",
+    "url": "https://results.votewa.gov/results/public/washington/elections/20261103",
+    "feed": {
+      "type": "json",
+      "url": "https://results.votewa.gov/results/public/api/elections/washington/20261103",
+      "notes": "Verified 2026-11-03 (Enhanced Voting; results.vote.wa.gov redirects here): jurisdictions/washington lists publicElectionId '20261103' ('2026 General') with 39 child localities (counties). County roll-up at .../api/elections/washington/20261103/localities. WA is vote-by-mail: first drop ~8:15 pm PT, then daily updates. Precinct results come later from counties."
+    },
+    "county_level": true,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "Enhanced Voting"
+  },
+  "WI": {
+    "name": "Wisconsin Elections Commission",
+    "url": "https://elections.wi.gov/elections/election-results",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "WEC states it has no statewide election-night reporting system; unofficial results are posted by the 72 county clerks (county websites) and aggregated by AP. WEC posts canvassed results later. elections.wi.gov is Cloudflare-protected (fetched via WebFetch)."
+    },
+    "county_level": false,
+    "precinct_level": false,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "none (county clerks)"
+  },
+  "WV": {
+    "name": "West Virginia Secretary of State",
+    "url": "https://apps.sos.wv.gov/elections/results/",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "Fetched 2026-11-03: WV SOS Election Results app (sos.wv.gov press release says county results are reported here on election night from ~8:30 pm ET). Page offers download.aspx?year=<yyyy>&eid=<n> exports for past elections (CSV-style); 2026 general eid not yet exposed. WV left Clarity (results.enr.clarityelections.com/WV elections.json is empty)."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "WV SOS results app"
+  },
+  "WY": {
+    "name": "Wyoming Secretary of State",
+    "url": "https://sos.wyo.gov/Elections/ElectionResults.aspx",
+    "feed": {
+      "type": "none",
+      "url": null,
+      "notes": "Fetched 2026-11-03 (sos.wyo.gov loads; www.sos.wyo.gov refused). SOS posts PDF summaries on election night: statewide summary and county precinct-by-precinct PDFs, pattern seen for the primary at https://sos.wyo.gov/Elections/Docs/2026/Results/Primary/2026_Wyoming_Primary_Election_Results.pdf and .../2026_<County>_County_Primary_PbP.pdf; expect .../Results/General/ for Nov 3. No feed."
+    },
+    "county_level": true,
+    "precinct_level": true,
+    "verified_at": "2026-11-03T21:00:00Z",
+    "platform": "PDF"
+  }
+}
