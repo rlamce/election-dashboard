@@ -12,6 +12,13 @@ MSG="${1:-deploy: $(date -u +%FT%TZ)}"
 done
 
 cd "$REPO"
+git fetch -q origin main
+# CI (refresh.yml) owns the live data files; keep its newer copies unless WITH_DATA=1
+if [ "${WITH_DATA:-0}" != "1" ]; then
+  for f in app/data/dataset.json data/official_results.json data/scored.json data/official_fetch_log.json; do
+    git show "origin/main:$f" > "$f" 2>/dev/null || true
+  done
+fi
 git add -A
 if git diff --cached --quiet; then
   echo "nothing to deploy"; exit 0

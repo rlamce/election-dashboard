@@ -783,6 +783,14 @@ function renderDetail(jkey, city) {
   let targetKey = jkey, inheritedNote = null;
   let rf = resultFor(targetKey, office);
   if (city && (!rf || !rf.result)) { targetKey = city.county_fips; rf = resultFor(targetKey, office); if (rf && rf.result) inheritedNote = targetKey; }
+  // statewide fallback: a state with no Senate race this year shows its Governor race (and vice versa), clearly labeled
+  let officeNote = null;
+  if ((!rf || !rf.result) && (office === 'SEN' || office === 'GOV') && j) {
+    const alt = office === 'SEN' ? 'GOV' : 'SEN';
+    const rfAlt = resultFor(targetKey, alt);
+    if (rfAlt && rfAlt.result) { rf = rfAlt; officeNote = `No ${OFFICE_LABEL[office]} race in this state in 2026 — showing ${OFFICE_LABEL[alt]}.`; }
+  }
+  if (officeNote) html += `<div class="empty" style="margin-bottom:8px">${esc(officeNote)}</div>`;
   if (rf && rf.all && detailRaceOverride && detailRaceOverride.jkey === jkey && rf.all.includes(detailRaceOverride.raceId)) { const id = detailRaceOverride.raceId; rf = Object.assign({}, rf, { race: ds.races[id] || { race_id: id, label: id, office, candidates: [] }, result: rf.j.results[id] }); }
   const ids = rf ? (rf.all || rf.multi || []) : [];
   if (rf && rf.multi) {
