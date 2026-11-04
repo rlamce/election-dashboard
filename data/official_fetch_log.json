@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-11-04T01:44:03Z",
+ "generated_at": "2026-11-04T08:07:05Z",
  "election_date": "2026-11-03",
- "elapsed_s": 6.0,
+ "elapsed_s": 13.6,
  "summary": {
   "states_attempted": [
    "CA",
@@ -53,21 +53,21 @@
    "CO",
    "IA"
   ],
-  "total_records": 1172,
-  "state_records": 226,
+  "total_records": 1170,
+  "state_records": 224,
   "county_records": 946,
-  "unmatched_total": 12,
+  "unmatched_total": 25,
   "states_with_records": [
    "CA",
    "DE",
    "FL",
    "GA",
+   "HI",
    "ID",
    "IN",
    "LA",
    "MD",
    "NC",
-   "NE",
    "NM",
    "RI",
    "TX",
@@ -81,7 +81,7 @@
   "CA": {
    "ok": true,
    "error": null,
-   "elapsed_s": 5.96,
+   "elapsed_s": 13.61,
    "requests": 53,
    "records": 111,
    "state_records": 53,
@@ -141,7 +141,7 @@
     "CA-HOU-2026-51",
     "CA-HOU-2026-52"
    ],
-   "election_seen": "ReportingTime: November 2, 2026, 6:28 p.m.",
+   "election_seen": "ReportingTime: November 3, 2026, 11:55 p.m.",
    "platform": "CA SOS API",
    "unmatched": [],
    "discarded_records": 0,
@@ -149,12 +149,12 @@
    "urls": [
     "https://api.sos.ca.gov/returns/governor/county/all"
    ],
-   "retrieved_at": "2026-11-04T01:43:57Z"
+   "retrieved_at": "2026-11-04T08:06:51Z"
   },
   "CO": {
    "ok": false,
    "error": "RuntimeError: JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
-   "elapsed_s": 3.77,
+   "elapsed_s": 3.73,
    "requests": 4,
    "records": 0,
    "state_records": 0,
@@ -168,18 +168,18 @@
    "urls": [
     "https://results.enr.clarityelections.com/CO/127407//json/en/summary.json"
    ],
-   "retrieved_at": "2026-11-04T01:43:57Z"
+   "retrieved_at": "2026-11-04T08:06:51Z"
   },
   "DC": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.43,
+   "elapsed_s": 0.26,
    "requests": 1,
    "records": 0,
    "state_records": 0,
    "county_records": 0,
    "races": [],
-   "election_seen": "2026-11-03 general not listed (latest: Primary and Special Election 2026-06-16T00:00:00)",
+   "election_seen": "General Election 2026-11-03T00:00:00 live=False published=False id=1160",
    "platform": "custom DCBOE API",
    "unmatched": [],
    "discarded_records": 0,
@@ -189,12 +189,12 @@
    "urls": [
     "https://electionresults.dcboe.org/electionResults/getElectionResultsId"
    ],
-   "retrieved_at": "2026-11-04T01:43:57Z"
+   "retrieved_at": "2026-11-04T08:06:51Z"
   },
   "DE": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.16,
+   "elapsed_s": 0.17,
    "requests": 2,
    "records": 5,
    "state_records": 2,
@@ -211,12 +211,12 @@
    "urls": [
     "https://elections.delaware.gov/results/enr/Election_StatewideResults_ID_GE2026.json"
    ],
-   "retrieved_at": "2026-11-04T01:43:57Z"
+   "retrieved_at": "2026-11-04T08:06:51Z"
   },
   "FL": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.16,
+   "elapsed_s": 0.15,
    "requests": 1,
    "records": 163,
    "state_records": 29,
@@ -260,12 +260,12 @@
    "urls": [
     "https://flelectionfiles.floridados.gov/enightfilespublic/20261103_ElecResultsFL.txt"
    ],
-   "retrieved_at": "2026-11-04T01:43:57Z"
+   "retrieved_at": "2026-11-04T08:06:51Z"
   },
   "GA": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.49,
+   "elapsed_s": 0.36,
    "requests": 4,
    "records": 334,
    "state_records": 16,
@@ -296,34 +296,35 @@
    "urls": [
     "https://results.sos.ga.gov/results/public/api/elections/Georgia/11032026GeneralAndSpecialElection/ballot-items"
    ],
-   "retrieved_at": "2026-11-04T01:43:57Z"
+   "retrieved_at": "2026-11-04T08:06:51Z"
   },
   "HI": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.23,
+   "elapsed_s": 0.2,
    "requests": 2,
-   "records": 0,
-   "state_records": 0,
+   "records": 3,
+   "state_records": 3,
    "county_records": 0,
-   "races": [],
-   "election_seen": "not published",
+   "races": [
+    "HI-GOV-2026",
+    "HI-HOU-2026-01",
+    "HI-HOU-2026-02"
+   ],
+   "election_seen": "summary.txt from https://elections.hawaii.gov/wp-content/results/2026%20General/summary.txt",
    "platform": "custom (txt/PDF)",
    "unmatched": [],
    "discarded_records": 0,
-   "notes": [
-    "no 2026 General summary.txt link on results page (24 summary links: ['https://elections.hawaii.gov/wp-content/results/Placeholders/summary.txt', 'https://elections.hawaii.gov/wp-content/results/2026 Primary/summary.txt', 'https://files.hawaii.gov/elections/files/results/2024/General/summary.txt']); trying https://elections.hawaii.gov/wp-content/results/2026%20General/summary.txt",
-    "summary.txt not published yet (404)"
-   ],
+   "notes": [],
    "urls": [
     "https://elections.hawaii.gov/wp-content/results/2026%20General/summary.txt"
    ],
-   "retrieved_at": "2026-11-04T01:43:58Z"
+   "retrieved_at": "2026-11-04T08:06:52Z"
   },
   "IA": {
    "ok": false,
    "error": "RuntimeError: JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
-   "elapsed_s": 3.87,
+   "elapsed_s": 3.72,
    "requests": 4,
    "records": 0,
    "state_records": 0,
@@ -337,12 +338,12 @@
    "urls": [
     "https://electionresults.iowa.gov/IA/127077//json/en/summary.json"
    ],
-   "retrieved_at": "2026-11-04T01:43:57Z"
+   "retrieved_at": "2026-11-04T08:06:51Z"
   },
   "ID": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.76,
+   "elapsed_s": 0.8,
    "requests": 4,
    "records": 92,
    "state_records": 4,
@@ -361,12 +362,12 @@
    "urls": [
     "https://results.voteidaho.gov/results/public/api/elections/ID/nov2026/ballot-items"
    ],
-   "retrieved_at": "2026-11-04T01:43:57Z"
+   "retrieved_at": "2026-11-04T08:06:51Z"
   },
   "IN": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.28,
+   "elapsed_s": 0.25,
    "requests": 3,
    "records": 9,
    "state_records": 9,
@@ -390,12 +391,12 @@
    "urls": [
     "https://enr.indianavoters.in.gov/site/data/settings.json"
    ],
-   "retrieved_at": "2026-11-04T01:43:57Z"
+   "retrieved_at": "2026-11-04T08:06:51Z"
   },
   "LA": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.52,
+   "elapsed_s": 0.39,
    "requests": 4,
    "records": 71,
    "state_records": 7,
@@ -417,7 +418,7 @@
      "name": "Chauna Banks",
      "party": "DEM",
      "reason": "no_match",
-     "votes": 0,
+     "votes": 50878,
      "jkey": "22"
     }
    ],
@@ -426,12 +427,12 @@
    "urls": [
     "https://voterportal.sos.la.gov/ElectionResults/ElectionResults/Data?blob=20261103/Votes_Multiparish.htm"
    ],
-   "retrieved_at": "2026-11-04T01:43:57Z"
+   "retrieved_at": "2026-11-04T08:06:51Z"
   },
   "MD": {
    "ok": true,
    "error": null,
-   "elapsed_s": 1.1,
+   "elapsed_s": 0.5,
    "requests": 10,
    "records": 33,
    "state_records": 9,
@@ -463,12 +464,12 @@
     "https://elections.maryland.gov/elections/2026/general_results/gen_results_2026_4_7.html",
     "https://elections.maryland.gov/elections/2026/general_results/gen_results_2026_4_8.html"
    ],
-   "retrieved_at": "2026-11-04T01:43:57Z"
+   "retrieved_at": "2026-11-04T08:06:51Z"
   },
   "NC": {
    "ok": true,
    "error": null,
-   "elapsed_s": 1.27,
+   "elapsed_s": 1.67,
    "requests": 101,
    "records": 115,
    "state_records": 15,
@@ -498,37 +499,33 @@
    "urls": [
     "https://er.ncsbe.gov/enr/20261103/data/results_0.txt"
    ],
-   "retrieved_at": "2026-11-04T01:43:57Z"
+   "retrieved_at": "2026-11-04T08:06:51Z"
   },
   "NE": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.37,
+   "elapsed_s": 0.45,
    "requests": 1,
-   "records": 5,
-   "state_records": 5,
+   "records": 0,
+   "state_records": 0,
    "county_records": 0,
-   "races": [
-    "NE-GOV-2026",
-    "NE-HOU-2026-01",
-    "NE-HOU-2026-02",
-    "NE-HOU-2026-03",
-    "NE-SEN-2026"
-   ],
-   "election_seen": "CurrentDateTime: 11/3/2026",
+   "races": [],
+   "election_seen": "CurrentDateTime: 11/4/2026",
    "platform": "ES&S ElectionResults",
    "unmatched": [],
    "discarded_records": 0,
-   "notes": [],
+   "notes": [
+    "DISCARDED: feed is not the 2026-11-03 general (CurrentDateTime='11/4/2026')"
+   ],
    "urls": [
     "https://electionresults.nebraska.gov/resultsCSV.aspx?text=All&type=All&map=CTY"
    ],
-   "retrieved_at": "2026-11-04T01:43:57Z"
+   "retrieved_at": "2026-11-04T08:06:51Z"
   },
   "NM": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.35,
+   "elapsed_s": 0.28,
    "requests": 2,
    "records": 5,
    "state_records": 5,
@@ -549,12 +546,12 @@
     "https://electionresults.sos.nm.gov/resultsCSV.aspx?text=All&type=FED&map=CTY",
     "https://electionresults.sos.nm.gov/resultsCSV.aspx?text=All&type=STATE&map=CTY"
    ],
-   "retrieved_at": "2026-11-04T01:43:58Z"
+   "retrieved_at": "2026-11-04T08:06:52Z"
   },
   "RI": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.6,
+   "elapsed_s": 0.81,
    "requests": 4,
    "records": 14,
    "state_records": 4,
@@ -575,12 +572,12 @@
    "urls": [
     "https://electionresults.ri.gov/results/public/api/elections/rhodeisland/2026StatewideGeneralElection/ballot-items"
    ],
-   "retrieved_at": "2026-11-04T01:43:58Z"
+   "retrieved_at": "2026-11-04T08:06:52Z"
   },
   "SD": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.37,
+   "elapsed_s": 0.46,
    "requests": 1,
    "records": 0,
    "state_records": 0,
@@ -596,12 +593,12 @@
    "urls": [
     "https://electionresults.sd.gov/resultsCSV.aspx?text=All&type=SWR&map=CTY"
    ],
-   "retrieved_at": "2026-11-04T01:43:58Z"
+   "retrieved_at": "2026-11-04T08:06:52Z"
   },
   "TX": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.24,
+   "elapsed_s": 0.21,
    "requests": 1,
    "records": 40,
    "state_records": 40,
@@ -656,12 +653,12 @@
    "urls": [
     "https://electionresults.sos.state.tx.us/results.html"
    ],
-   "retrieved_at": "2026-11-04T01:43:58Z"
+   "retrieved_at": "2026-11-04T08:06:52Z"
   },
   "UT": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.14,
+   "elapsed_s": 0.11,
    "requests": 2,
    "records": 4,
    "state_records": 4,
@@ -680,12 +677,12 @@
    "urls": [
     "https://electionresults.utah.gov/results/public/api/elections/Utah/General11032026/ballot-items"
    ],
-   "retrieved_at": "2026-11-04T01:43:58Z"
+   "retrieved_at": "2026-11-04T08:06:52Z"
   },
   "VA": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.33,
+   "elapsed_s": 0.22,
    "requests": 3,
    "records": 145,
    "state_records": 12,
@@ -712,12 +709,12 @@
    "urls": [
     "https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/ballot-items"
    ],
-   "retrieved_at": "2026-11-04T01:43:58Z"
+   "retrieved_at": "2026-11-04T08:06:52Z"
   },
   "VT": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.78,
+   "elapsed_s": 1.54,
    "requests": 4,
    "records": 16,
    "state_records": 2,
@@ -731,7 +728,47 @@
    "unmatched": [
     {
      "race_id": "VT-HOU-2026-00",
+     "name": "KEVIN HOYT",
+     "party": null,
+     "reason": "no_match",
+     "votes": 4,
+     "jkey": "50"
+    },
+    {
+     "race_id": "VT-HOU-2026-00",
      "name": "JONAS HASTINGS",
+     "party": null,
+     "reason": "no_match",
+     "votes": 2,
+     "jkey": "50"
+    },
+    {
+     "race_id": "VT-HOU-2026-00",
+     "name": "MOLLY GRAY",
+     "party": null,
+     "reason": "no_match",
+     "votes": 2,
+     "jkey": "50"
+    },
+    {
+     "race_id": "VT-HOU-2026-00",
+     "name": "ETHAN SWIFT",
+     "party": null,
+     "reason": "no_match",
+     "votes": 2,
+     "jkey": "50"
+    },
+    {
+     "race_id": "VT-HOU-2026-00",
+     "name": "ROGER PARKER",
+     "party": null,
+     "reason": "no_match",
+     "votes": 2,
+     "jkey": "50"
+    },
+    {
+     "race_id": "VT-HOU-2026-00",
+     "name": "PHIL SCOTT",
      "party": null,
      "reason": "no_match",
      "votes": 2,
@@ -763,10 +800,26 @@
     },
     {
      "race_id": "VT-GOV-2026",
+     "name": "KEVIN HOYT",
+     "party": null,
+     "reason": "no_match",
+     "votes": 12,
+     "jkey": "50"
+    },
+    {
+     "race_id": "VT-GOV-2026",
+     "name": "THOMAS GARBITELLI",
+     "party": null,
+     "reason": "no_match",
+     "votes": 2,
+     "jkey": "50"
+    },
+    {
+     "race_id": "VT-GOV-2026",
      "name": "KEVIN MICHAEL HOYT",
      "party": null,
      "reason": "no_match",
-     "votes": 0,
+     "votes": 6,
      "jkey": "50"
     },
     {
@@ -790,12 +843,20 @@
      "name": "ALY RICHARDS",
      "party": null,
      "reason": "no_match",
-     "votes": 2,
+     "votes": 4,
      "jkey": "50"
     },
     {
      "race_id": "VT-GOV-2026",
      "name": "MARGO NUGENT",
+     "party": null,
+     "reason": "no_match",
+     "votes": 2,
+     "jkey": "50"
+    },
+    {
+     "race_id": "VT-GOV-2026",
+     "name": "ROGER PARKER",
      "party": null,
      "reason": "no_match",
      "votes": 2,
@@ -811,7 +872,47 @@
     },
     {
      "race_id": "VT-GOV-2026",
-     "name": "KEVIN HOYT",
+     "name": "GEORGE DEBLON",
+     "party": null,
+     "reason": "no_match",
+     "votes": 2,
+     "jkey": "50"
+    },
+    {
+     "race_id": "VT-GOV-2026",
+     "name": "JOHN S. RODGERS",
+     "party": null,
+     "reason": "no_match",
+     "votes": 2,
+     "jkey": "50"
+    },
+    {
+     "race_id": "VT-GOV-2026",
+     "name": "NEIL RYAN",
+     "party": null,
+     "reason": "no_match",
+     "votes": 2,
+     "jkey": "50"
+    },
+    {
+     "race_id": "VT-GOV-2026",
+     "name": "TOM OTTERMAN",
+     "party": null,
+     "reason": "no_match",
+     "votes": 2,
+     "jkey": "50"
+    },
+    {
+     "race_id": "VT-GOV-2026",
+     "name": "TIM HALL",
+     "party": null,
+     "reason": "no_match",
+     "votes": 2,
+     "jkey": "50"
+    },
+    {
+     "race_id": "VT-GOV-2026",
+     "name": "KIVEN HOUT",
      "party": null,
      "reason": "no_match",
      "votes": 2,
@@ -821,15 +922,15 @@
    "discarded_records": 0,
    "notes": [],
    "urls": [
-    "https://static.electionresults.vermont.gov/elections/68d61e96-1d28-4210-8c1d-8e90512ae105-f-20261103204114.json",
-    "https://static.electionresults.vermont.gov/elections/68d61e96-1d28-4210-8c1d-8e90512ae105-s-20261103204114.json"
+    "https://static.electionresults.vermont.gov/elections/68d61e96-1d28-4210-8c1d-8e90512ae105-f-20261104030107.json",
+    "https://static.electionresults.vermont.gov/elections/68d61e96-1d28-4210-8c1d-8e90512ae105-s-20261104030107.json"
    ],
-   "retrieved_at": "2026-11-04T01:43:58Z"
+   "retrieved_at": "2026-11-04T08:06:52Z"
   },
   "WA": {
    "ok": true,
    "error": null,
-   "elapsed_s": 0.2,
+   "elapsed_s": 0.18,
    "requests": 2,
    "records": 10,
    "state_records": 10,
@@ -854,7 +955,7 @@
    "urls": [
     "https://results.votewa.gov/results/public/api/elections/washington/20261103/ballot-items"
    ],
-   "retrieved_at": "2026-11-04T01:43:58Z"
+   "retrieved_at": "2026-11-04T08:06:52Z"
   }
  }
 }
